@@ -4,17 +4,18 @@ require.config({
 
     paths: {
         app: 'js/app',
-        tpl: 'js/tpl'
-        jquery: 'bower_components/jquery/dist/jquery-min',
+        tpl: 'js/tpl',
+        jquery: 'bower_components/jquery/dist/jquery.min',
         backbone: 'bower_components/backbone/backbone',
+        underscore: 'bower_components/underscore-min',
     },
 
     shim: {
         'backbone': {
-            deps: ['underscore', 'bower/jquery'],
+            deps: ['underscore', 'jquery'],
             exports: 'Backbone'
         },
-        'bower/underscore': {
+        'underscore': {
             exports: '_'
         }
     }
