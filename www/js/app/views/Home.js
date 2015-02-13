@@ -21,7 +21,8 @@ define([
         },
 
         events: {
-            'submit .mymodel-form' : 'postMyModel'
+            'submit .mymodel-form' : 'postMyModel',
+            'click [data-js-action="nextPage"]' : 'nextPage',
         },
 
         postMyModel: function(event) {
@@ -41,7 +42,11 @@ define([
                     that.trigger('postMyModel');
                 },
             });
-        }
+        },
+
+        nextPage: function() {
+
+        },
 
     });
 
