@@ -4,7 +4,8 @@ require.config({
 
     paths: {
         app: 'js/app',
-        tpl: 'js/tpl',
+        templates: 'js/templates',
+        models: 'js/app/models',
         jquery: 'bower_components/jquery/dist/jquery.min',
         backbone: 'bower_components/backbone/backbone',
         underscore: 'bower_components/underscore/underscore-min',
