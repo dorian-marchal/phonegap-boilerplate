@@ -1,14 +1,13 @@
-define(function (require) {
+define([
+    'jquery',
+    'underscore',
+    'backbone',
+    'models/mymodel',
+    'text!templates/Home.html',
+],function ($, _, Backbone, MyModel, homeTemplate) {
+    'use strict';
 
-    "use strict";
-
-    var $                   = require('jquery'),
-        _                   = require('underscore'),
-        Backbone            = require('backbone'),
-        tpl                 = require('text!tpl/Home.html'),
-
-        template = _.template(tpl);
-
+    var template = _.template(homeTemplate);
 
     return Backbone.View.extend({
 
@@ -22,7 +21,27 @@ define(function (require) {
         },
 
         events: {
+            'submit .mymodel-form' : 'postMyModel'
         },
+
+        postMyModel: function(event) {
+            event.preventDefault();
+            var that = this;
+
+            var mymodel = new MyModel();
+            mymodel.set('attribute', $('[name="attribute"]').val());
+            mymodel.set('attribute2', $('[name="attribute2"]').val());
+
+            mymodel.on('invalid', function(model, error) {
+                alert(error);
+            });
+
+            mymodel.save({
+                success: function() {
+                    that.trigger('postMyModel');
+                },
+            });
+        }
 
     });
 
