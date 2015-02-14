@@ -2,23 +2,13 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'models/mymodel',
-    'text!templates/NextPage.html',
-],function ($, _, Backbone, MyModel, nextPageTemplate) {
+    'app/views/Page',
+],function ($, _, Backbone, Page) {
     'use strict';
 
-    var template = _.template(nextPageTemplate);
+    return Page.extend({
 
-    return Backbone.View.extend({
-
-        initialize: function () {
-            this.render();
-        },
-
-        render: function () {
-            this.$el.html(template());
-            return this;
-        },
+        id: 'NextPage',
 
     });
 

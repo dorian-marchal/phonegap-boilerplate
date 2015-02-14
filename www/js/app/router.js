@@ -1,6 +1,6 @@
 define(function (require) {
 
-    "use strict";
+    'use strict';
 
     var $           = require('jquery'),
         Backbone    = require('backbone'),
@@ -16,8 +16,8 @@ define(function (require) {
     return Backbone.Router.extend({
 
         routes: {
-            "": "home",
-            "nextPage": "nextPage",
+            '': 'home',
+            'nextPage': 'nextPage',
         },
 
         home: function () {

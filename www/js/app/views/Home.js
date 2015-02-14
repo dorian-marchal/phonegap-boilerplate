@@ -2,27 +2,17 @@ define([
     'jquery',
     'underscore',
     'backbone',
+    'app/views/Page',
     'models/mymodel',
-    'text!templates/Home.html',
-],function ($, _, Backbone, MyModel, homeTemplate) {
+], function ($, _, Backbone, Page, MyModel) {
     'use strict';
 
-    var template = _.template(homeTemplate);
+    return Page.extend({
 
-    return Backbone.View.extend({
-
-        initialize: function () {
-            this.render();
-        },
-
-        render: function () {
-            this.$el.html(template());
-            return this;
-        },
+        id: 'Home',
 
         events: {
             'submit .mymodel-form' : 'postMyModel',
-            'click [data-js-action="nextPage"]' : 'nextPage',
         },
 
         postMyModel: function(event) {
@@ -42,10 +32,6 @@ define([
                     that.trigger('postMyModel');
                 },
             });
-        },
-
-        nextPage: function() {
-
         },
 
     });
