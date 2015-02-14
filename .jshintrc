@@ -2,7 +2,7 @@
     "browser": true,
     "globalstrict": true,
     "esnext": true,
-    "quotmark": "simple",
+    "quotmark": "single",
     "curly": true,
     "undef": true,
     "unused": true,
