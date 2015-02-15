@@ -2,11 +2,11 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'app/views/Page',
-],function ($, _, Backbone, Page) {
+    'app/views/AppView',
+],function ($, _, Backbone, AppView) {
     'use strict';
 
-    return Page.extend({
+    return AppView.extend({
 
         id: 'NextPage',
 

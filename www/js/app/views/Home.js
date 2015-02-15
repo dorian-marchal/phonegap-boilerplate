@@ -2,12 +2,12 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'app/views/Page',
+    'app/views/AppView',
     'models/mymodel',
-], function ($, _, Backbone, Page, MyModel) {
+], function ($, _, Backbone, AppView, MyModel) {
     'use strict';
 
-    return Page.extend({
+    return AppView.extend({
 
         id: 'Home',
 
