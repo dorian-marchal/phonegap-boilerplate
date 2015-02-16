@@ -1,6 +1,6 @@
 define(function (require) {
 
-    "use strict";
+    'use strict';
 
     var $ = require('jquery');
 
@@ -40,13 +40,13 @@ define(function (require) {
             container.append(page);
 
             if (!currentPage || !from) {
-                page.attr("class", "page page-center");
+                page.attr('class', 'page page-center');
                 currentPage = page;
                 return;
             }
 
             // Position the page at the starting position of the animation
-            page.attr("class", "page " + from);
+            page.attr('class', 'page ' + from);
 
             currentPage.one('webkitTransitionEnd', function (e) {
                 $(e.target).remove();
@@ -56,8 +56,8 @@ define(function (require) {
             container[0].offsetWidth;
 
             // Position the new page and the current page at the ending position of their animation with a transition class indicating the duration of the animation
-            page.attr("class", "page transition page-center");
-            currentPage.attr("class", "page transition " + (from === "page-left" ? "page-right" : "page-left"));
+            page.attr('class', 'page transition page-center');
+            currentPage.attr('class', 'page transition ' + (from === 'page-left' ? 'page-right' : 'page-left'));
             currentPage = page;
         };
 
