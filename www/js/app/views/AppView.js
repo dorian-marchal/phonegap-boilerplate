@@ -12,7 +12,6 @@ define([
          * bound to the view.
          */
         initialize: function () {
-
             var that = this;
 
             // Add general views event
@@ -30,19 +29,11 @@ define([
             // Call the children initialize (init)
             that.init();
 
-            // The template templates/<id>.html is rendered
-            require(['text!templates/' + this.id + '.html'], function(tpl) {
-                that.template = _.template(tpl);
-                that.render();
-            });
+            // Render the view
+            that.render();
         },
 
         init: $.noop,
-
-        render: function () {
-            this.$el.html(this.template());
-            return this;
-        },
 
     });
 

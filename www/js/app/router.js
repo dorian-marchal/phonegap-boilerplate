@@ -1,17 +1,17 @@
 define(function (require) {
-
     'use strict';
 
-    var $           = require('jquery'),
-        Backbone    = require('backbone'),
-        PageSlider  = require('app/util/pageslider'),
-        HomeView    = require('app/views/Home'),
-        NextPageView    = require('app/views/NextPage'),
+    var $           = require('jquery');
+    var Backbone    = require('backbone');
+    var PageSlider  = require('app/util/pageslider');
+    var LayoutView    = require('app/views/Layout');
+    var HomeView    = require('app/views/Home');
+    var NextPageView    = require('app/views/NextPage');
+    var slider = new PageSlider($('body'));
 
-        slider = new PageSlider($('body')),
-
-        homeView = new HomeView(),
-        nextPageView = new NextPageView();
+    var layoutView = new LayoutView();
+    var homeView = new HomeView();
+    var nextPageView = new NextPageView();
 
     return Backbone.Router.extend({
 
@@ -22,12 +22,16 @@ define(function (require) {
 
         home: function () {
             homeView.delegateEvents();
-            slider.slidePage(homeView.$el);
+            var $layout = layoutView.render().$el;
+            $layout.find('#content').html(homeView.$el);
+            slider.slidePage($layout);
         },
 
         nextPage: function () {
             nextPageView.delegateEvents();
-            slider.slidePage(nextPageView.$el);
+            var $layout = layoutView.render().$el;
+            $layout.find('#content').html(nextPageView.$el);
+            slider.slidePage($layout);
         },
 
     });

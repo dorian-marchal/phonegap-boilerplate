@@ -3,13 +3,18 @@ define([
     'underscore',
     'backbone',
     'app/views/AppView',
+    'text!templates/Home.html',
     'models/mymodel',
-], function ($, _, Backbone, AppView, MyModel) {
+], function ($, _, Backbone, AppView, template, MyModel) {
     'use strict';
 
     return AppView.extend({
 
-        id: 'Home',
+        className: 'container',
+
+        init: function () {
+            this.template = _.template(template);
+        },
 
         events: {
             'submit .mymodel-form' : 'postMyModel',
@@ -32,6 +37,11 @@ define([
                     that.trigger('postMyModel');
                 },
             });
+        },
+
+        render: function () {
+            this.$el.html(this.template());
+            return this;
         },
 
     });
