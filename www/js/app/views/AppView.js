@@ -18,6 +18,9 @@ define([
             that.events = that.events || {};
 
             $.extend(that.events, {
+                'click h1' : function() {
+                    alert('ok');
+                },
                 'click [data-back]' : function() {
                     history.back();
                 },
@@ -28,9 +31,6 @@ define([
 
             // Call the children initialize (init)
             that.init();
-
-            // Render the view
-            that.render();
         },
 
         init: $.noop,
