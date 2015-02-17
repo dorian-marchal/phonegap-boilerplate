@@ -9,7 +9,7 @@ define(function (require) {
     var NextPageView    = require('app/views/NextPage');
     var slider = new PageSlider($('body'));
 
-    var layoutView = new LayoutView();
+    var layout = new LayoutView();
     var homeView = new HomeView();
     var nextPageView = new NextPageView();
 
@@ -21,17 +21,14 @@ define(function (require) {
         },
 
         home: function () {
-            homeView.delegateEvents();
-            var $layout = layoutView.render().$el;
-            $layout.find('#content').html(homeView.$el);
-            slider.slidePage($layout);
+            layout.setContentView(homeView);
+            slider.slidePage(layout.render().$el);
         },
 
         nextPage: function () {
-            nextPageView.delegateEvents();
-            var $layout = layoutView.render().$el;
-            $layout.find('#content').html(nextPageView.$el);
-            slider.slidePage($layout);
+            layout.setContentView(homeView);
+            homeView.delegateEvents();
+            slider.slidePage(layout.render().$el);
         },
 
     });
