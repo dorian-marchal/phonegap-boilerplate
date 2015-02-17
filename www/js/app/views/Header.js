@@ -13,8 +13,8 @@ define([
             this.template = _.template(template);
         },
 
-        render: function () {
-            this.el = $(this.template());
+        render: function (options) {
+            this.$el.html($(this.template(options)));
             return this;
         },
 

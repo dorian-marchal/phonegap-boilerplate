@@ -1,12 +1,12 @@
 define(function (require) {
     'use strict';
 
-    var $           = require('jquery');
-    var Backbone    = require('backbone');
-    var PageSlider  = require('app/util/pageslider');
-    var LayoutView    = require('app/views/Layout');
-    var HomeView    = require('app/views/Home');
-    var NextPageView    = require('app/views/NextPage');
+    var $ = require('jquery');
+    var Backbone = require('backbone');
+    var PageSlider = require('app/util/pageslider');
+    var LayoutView = require('app/views/Layout');
+    var HomeView = require('app/views/Home');
+    var NextPageView = require('app/views/NextPage');
     var slider = new PageSlider($('body'));
 
     var layout = new LayoutView();
@@ -20,15 +20,23 @@ define(function (require) {
             'nextPage': 'nextPage',
         },
 
-        home: function () {
-            layout.setContentView(homeView);
+        loadPage: function(view) {
+            layout.setContentView(view);
             slider.slidePage(layout.render().$el);
         },
 
+        home: function () {
+            layout.setOptions({
+                title: 'Accueil',
+            });
+            this.loadPage(homeView);
+        },
+
         nextPage: function () {
-            layout.setContentView(homeView);
-            homeView.delegateEvents();
-            slider.slidePage(layout.render().$el);
+            layout.setOptions({
+                title: 'NextPage',
+            });
+            this.loadPage(nextPageView);
         },
 
     });
