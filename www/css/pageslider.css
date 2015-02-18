@@ -34,3 +34,7 @@
     -webkit-transition-duration: .25s;
     transition-duration: .25s;
 }
+
+.page.no-transition {
+    transform: none;
+}

@@ -42,14 +42,16 @@ define(function (require) {
             if (!currentPage || !from) {
                 page.attr('class', 'page page-center');
                 currentPage = page;
+                currentPage.addClass('no-transition');
                 return;
             }
 
             // Position the page at the starting position of the animation
             page.attr('class', 'page ' + from);
 
-            currentPage.one('webkitTransitionEnd', function (e) {
+            currentPage.one('transitionend webkitTransitionEnd', function (e) {
                 $(e.target).remove();
+                currentPage.addClass('no-transition');
             });
 
             // Force reflow. More information here: http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/
