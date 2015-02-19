@@ -4,8 +4,9 @@ define([
     'backbone',
     'app/views/AppView',
     'text!templates/Home.html',
-    'models/mymodel',
-], function ($, _, Backbone, AppView, template, MyModel) {
+    'text!templates/MyModel.html',
+    'models/mymodels',
+], function ($, _, Backbone, AppView, template, myModelTemplate, MyModels) {
     'use strict';
 
     return AppView.extend({
@@ -13,7 +14,13 @@ define([
         className: 'container',
 
         init: function () {
+            var that = this;
+
             this.template = _.template(template);
+            this.myModelsTemplate = _.template(myModelTemplate);
+            this.myModels = new MyModels();
+
+            this.myModels.on('add change remove', this.renderMyModels, this);
         },
 
         events: {
@@ -24,24 +31,40 @@ define([
             event.preventDefault();
             var that = this;
 
-            var mymodel = new MyModel();
-            mymodel.set('attribute', $('[name="attribute"]').val());
-            mymodel.set('attribute2', $('[name="attribute2"]').val());
-
-            mymodel.on('invalid', function(model, error) {
+            that.myModels.on('invalid', function(model, error) {
                 alert(error);
             });
 
-            mymodel.save({
-                success: function() {
-                    that.trigger('postMyModel');
-                },
+            that.myModels.create({
+                attribute: $('[name="attribute"]').val(),
+                attribute2: $('[name="attribute2"]').val(),
+            }, {
+                // wait: true,
+                validate: true,
+                error: function(model, res, error) {
+                    console.log(model, res, error);
+                }
+            });
+
+        },
+
+        renderMyModels: function() {
+            var that = this;
+
+            var $myModelList = $('.mymodel-list ul');
+            $myModelList.empty();
+
+            this.myModels.each(function(myModel) {
+                $myModelList.append(that.myModelsTemplate(myModel.toJSON()));
             });
         },
 
         render: function () {
-            this.$el.html(this.template());
-            return this;
+            var that = this;
+
+            that.myModels.fetch();
+            that.$el.html(that.template());
+            return that;
         },
 
     });
