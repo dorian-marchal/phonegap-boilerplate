@@ -1,3 +1,12 @@
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    zoom: 1
+}
+
 .topcoat-text-input {
     width: 100%;
 }
@@ -8,25 +17,32 @@
     margin-top: 20px;
 }
 
+/* /Forms */
+
+header,
 footer {
     position: fixed;
-    bottom: 0px;
     width: 100%;
     z-index: 100;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.4);
 }
 
-.content {
-    margin-top: 70px;
-    min-height: 800px;
+footer {
+    bottom: 0px;
 }
 
 header {
-    position: fixed;
     top: 0px;
-    width: 100%;
-    z-index: 100;
+}
+
+.content {
+    margin: 70px 0px;
 }
 
 .mymodel-form {
+    margin-top: 60px;
+}
+
+.mymodel-list {
     margin-top: 60px;
 }
