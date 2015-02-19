@@ -1,16 +1,27 @@
-<form class="columns mymodel-form twelve">
+<form class="form mymodel-form clearfix">
 
-    <div class="columns six" >
-        <label>Attribute :</label>
-        <input type="text" class="topcoat-text-input" name="attribute" />
+    <div class="form-input-row">
+        <div class="six columns" >
+            <label>Attribute :</label>
+            <input type="text" class="topcoat-text-input" name="attribute" />
+        </div>
+
+        <div class="six columns" >
+            <label>Attribute 2 :</label>
+            <input type="text" class="topcoat-text-input" name="attribute2" />
+        </div>
     </div>
 
-    <div class="columns six" >
-        <label>Attribute 2 :</label>
-        <input type="text" class="topcoat-text-input" name="attribute2" />
+    <div class="form-actions">
+        <div class="two columns offset-ten" >
+            <input class="topcoat-button--cta" type="submit" value="Poster" />
+        </div>
     </div>
 
-    <input class="topcoat-button--cta" type="submit" value="Poster" />
 </form>
-<ul class="mymodel-list">
-</ul>
+
+<div class="mymodel-list topcoat-list">
+    <h3 class="topcoat-list__header">Modèles :</h3>
+    <ul class="topcoat-list__container">
+    </ul>
+</div>
