@@ -16,11 +16,11 @@ define([
         init: function () {
             var that = this;
 
-            this.template = _.template(template);
-            this.myModelsTemplate = _.template(myModelTemplate);
-            this.myModels = new MyModels();
+            that.template = _.template(template);
+            that.myModelsTemplate = _.template(myModelTemplate);
+            that.myModels = new MyModels();
 
-            this.myModels.on('add change remove', this.renderMyModels, this);
+            that.myModels.on('add change remove', that.renderMyModels, that);
         },
 
         events: {
@@ -54,7 +54,7 @@ define([
             var $myModelList = $('.mymodel-list ul');
             $myModelList.empty();
 
-            this.myModels.each(function(myModel) {
+            that.myModels.each(function(myModel) {
                 $myModelList.append(that.myModelsTemplate(myModel.toJSON()));
             });
         },
@@ -62,7 +62,11 @@ define([
         render: function () {
             var that = this;
 
-            that.myModels.fetch();
+            that.myModels.fetch({
+                error: function() {
+                    alert('Les données n\'ont pas pu être récupérées. Le serveur REST est lancé ?');
+                }
+            });
             that.$el.html(that.template());
             return that;
         },
