@@ -42,6 +42,7 @@ define([
                 // wait: true,
                 validate: true,
                 error: function(model, res, error) {
+                    alert('Les données n\'ont pas pu être enregistrées. Le serveur REST est lancé ?');
                     console.log(model, res, error);
                 }
             });
@@ -63,7 +64,7 @@ define([
             var that = this;
 
             that.myModels.fetch({
-                error: function() {
+                error: function(model, res, error) {
                     alert('Les données n\'ont pas pu être récupérées. Le serveur REST est lancé ?');
                 }
             });
