@@ -2,8 +2,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'app/views/AppView',
-    'text!templates/NextPage.html',
+    'core/views/AppView',
+    'text!app/templates/NextPage.html',
 ],function ($, _, Backbone, AppView, template) {
     'use strict';
 

@@ -5,9 +5,8 @@ require.config({
     baseUrl: '',
 
     paths: {
+        core: 'js/core',
         app: 'js/app',
-        templates: 'js/templates',
-        models: 'js/app/models',
         jquery: 'bower_components/jquery/dist/jquery.min',
         backbone: 'bower_components/backbone/backbone',
         underscore: 'bower_components/underscore/underscore-min',

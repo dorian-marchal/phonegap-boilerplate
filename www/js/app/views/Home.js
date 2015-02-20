@@ -2,10 +2,10 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'app/views/AppView',
-    'text!templates/Home.html',
-    'text!templates/MyModel.html',
-    'models/mymodels',
+    'core/views/AppView',
+    'text!app/templates/Home.html',
+    'text!app/templates/MyModel.html',
+    'app/models/mymodels',
 ], function ($, _, Backbone, AppView, template, myModelTemplate, MyModels) {
     'use strict';
 

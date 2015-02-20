@@ -2,8 +2,8 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'app/views/AppView',
-    'text!templates/Layout.html',
+    'core/views/AppView',
+    'text!app/templates/Layout.html',
     'app/views/Header',
     'app/views/Footer',
 ], function ($, _, Backbone, AppView, template, HeaderView, FooterView) {

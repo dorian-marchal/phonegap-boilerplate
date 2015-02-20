@@ -2,7 +2,7 @@ define([
     'underscore',
     'backbone',
     'jquery',
-    'models/mymodel',
+    'app/models/mymodel',
 ], function(_, Backbone, $, MyModel) {
     'use strict';
 

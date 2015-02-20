@@ -3,7 +3,7 @@ define(function (require) {
 
     var $ = require('jquery');
     var Backbone = require('backbone');
-    var PageSlider = require('app/util/pageslider');
+    var PageSlider = require('core/utils/pageslider');
     var LayoutView = require('app/views/Layout');
     var HomeView = require('app/views/Home');
     var NextPageView = require('app/views/NextPage');
