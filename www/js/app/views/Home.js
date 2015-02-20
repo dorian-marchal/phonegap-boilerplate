@@ -13,7 +13,8 @@ define([
 
         className: 'container',
 
-        init: function () {
+        initialize: function () {
+            AppView.prototype.initialize.apply(this);
             var that = this;
 
             that.template = _.template(template);

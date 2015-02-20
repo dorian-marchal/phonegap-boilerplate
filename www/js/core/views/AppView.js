@@ -26,11 +26,7 @@ define([
                 }
             });
 
-            // Call the children initialize (init)
-            that.init();
         },
-
-        init: $.noop,
 
     });
 

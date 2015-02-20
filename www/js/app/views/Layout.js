@@ -14,7 +14,8 @@ define([
 
     return AppView.extend({
 
-        init: function () {
+        initialize: function () {
+            AppView.prototype.initialize.apply(this);
             this.template = _.template(template);
 
             this.options = {
