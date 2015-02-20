@@ -39,7 +39,7 @@ define([
                 attribute: $('[name="attribute"]').val(),
                 attribute2: $('[name="attribute2"]').val(),
             }, {
-                // wait: true,
+                wait: true,
                 validate: true,
                 error: function(model, res, error) {
                     alert('Les données n\'ont pas pu être enregistrées. Le serveur REST est lancé ?');
