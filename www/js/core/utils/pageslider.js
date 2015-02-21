@@ -1,8 +1,8 @@
-define(function (require) {
+define([
+    'jquery',
+], function ($) {
 
     'use strict';
-
-    var $ = require('jquery');
 
     return function PageSlider(container) {
 

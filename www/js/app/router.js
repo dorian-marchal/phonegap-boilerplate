@@ -1,12 +1,13 @@
-define(function (require) {
+define([
+    'jquery',
+    'backbone',
+    'core/utils/pageslider',
+    'app/views/Layout',
+    'app/views/Home',
+    'app/views/NextPage',
+], function ($, Backbone, PageSlider, LayoutView, HomeView, NextPageView) {
     'use strict';
 
-    var $ = require('jquery');
-    var Backbone = require('backbone');
-    var PageSlider = require('core/utils/pageslider');
-    var LayoutView = require('app/views/Layout');
-    var HomeView = require('app/views/Home');
-    var NextPageView = require('app/views/NextPage');
     var slider = new PageSlider($('body'));
 
     var layout = new LayoutView();
