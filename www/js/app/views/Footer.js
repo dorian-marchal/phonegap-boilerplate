@@ -9,16 +9,6 @@ define([
 
     return AppView.extend({
 
-        events: {
-            'click [data-back]' : function() {
-                history.back();
-            },
-            'click [data-route]' : function(event) {
-                alert("ok");
-                location.hash = $(event.target).attr('data-route');
-            }
-        },
-
         initialize: function () {
             AppView.prototype.initialize.apply(this);
             this.template = _.template(template);
