@@ -21,7 +21,7 @@ define([
             that.myModelsTemplate = _.template(myModelTemplate);
             that.myModels = new MyModels();
 
-            that.myModels.on('add change remove', that.renderMyModels, that);
+            that.myModels.on('change', that.renderMyModels, that);
         },
 
         events: {
@@ -65,6 +65,9 @@ define([
             var that = this;
 
             that.myModels.fetch({
+                success: function(model, res, error) {
+                    that.renderMyModels();
+                },
                 error: function(model, res, error) {
                     alert('Les données n\'ont pas pu être récupérées. Le serveur REST est lancé ?');
                 }

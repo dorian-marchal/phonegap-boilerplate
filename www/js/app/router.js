@@ -11,6 +11,8 @@ define([
     var slider = new PageSlider($('body'));
 
     var layout = new LayoutView();
+    var homeView = new HomeView();
+    var nextPageView = new NextPageView();
 
     return Backbone.Router.extend({
 
@@ -25,17 +27,19 @@ define([
         },
 
         home: function () {
+            homeView.delegateEvents();
             layout.setOptions({
                 title: 'Accueil',
             });
-            this.loadPage(new HomeView());
+            this.loadPage(homeView);
         },
 
         nextPage: function () {
+            nextPageView.delegateEvents();
             layout.setOptions({
                 title: 'NextPage',
             });
-            this.loadPage(new NextPageView());
+            this.loadPage(nextPageView);
         },
 
     });
