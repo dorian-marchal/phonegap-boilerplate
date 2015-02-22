@@ -1,7 +1,4 @@
-require.config({
-
-    urlArgs: 'bust=' + (new Date()).getTime(),
-
+({
     baseUrl: '',
 
     paths: {
@@ -13,7 +10,7 @@ require.config({
         text: 'bower_components/text/text',
     },
 
-    shim: {
+    shim : {
         backbone: {
             deps: ['underscore', 'jquery'],
             exports: 'Backbone'
@@ -21,12 +18,13 @@ require.config({
         underscore: {
             exports: '_'
         },
-    }
-});
+    },
 
-require(['jquery', 'backbone', 'app/router'], function ($, Backbone, Router) {
+    mainConfigFile : 'js/app.js',
+    name: 'app',
+    out: 'dist/main.js',
+    removeCombined: true,
+    findNestedDependencies: true,
+    optimizeCss: 'standard',
+})
 
-    'use strict';
-    var router = new Router();
-    Backbone.history.start();
-});
