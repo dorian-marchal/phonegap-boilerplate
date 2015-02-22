@@ -21,6 +21,9 @@ define([
             that.myModelsTemplate = _.template(myModelTemplate);
             that.myModels = new MyModels();
 
+            that.myModels.on('invalid', function(model, error) {
+                alert(error);
+            });
             that.myModels.on('change', that.renderMyModels, that);
         },
 
@@ -31,10 +34,6 @@ define([
         postMyModel: function(event) {
             event.preventDefault();
             var that = this;
-
-            that.myModels.on('invalid', function(model, error) {
-                alert(error);
-            });
 
             that.myModels.create({
                 attribute: $('[name="attribute"]').val(),
