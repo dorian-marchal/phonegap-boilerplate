@@ -25,6 +25,6 @@
     out: 'dist/main.js',
     removeCombined: true,
     findNestedDependencies: true,
-    optimizeCss: 'standard',
+    preserveLicenseComments: false,
 })
 
