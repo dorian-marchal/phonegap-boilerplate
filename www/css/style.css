@@ -1,15 +1,8 @@
-.clearfix:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
-    zoom: 1
-}
-
-.topcoat-text-input {
-    width: 100%;
-}
+@import 'base.css';
+@import 'phonegap.css';
+@import 'smart-grid.css';
+@import 'pageslider.css';
+@import '../bower_components/topcoat/css/topcoat-mobile-light.min.css';
 
 /* Forms */
 .form-actions input {
