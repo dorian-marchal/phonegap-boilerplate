@@ -3,39 +3,3 @@
 @import 'smart-grid.css';
 @import 'pageslider.css';
 @import '../bower_components/topcoat/css/topcoat-mobile-light.min.css';
-
-/* Forms */
-.form-actions input {
-    float: right;
-    margin-top: 20px;
-}
-
-/* /Forms */
-
-header,
-footer {
-    position: fixed;
-    width: 100%;
-    z-index: 100;
-    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.4);
-}
-
-footer {
-    bottom: 0px;
-}
-
-header {
-    top: 0px;
-}
-
-.content {
-    margin: 70px 0px;
-}
-
-.mymodel-form {
-    margin-top: 60px;
-}
-
-.mymodel-list {
-    margin-top: 60px;
-}
