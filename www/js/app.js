@@ -1,5 +1,6 @@
 require.config({
 
+    // Supprimer cette ligne pour réactiver le cache
     urlArgs: 'bust=' + (new Date()).getTime(),
 
     baseUrl: '',
