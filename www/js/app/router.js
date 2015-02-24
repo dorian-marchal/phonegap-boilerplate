@@ -12,11 +12,11 @@ define([
         routes: {
         },
 
-        loadPage: function(viewLayout, appView, viewLayoutOptions) {
+        loadPage: function(appView) {
             appView.delegateEvents();
-            viewLayout.setOptions(viewLayoutOptions);
-            viewLayout.setContentView(appView);
-            slider.slidePage(viewLayout.render().$el);
+            appView.layout.setOptions(appView.layoutOptions);
+            appView.layout.setContentView(appView);
+            slider.slidePage(appView.render().$el);
         },
 
     });
