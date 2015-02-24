@@ -1,11 +1,11 @@
 define([
     'jquery',
     'underscore',
-    'backbone',
-], function ($, _, Backbone) {
+    'core/views/AppView',
+], function ($, _, AppView) {
     'use strict';
 
-    return Backbone.View.extend({
+    return AppView.extend({
 
         className: 'container',
 
@@ -14,7 +14,7 @@ define([
          * bound to the view.
          */
         initialize: function (layout) {
-            Backbone.View.prototype.initialize.apply(this);
+            AppView.prototype.initialize.apply(this);
             var that = this;
 
             that.layout = layout;
