@@ -16,7 +16,7 @@ define([
             appView.delegateEvents();
             appView.layout.setOptions(appView.layoutOptions);
             appView.layout.setContentView(appView);
-            slider.slidePage(appView.render().$el);
+            slider.slidePage(appView.layout.render().$el);
         },
 
     });
