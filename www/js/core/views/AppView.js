@@ -11,8 +11,16 @@ define([
          * The template named "viewName" will be
          * bound to the view.
          */
-        initialize: function () {
+        initialize: function (layout) {
             var that = this;
+
+            that.layout = layout;
+
+            // Add general layout options
+            that.layoutOptions = that.layoutOptions || {};
+
+            that.layout.setOptions(that.layoutOptions);
+
 
             // Add general views event
             that.events = that.events || {};
