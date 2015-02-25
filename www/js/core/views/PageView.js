@@ -7,8 +7,6 @@ define([
 
     return AppView.extend({
 
-        className: 'container',
-
         /**
          * The template named "viewName" will be
          * bound to the view.
