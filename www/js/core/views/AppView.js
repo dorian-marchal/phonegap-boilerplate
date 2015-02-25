@@ -7,6 +7,11 @@ define([
 
     return Backbone.View.extend({
 
+        assign : function (view, selector, options) {
+            options = options || {};
+            view.setElement(this.$(selector)).render(options);
+        },
+
         /**
          * The template named "viewName" will be
          * bound to the view.
