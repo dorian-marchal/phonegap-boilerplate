@@ -1,0 +1,13 @@
+{
+    "browser": true,
+    "globalstrict": true,
+    "esnext": true,
+    "quotmark": "single",
+    "curly": true,
+    "undef": true,
+    "unused": true,
+    "globals": {
+        "define": true,
+        "require": true
+    }
+}

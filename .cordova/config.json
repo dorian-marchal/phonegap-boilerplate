@@ -1,0 +1,10 @@
+{
+    "lib": {
+        "www": {
+            "id": "phonegap-boilerplate",
+            "version": "0.1",
+            "uri": "https://github.com/dorian-marchal/phonegap-boilerplate",
+            "link": false
+        }
+    }
+}
