@@ -15,13 +15,13 @@ define([
         },
 
         /**
-         * Load a PageView.
+         * Load a PageView in the given layout.
          */
-        loadPage: function(pageView) {
+        loadPage: function(layout, pageView) {
             pageView.delegateEvents();
-            pageView.layout.setOptions(pageView.layoutOptions);
-            pageView.layout.setContentView(pageView);
-            this.slider.slidePage(pageView.layout.render().$el);
+            layout.setOptions(pageView.layoutOptions);
+            layout.setContentView(pageView);
+            this.slider.slidePage(layout.render().$el);
         },
 
     });

@@ -11,16 +11,12 @@ define([
          * The template named "viewName" will be
          * bound to the view.
          */
-        initialize: function (options) {
+        initialize: function () {
             AppView.prototype.initialize.apply(this);
             var that = this;
 
-            that.layout = options.layout;
-
             // Add general layout options
             that.layoutOptions = that.layoutOptions || {};
-
-            that.layout.setOptions(that.layoutOptions);
         },
 
     });
