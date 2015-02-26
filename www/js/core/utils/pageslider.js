@@ -1,4 +1,8 @@
-define([
+/**
+ * Helper to slide a new page in the app.
+ * Use : https://github.com/ccoenraets/directory-backbone-topcoat-require
+ */
+ define([
     'jquery',
 ], function ($) {
 
