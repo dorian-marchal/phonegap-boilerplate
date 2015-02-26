@@ -1,4 +1,9 @@
-define([
+/**
+ * A base view.
+ * All the app views must inherit from this.
+ * The general code of the views goes here.
+ */
+ define([
     'jquery',
     'underscore',
     'backbone',
@@ -7,21 +12,20 @@ define([
 
     return Backbone.View.extend({
 
+        /**
+         * Bind a subview to an element via a selector.
+         */
         assign : function (view, selector, options) {
             options = options || {};
             view.setElement(this.$(selector)).render(options);
         },
 
-        /**
-         * The template named "viewName" will be
-         * bound to the view.
-         */
         initialize: function () {
             var that = this;
 
-            // Add general views event
             that.events = that.events || {};
 
+            // Some default events
             $.extend(that.events, {
                 'click [data-back]' : function() {
                     history.back();
