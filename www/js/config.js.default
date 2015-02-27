@@ -22,5 +22,9 @@ define({
         underscore: {
             exports: '_'
         },
-    }
+    },
+
+    config: {
+        appName: 'Phonegap Boilerplate'
+    },
 });
