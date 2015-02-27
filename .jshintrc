@@ -8,6 +8,7 @@
     "unused": true,
     "globals": {
         "define": true,
-        "require": true
+        "require": true,
+        "module": true
     }
 }

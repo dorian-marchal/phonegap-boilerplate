@@ -49,3 +49,7 @@ IOS/www/
 .Spotlight-V100
 .Trashes
 
+# Boilerplate
+
+/www/js/config.js
+

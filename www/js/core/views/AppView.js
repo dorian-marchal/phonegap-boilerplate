@@ -15,9 +15,8 @@
         /**
          * Bind a subview to an element via a selector.
          */
-        assign : function (view, selector, options) {
-            options = options || {};
-            view.setElement(this.$(selector)).render(options);
+        assign : function (view, selector) {
+            view.setElement(this.$(selector)).render();
         },
 
         initialize: function () {

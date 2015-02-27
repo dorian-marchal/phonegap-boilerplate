@@ -1,2 +1,10 @@
 # phonegap-boilerplate
-Un socle de base pour développer une appli PhoneGap (Backbone / Topcoat)
+
+A start base to develop Phonegap apps with Backbone / Require
+
+# Set up (WIP)
+
+- Clone the repo
+- Duplicate the default config file
+- Rename the `master` branch `core`
+- Delete the `dev` branch
