@@ -9,5 +9,6 @@
     "globals": {
         "define": true,
         "require": true
+        "module": true
     }
 }
