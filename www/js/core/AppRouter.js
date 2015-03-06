@@ -4,7 +4,7 @@
 define([
     'jquery',
     'backbone',
-    'core/utils/pageslider',
+    'core/utils/PageSlider',
 ], function ($, Backbone, PageSlider) {
     'use strict';
 
