@@ -24,7 +24,9 @@ define({
         },
     },
 
-    config: {
-        appName: 'Phonegap Boilerplate'
+    appName: 'Phonegap Boilerplate',
+    server: {
+        host: 'localhost',
+        port: 8080,
     },
 });
