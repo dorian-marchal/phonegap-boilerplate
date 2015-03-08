@@ -2,7 +2,7 @@
  * Helper to slide a new page in the app.
  * Use : https://github.com/ccoenraets/directory-backbone-topcoat-require
  */
- define([
+define([
     'jquery',
 ], function ($) {
 
@@ -59,6 +59,7 @@
             });
 
             // Force reflow. More information here: http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/
+            /*jshint -W030*/
             container[0].offsetWidth;
 
             // Position the new page and the current page at the ending position of their animation with a transition class indicating the duration of the animation
