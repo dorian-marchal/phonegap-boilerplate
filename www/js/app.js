@@ -3,7 +3,15 @@ require(['config'], function(config) {
 
     require.config(config);
 
-    require(['jquery', 'backbone', 'app/router'], function ($, Backbone, Router) {
+    require(['domReady!', 'jquery', 'backbone', 'fastclick', 'app/router'], function (domReady, $, Backbone, FastClick, Router) {
+
+        $.ajaxSetup({
+            xhrFields: {
+                withCredentials: true,
+            }
+        });
+
+        FastClick.attach(document.body);
 
         var router = new Router();
         Backbone.history.start();
