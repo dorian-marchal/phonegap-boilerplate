@@ -13,11 +13,12 @@ define([
 
     var ApiHelper = function (serverHost, serverPort) {
 
-        this._ajax = function(method, url) {
-            var args = Array.prototype.slice.call(arguments);
-            args = args.slice(2);
-            args.unshift('http://' + serverHost + ':' + serverPort + url);
-            $[method].apply(this, args);
+        this._ajax = function(method, url, settings) {
+            settings = settings || {};
+
+            settings.method = method;
+            settings.url = 'http://' + serverHost + ':' + serverPort + url;
+            return $.ajax(settings);
         };
 
         this.get = function() {
