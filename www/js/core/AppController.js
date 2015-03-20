@@ -8,23 +8,19 @@ define([
 ], function ($, PageSlider) {
     'use strict';
 
-    var AppController = function() {
+    var AppController = function() {};
 
-        initialize: function() {
-            this.slider = new PageSlider($('body'));
-        },
+    AppController.prototype.slider = new PageSlider($('body'));
 
-        /**
-         * Load a PageView in the given layout.
-         */
-        loadPage: function(layout, pageView) {
-            pageView.delegateEvents();
-            layout.setOptions(pageView.layoutOptions);
-            layout.setContentView(pageView);
-            this.slider.slidePage(layout.render().$el);
-        },
-    };
-
+    /**
+     * Load a PageView in the given layout.
+     */
+    AppController.prototype.loadPage = function (layout, pageView) {
+        pageView.delegateEvents();
+        layout.setOptions(pageView.layoutOptions);
+        layout.setContentView(pageView);
+        this.slider.slidePage(layout.render().$el);
+    }
 
     return AppController;
 
