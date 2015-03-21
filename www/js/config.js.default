@@ -8,10 +8,13 @@ define({
     paths: {
         core: 'js/core',
         app: 'js/app',
+        config: 'js/config',
         jquery: 'bower_components/jquery/dist/jquery.min',
         backbone: 'bower_components/backbone/backbone',
         underscore: 'bower_components/underscore/underscore-min',
         text: 'bower_components/text/text',
+        fastclick: 'bower_components/fastclick/lib/fastclick',
+        domReady: 'bower_components/domReady/domReady',
     },
 
     shim: {
