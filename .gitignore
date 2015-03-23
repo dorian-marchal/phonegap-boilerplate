@@ -51,5 +51,6 @@ IOS/www/
 
 # Boilerplate
 
+/platforms/android/assets/*
 /www/js/config.js
-
+!gitkeep
