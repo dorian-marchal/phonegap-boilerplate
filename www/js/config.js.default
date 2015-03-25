@@ -35,6 +35,7 @@ define({
 
     debug: {
         useWeinre: false,
+        weinreHost: 'localhost',
         weinrePort: 8181,
     },
 });
