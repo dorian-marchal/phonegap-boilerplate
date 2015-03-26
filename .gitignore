@@ -52,8 +52,11 @@ IOS/www/
 # Boilerplate
 
 /.idea
+/config.xml
 /platforms/android/assets/*
 /platforms/android/ant-build/*
+/platforms/android/ant-gen/*
 /platforms/android/CordovaLib/ant-build/*
+/platforms/android/CordovaLib/ant-gen/*
 /www/js/config.js
 !gitkeep
