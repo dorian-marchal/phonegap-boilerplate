@@ -5,9 +5,8 @@
  *     api.get('/mymodels', )
  */
 define([
-    'config',
     'jquery',
-], function (config, $) {
+], function ($) {
 
     'use strict';
 
@@ -49,5 +48,5 @@ define([
 
     };
 
-    return new ApiHelper(config.server.host, config.server.port);
+    return ApiHelper;
 });
