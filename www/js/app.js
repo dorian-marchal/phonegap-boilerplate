@@ -8,10 +8,11 @@ require(['config'], function(config) {
         'jquery',
         'backbone',
         'fastclick',
-        'app/router',
+        'core/utils/PageSlider',
         'app/Controller',
+        'app/singletons/router',
         'app/singletons/auth'
-    ], function (domReady, $, Backbone, FastClick, router, Controller, auth) {
+    ], function (domReady, $, Backbone, FastClick, PageSlider, Controller, router, auth) {
 
         FastClick.attach(document.body);
 
@@ -22,6 +23,7 @@ require(['config'], function(config) {
         auth.checkLogin(function() {
 
             router.setController(new Controller());
+            router.setSlider(new PageSlider($('body')));
             Backbone.history.start();
         });
     });
