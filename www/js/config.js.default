@@ -1,10 +1,27 @@
 define({
 
-    // Supprimer cette ligne pour réactiver le cache
+    // Remove this line to enable caching
     urlArgs: 'bust=' + (new Date()).getTime(),
 
+    // Your app base URL (without trailing slash)
     baseUrl: '',
 
+    // Your app Name
+    appName: 'Phonegap Boilerplate',
+
+    // API server infos
+    server: {
+        host: 'localhost',
+        port: 8080,
+    },
+
+    debug: {
+        useWeinre: false,
+        weinreHost: 'localhost',
+        weinrePort: 8181,
+    },
+
+    // RequireJS paths
     paths: {
         core: 'js/core',
         app: 'js/app',
@@ -27,15 +44,4 @@ define({
         },
     },
 
-    appName: 'Phonegap Boilerplate',
-    server: {
-        host: 'localhost',
-        port: 8080,
-    },
-
-    debug: {
-        useWeinre: false,
-        weinreHost: 'localhost',
-        weinrePort: 8181,
-    },
 });
