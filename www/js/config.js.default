@@ -1,0 +1,47 @@
+define({
+
+    // Remove this line to enable caching
+    urlArgs: 'bust=' + (new Date()).getTime(),
+
+    // Your app base URL (without trailing slash)
+    baseUrl: '',
+
+    // Your app Name
+    appName: 'Phonegap Boilerplate',
+
+    // API server infos
+    server: {
+        host: 'localhost',
+        port: 8080,
+    },
+
+    debug: {
+        useWeinre: false,
+        weinreHost: 'localhost',
+        weinrePort: 8181,
+    },
+
+    // RequireJS paths
+    paths: {
+        core: 'js/core',
+        app: 'js/app',
+        config: 'js/config',
+        jquery: 'bower_components/jquery/dist/jquery.min',
+        backbone: 'bower_components/backbone/backbone',
+        underscore: 'bower_components/underscore/underscore-min',
+        text: 'bower_components/text/text',
+        fastclick: 'bower_components/fastclick/lib/fastclick',
+        domReady: 'bower_components/domReady/domReady',
+    },
+
+    shim: {
+        backbone: {
+            deps: ['underscore', 'jquery'],
+            exports: 'Backbone'
+        },
+        underscore: {
+            exports: '_'
+        },
+    },
+
+});
