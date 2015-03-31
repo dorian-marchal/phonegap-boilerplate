@@ -9,6 +9,9 @@ define({
     // Your app Name
     appName: 'Phonegap Boilerplate',
 
+    // True if token authentification is used
+    useAuth: false,
+
     // API server infos
     server: {
         host: 'localhost',
