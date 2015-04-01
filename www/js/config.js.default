@@ -35,6 +35,7 @@ define({
         text: 'bower_components/text/text',
         fastclick: 'bower_components/fastclick/lib/fastclick',
         domReady: 'bower_components/domReady/domReady',
+        async: 'bower_components/async/lib/async',
     },
 
     shim: {
