@@ -13,7 +13,7 @@ require(['config'], function(config) {
         'app/Controller',
         'app/singletons/router',
         'app/singletons/auth'
-    ], function (domReady, $, Backbone, FastClick, PageSlider, Controller, router, auth) {
+    ], function (cordova, domReady, $, Backbone, FastClick, PageSlider, Controller, router, auth) {
 
         FastClick.attach(document.body);
 
