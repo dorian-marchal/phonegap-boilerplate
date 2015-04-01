@@ -4,6 +4,7 @@ require(['config'], function(config) {
     require.config(config);
 
     require([
+        'cordova',
         'domReady!',
         'jquery',
         'backbone',
@@ -21,9 +22,13 @@ require(['config'], function(config) {
         }
 
         var start = function() {
-            router.setController(new Controller());
-            router.setSlider(new PageSlider($('body')));
-            Backbone.history.start();
+
+            // We wait for the device to be ready
+            document.addEventListener('deviceready', function() {
+                router.setController(new Controller());
+                router.setSlider(new PageSlider($('body')));
+                Backbone.history.start();
+            } , false);
         };
 
         if (config.useAuth) {
