@@ -1,10 +1,11 @@
 {
-    "name": "phonegap_boilerplate",
-    "dependencies": {
-        "jquery": "latest",
-        "backbone": "latest",
-        "text": "latest",
-        "topcoat": "latest",
-        "requirejs": "latest"
-    }
+  "name": "phonegap_boilerplate",
+  "dependencies": {
+    "jquery": "latest",
+    "backbone": "latest",
+    "text": "latest",
+    "topcoat": "latest",
+    "requirejs": "latest",
+    "async": "~0.9.2"
+  }
 }
