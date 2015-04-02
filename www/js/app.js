@@ -16,6 +16,9 @@ require(['config'], function(config) {
         'app/singletons/auth'
     ], function (cordova, domReady, async, $, Backbone, FastClick, PageSlider, Controller, router, auth) {
 
+        // Use application/x-www-form-urlencoded
+        Backbone.emulateJSON = true;
+
         // Global vars are stored in navigator.pb
         navigator.pb = {};
 
