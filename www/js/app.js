@@ -7,6 +7,7 @@ require(['config'], function(config) {
         'cordova',
         'domReady!',
         'async',
+        '__',
         'jquery',
         'backbone',
         'fastclick',
@@ -14,7 +15,7 @@ require(['config'], function(config) {
         'app/Controller',
         'app/singletons/router',
         'app/singletons/auth'
-    ], function (cordova, domReady, async, $, Backbone, FastClick, PageSlider, Controller, router, auth) {
+    ], function (cordova, domReady, async, __, $, Backbone, FastClick, PageSlider, Controller, router, auth) {
 
         // Use application/x-www-form-urlencoded
         Backbone.emulateJSON = true;
@@ -44,8 +45,12 @@ require(['config'], function(config) {
         // Get device language
         toWait.language = function(done) {
             navigator.globalization.getPreferredLanguage(function(language) {
-                navigator.pb.language = language.value;
-                done(null);
+
+                // Initialize i18n
+                __.init(language.value, function() {
+                    done(null);
+                });
+
             });
         };
 

@@ -29,6 +29,7 @@ define({
         core: 'js/core',
         app: 'js/app',
         config: 'js/config',
+        __: 'app/singletons/i18n',
         jquery: 'bower_components/jquery/dist/jquery.min',
         backbone: 'bower_components/backbone/backbone',
         underscore: 'bower_components/underscore/underscore-min',
@@ -36,6 +37,7 @@ define({
         fastclick: 'bower_components/fastclick/lib/fastclick',
         domReady: 'bower_components/domReady/domReady',
         async: 'bower_components/async/lib/async',
+        i18next: 'bower_components/i18next/i18next',
     },
 
     shim: {
@@ -45,6 +47,9 @@ define({
         },
         underscore: {
             exports: '_'
+        },
+        i18next: {
+            exports: 'i18n'
         },
     },
 
