@@ -29,7 +29,7 @@ define({
         core: 'js/core',
         app: 'js/app',
         config: 'js/config',
-        __: 'app/singletons/i18n',
+        __: 'js/app/singletons/i18n',
         jquery: 'bower_components/jquery/dist/jquery.min',
         backbone: 'bower_components/backbone/backbone',
         underscore: 'bower_components/underscore/underscore-min',
