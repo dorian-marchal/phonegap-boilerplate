@@ -1155,7 +1155,7 @@
     // For older servers, emulate JSON by encoding the request into an HTML-form.
     if (options.emulateJSON) {
       params.contentType = 'application/x-www-form-urlencoded';
-      params.data = params.data ? {model: params.data} : {};
+      params.data = params.data ? JSON.parse(params.data) : {};
     }
 
     // For older servers, emulate HTTP by mimicking the HTTP method with `_method`

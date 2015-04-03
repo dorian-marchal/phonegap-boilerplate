@@ -1,20 +1,43 @@
 define({
 
-    // Supprimer cette ligne pour réactiver le cache
+    // Remove this line to enable caching
     urlArgs: 'bust=' + (new Date()).getTime(),
 
+    // Your app base URL (without trailing slash)
     baseUrl: '',
 
+    // Your app Name
+    appName: 'Phonegap Boilerplate',
+
+    // True if token authentification is used
+    useAuth: false,
+
+    // API server infos
+    server: {
+        host: 'localhost',
+        port: 8080,
+    },
+
+    debug: {
+        useWeinre: false,
+        weinreHost: 'localhost',
+        weinrePort: 8181,
+    },
+
+    // RequireJS paths
     paths: {
         core: 'js/core',
         app: 'js/app',
         config: 'js/config',
+        __: 'js/app/singletons/i18n',
         jquery: 'bower_components/jquery/dist/jquery.min',
         backbone: 'bower_components/backbone/backbone',
         underscore: 'bower_components/underscore/underscore-min',
         text: 'bower_components/text/text',
         fastclick: 'bower_components/fastclick/lib/fastclick',
         domReady: 'bower_components/domReady/domReady',
+        async: 'bower_components/async/lib/async',
+        i18next: 'bower_components/i18next/i18next',
     },
 
     shim: {
@@ -25,11 +48,9 @@ define({
         underscore: {
             exports: '_'
         },
+        i18next: {
+            exports: 'i18n'
+        },
     },
 
-    appName: 'Phonegap Boilerplate',
-    server: {
-        host: 'localhost',
-        port: 8080,
-    },
 });

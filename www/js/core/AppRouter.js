@@ -4,14 +4,17 @@
 define([
     'jquery',
     'backbone',
-    'core/utils/PageSlider',
-], function ($, Backbone, PageSlider) {
+], function ($, Backbone) {
     'use strict';
 
     return Backbone.Router.extend({
 
-        initialize: function() {
-            this.slider = new PageSlider($('body'));
+        setSlider: function(slider) {
+            this.slider = slider;
+        },
+
+        setController: function(controller) {
+            this.controller = controller;
         },
 
         /**
