@@ -1,14 +1,25 @@
 #!/bin/bash
 
-read -p "Enter core git repository (default: 'git@github.com:dorian-marchal/phonegap-boilerplate.git'): " repo; \
+# Get pb repo from git pb.repo config or ask the user if not set
 
-if [[ -z "$repo" ]]; then
-    repo="git@github.com:dorian-marchal/phonegap-boilerplate.git"
-fi
+if [ -z "$(git config pb.repo)" ]; then
 
-git ls-remote --exit-code "$repo" &> /dev/null
+    read -p "Enter core git repository (default: 'git@github.com:dorian-marchal/phonegap-boilerplate.git'): " repo; \
 
-if [ "$?" -ne 0 ]; then
-    echo "Error: Unable to join the repo '$repo'"
-    exit 1;
+    if [[ -z "$repo" ]]; then
+        repo="git@github.com:dorian-marchal/phonegap-boilerplate.git"
+    fi
+
+    git ls-remote --exit-code "$repo" &> /dev/null
+
+    if [ "$?" -ne 0 ]; then
+        echo "Error: Unable to join the repo '$repo'"
+        exit 1;
+    fi
+
+    # Save the repo
+    git config --add pb.repo "$repo"
+
+else
+    repo=$(git config pb.repo)
 fi

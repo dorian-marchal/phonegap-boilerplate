@@ -1,0 +1,40 @@
+#!/bin/bash
+
+CURRENT_DIR="$( cd "$( dirname "$0" )" && pwd )"
+
+# ask for pb-core repo
+. "${CURRENT_DIR}/get-core-repo"
+
+# Pull `pb-core/dev` on `pb-core` branch and push `pb-core` on `origin/pb-core`
+if [ "$1" = "update" ]; then
+
+    if [ "$(git rev-parse --abbrev-ref HEAD)" = "pb-core" ]; then
+
+        git pull --rebase pb-core dev
+        git fetch pb-core
+        read -p "Everything went well ? Push on 'origin' [Y/n] ?" push;
+
+        if [ "$push" = "n" ]; then
+            git reset --hard ORIG_HEAD
+            echo 'Update aborted.'
+        else
+            git push origin pb-core
+        fi
+    else
+        echo "Not on branch 'pb-core'"
+    fi
+
+# Merge pb-core on an other branch
+elif [ "$1" = "merge" ]; then
+
+    read -p "Merge 'pb-core' on '$(git rev-parse --abbrev-ref HEAD)' [y/N] ?" merge;
+    if [ "$merge" = 'y' ]; then
+        git merge --no-commit pb-core;
+    else
+        echo 'Merge aborted.';
+    fi
+
+fi
+
+
+

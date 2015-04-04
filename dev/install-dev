@@ -5,21 +5,22 @@ CURRENT_DIR="$( cd "$( dirname "$0" )" && pwd )"
 # ask for pb-core repo
 . "${CURRENT_DIR}/get-core-repo"
 
+# Save current branch
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+
 # Create missing branches
 git checkout -b dev &> /dev/null
 git checkout -b pb-core &> /dev/null
 
 # Remote pb-core upstream
-current_branch=$(git rev-parse --abbrev-ref HEAD)
 git checkout pb-core
 git branch --unset-upstream &> /dev/null
-git checkout "$current_branch"
-
-# Add aliases
-# ...
 
 # Configure local git (never fetch pb-core tags)
 git config --local remote.pb-core.tagopt --no-tags
+
+# Restore current branch
+git checkout "$current_branch"
 
 # Lead to the next step
 echo "Don't forget to create the config files (config.xml and www/js/config.js) :)"
