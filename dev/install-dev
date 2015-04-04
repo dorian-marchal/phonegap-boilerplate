@@ -10,11 +10,16 @@ git checkout -b dev &> /dev/null
 git checkout -b pb-core &> /dev/null
 
 # Remote pb-core upstream
+current_branch=$(git rev-parse --abbrev-ref HEAD)
 git checkout pb-core
-git branch --unset-upstream
+git branch --unset-upstream &> /dev/null
+git checkout "$current_branch"
 
 # Add aliases
 # ...
 
-# Configure local git
-# ...
+# Configure local git (never fetch pb-core tags)
+git config --local remote.pb-core.tagopt --no-tags
+
+# Lead to the next step
+echo "Don't forget to create the config files (config.xml and www/js/config.js) :)"
