@@ -25,6 +25,7 @@ g c --allow-empty -m "Let's go !"
 ```bash
 git remote add pb-core git@github.com:dorian-marchal/phonegap-boilerplate.git
 git checkout -b pb-core
+git fetch
 git branch --set-upstream-to=pb-core/master
 git pull --rebase pb-core master 
 ```
