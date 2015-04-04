@@ -1,0 +1,14 @@
+#!/bin/bash
+
+read -p "Enter core git repository (default: 'git@github.com:dorian-marchal/phonegap-boilerplate.git'): " repo; \
+
+if [[ -z "$repo" ]]; then
+    repo="git@github.com:dorian-marchal/phonegap-boilerplate.git"
+fi
+
+git ls-remote --exit-code "$repo" &> /dev/null
+
+if [ "$?" -ne 0 ]; then
+    echo "Error: Unable to join the repo '$repo'"
+    exit 1;
+fi
