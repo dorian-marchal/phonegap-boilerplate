@@ -7,7 +7,7 @@ It must be coupled to a [Phonegap Boilerplate Server](https://github.com/dorian-
 
 #### Requirements
 
-- A global installation of `phonegap`
+- A global installation of `phonegap` (tested with version `4.2.0-0.25.0`)
 - A global installation of `node` (or `io`)
 
 #### Client
