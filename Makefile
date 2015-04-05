@@ -12,6 +12,20 @@ i18n-extract-locales:
 
 # Extract the translatable strings and build the app
 build: i18n-extract
+	cp bower_components/requirejs/require.js www/js/lib/
+	cp bower_components/jquery/dist/jquery.min.js www/js/lib/
+	cp bower_components/backbone/backbone.js www/js/lib/
+	cp bower_components/underscore/underscore-min.js www/js/lib/
+	cp bower_components/text/text.js www/js/lib/
+	cp bower_components/fastclick/lib/fastclick.js www/js/lib/
+	cp bower_components/domReady/domReady.js www/js/lib/
+	cp bower_components/async/lib/async.js www/js/lib/
+	cp bower_components/i18next/i18next.js www/js/lib/
+	mkdir -p www/css/lib/topcoat
+	mkdir -p www/css/lib/topcoat/css
+	cp bower_components/topcoat/css/topcoat-mobile-light.min.css www/css/lib/topcoat/css
+	cp -R bower_components/topcoat/font www/css/lib/topcoat/
+	cp -R bower_components/topcoat/img www/css/lib/topcoat/
 	phonegap build
 
 # Prepare the repo to start developing
