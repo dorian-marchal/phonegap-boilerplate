@@ -1,9 +1,9 @@
 #!/bin/bash
 
-CURRENT_DIR="$( cd "$( dirname "$0" )" && pwd )"
+CURRENT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # ask for pb-core repo
-. "${CURRENT_DIR}/get-core-repo"
+. "${CURRENT_DIR}/dev-core.sh"
 
 # Save current branch
 current_branch=$(git rev-parse --abbrev-ref HEAD)
@@ -15,6 +15,10 @@ git checkout -b pb-core &> /dev/null
 # Remote pb-core upstream
 git checkout pb-core
 git branch --unset-upstream &> /dev/null
+
+# Add or update pb-core remote
+git remote add pb-core "$pb_repo" 2> /dev/null
+git remote set-url pb-core "$pb_repo" 2> /dev/null
 
 # Configure local git (never fetch pb-core tags)
 git config --local remote.pb-core.tagopt --no-tags
