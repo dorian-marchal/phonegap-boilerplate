@@ -16,6 +16,6 @@ build: i18n-extract
 
 # Prepare the repo to start developing
 install-dev:
-	./dev/install-dev
+	./dev-scripts/install-dev
 
-.PHONY: i18n-extract i18n-extract-locales build install
+.PHONY: i18n-extract i18n-extract-locales build install-dev

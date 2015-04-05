@@ -12,7 +12,7 @@ if [ "$1" = "update" ]; then
 
         git pull --rebase pb-core "$pb_branch"
         git fetch pb-core
-        read -p "Everything went well ? Push on 'origin' [Y/n] ?" push;
+        read -p "Everything went well ? Push on 'origin' [Y/n] ? " push;
 
         if [ "$push" = "n" ]; then
             git reset --hard ORIG_HEAD
@@ -24,10 +24,10 @@ if [ "$1" = "update" ]; then
         echo "Not on branch 'pb-core'"
     fi
 
-# Merge pb-core on an other branch
+# Merge pb-core on the current branch
 elif [ "$1" = "merge" ]; then
 
-    read -p "Merge 'pb-core' on '$(git rev-parse --abbrev-ref HEAD)' [y/N] ?" merge;
+    read -p "Merge 'pb-core' on '$(git rev-parse --abbrev-ref HEAD)' [y/N] ? " merge;
     if [ "$merge" = 'y' ]; then
         git merge --no-commit pb-core;
     else
