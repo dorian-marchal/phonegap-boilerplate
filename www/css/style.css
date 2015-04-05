@@ -1,4 +1,4 @@
 @import 'base.css';
 @import 'smart-grid.css';
 @import 'pageslider.css';
-@import './lib/css/topcoat-mobile-light.min.css';
+@import './lib/topcoat/css/topcoat-mobile-light.min.css';
