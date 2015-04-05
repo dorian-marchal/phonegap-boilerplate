@@ -8,11 +8,8 @@ CURRENT_DIR="$(cd "$(dirname "$0")" && pwd)"
 # Save current branch
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 
-# Create missing branches
-git checkout -b dev origin/dev &> /dev/null
+# Pull pb-core branch from origin
 git checkout -b pb-core origin/pb-core &> /dev/null
-
-# Remote pb-core upstream
 git checkout pb-core
 git branch --unset-upstream &> /dev/null
 

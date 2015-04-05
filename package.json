@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "i18next-parser": "~0.3.8"
+  }
+}

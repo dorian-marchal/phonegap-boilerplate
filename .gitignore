@@ -53,6 +53,7 @@ IOS/www/
 
 /.idea
 /config.xml
+/node_modules
 /platforms/android/assets/*
 /platforms/android/ant-build/*
 /platforms/android/ant-gen/*
