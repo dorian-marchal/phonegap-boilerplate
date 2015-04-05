@@ -11,6 +11,11 @@ i18n-extract-locales:
 	@rm -f www/locales/$(l)/translation_old.json
 
 # Extract the translatable strings and build the app
-build:
-	make i18n-extract
+build: i18n-extract
 	phonegap build
+
+# Prepare the repo to start developing
+install-dev:
+	./dev-scripts/install-dev
+
+.PHONY: i18n-extract i18n-extract-locales build install-dev
