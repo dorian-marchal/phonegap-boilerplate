@@ -24,4 +24,4 @@ git config --local remote.pb-core.tagopt --no-tags
 git checkout "$current_branch"
 
 # Lead to the next step
-echo "Don't forget to create the config files (config.xml and www/js/config.js) :)"
+echo "Don't forget to create the config file (www/js/config.js) :)"

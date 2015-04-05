@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="fr.spixel.phonegap_boilerplate" android-versionCode="1" version="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>PhonegapBoilerplate</name>
+<widget android-versionCode="1" id="fr.moobee.toul-app" version="1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>MDT Toul / Sion</name>
     <description>
-        A simple example to show how to use https://github.com/dorian-marchal/phonegap-boilerplate
+        Application Toul / Sion
     </description>
-    <author email="d.marchal@moobee.fr" href="http://dorian-marchal.com">
-        Dorian Marchal
+    <author email="contact@moobee.fr" href="http://www.moobee.fr">
+        moobee
     </author>
     <content src="index.html" />
     <preference name="permissions" value="none" />
