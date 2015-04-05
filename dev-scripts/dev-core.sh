@@ -3,10 +3,13 @@
 #   $pb_repo : Remote pb repo
 #   $pb_branch : Branch to pull from on $pb_repo
 
-CURRENT_DIR="$(cd "$(dirname "$0")" && pwd)"
-
-# Load config file
-. "${CURRENT_DIR}/pb-config.sh"
+# Load the local config file
+if [ -f "./dev-scripts/pb-config.sh" ]; then
+    . "./dev-scripts/pb-config.sh"
+else
+    echo "Error: pb must be run from the project root."
+    exit 1;
+fi
 
 # Get pb repo from git pb.repo config or ask the user if not set
 

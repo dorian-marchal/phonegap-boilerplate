@@ -21,7 +21,7 @@ if [ "$1" = "update" ]; then
             git push origin pb-core
         fi
     else
-        echo "Not on branch 'pb-core'"
+        echo "Error: Not on branch 'pb-core'"
     fi
 
 # Merge pb-core on the current branch
