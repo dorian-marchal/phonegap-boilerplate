@@ -3,7 +3,7 @@
 CURRENT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # ask for pb-core repo
-. "${CURRENT_DIR}/dev-core.sh"
+. "${CURRENT_DIR}/../dev-core.sh"
 
 # Pull `pb-core/dev` on `pb-core` branch and push `pb-core` on `origin/pb-core`
 if [ "$1" = "update" ]; then
@@ -33,4 +33,9 @@ elif [ "$1" = "merge" ]; then
     else
         echo 'Merge aborted.';
     fi
+
+else
+    echo "Usage:"
+    echo "* pb update (on the 'pb-core' branch): pulls the changes and pushes them on 'origin'"
+    echo "* pb merge (on the target branch): merges in the branch pb-core"
 fi

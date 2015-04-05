@@ -97,9 +97,19 @@ cp config.js.default config.js
 nano config.js
 ```
 
-### Update the boilerplate
+### Update the boilerplate (client and server)
 
-*Coming soon*
+To update Phonegap Boilerplate, you must use the `pb` CLI included in this repo. For simpler usage, add `dev-scripts/cli` in your `PATH`.
+The `pb` command must be used from the project root.
+
+__Update branch `pb-core` : `pb update`__
+
+On the `pb-core` branch, this command pulls changes of the configured remote branch and pushes them on `origin/pb-core`.
+Be careful, never develop directly on `pb-core`, this branch is only updated with this command.
+
+__Merge boilerplate code in your project : `pb merge`__
+
+On the branch targetted by the merge, this command merges `pb-core` in one big commit but doesn't commit. You have to manually commit the changes after running this command.
 
 ### Build the app (dist)
 
