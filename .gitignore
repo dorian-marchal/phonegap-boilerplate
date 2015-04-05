@@ -52,7 +52,6 @@ IOS/www/
 # Boilerplate
 
 /.idea
-/config.xml
 /node_modules
 /platforms/android/assets/*
 /platforms/android/ant-build/*

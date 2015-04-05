@@ -45,14 +45,11 @@ git merge pb-core -m 'Use Phonegap Boilerplate'
 make install-dev
 ```
 
-- Duplicate and edit the default config files
+- Duplicate and edit the default config file
 
 ```bash
 cp www/js/config.js.default www/js/config.js
 nano www/js/config.js
-
-cp config.xml.default config.xml
-nano config.xml
 ```
 
 #### Server (same steps)
