@@ -20,12 +20,15 @@ cd <your-repo>
 g c --allow-empty -m "Let's go !" 
 ```
 
-- Configure a `pb-core` branch pointing to Phonegap Boilerplate
+- Configure a `pb-core` branch representing the Phonegap Boilerplate
 
 ```bash
+# Let's say we want a `dev` branch
+git checkout -b dev
 git remote add pb-core git@github.com:dorian-marchal/phonegap-boilerplate.git
 git checkout -b pb-core
-git branch --set-upstream-to=pb-core/master
+# We will pull the master branch.
+# You may want to pull dev if you want newer changes
 git pull --rebase pb-core master 
 ```
 
@@ -34,6 +37,12 @@ git pull --rebase pb-core master
 ```bash
 git checkout dev
 git merge pb-core -m 'Use Phonegap Boilerplate'
+```
+
+- Set up the dev environment
+
+```bash
+make install-dev
 ```
 
 - Duplicate and edit the default config files
@@ -46,30 +55,39 @@ cp config.xml.default config.xml
 nano config.xml
 ```
 
-#### Server
+#### Server (same steps)
 
 - Create an empty repository for your project server, clone it and add a commit to it
 
 ```bash
-git clone <your-server-repo>
-cd <your-server-repo>
+git clone <your-repo>
+cd <your-repo>
 g c --allow-empty -m "Let's go !" 
 ```
 
-- Configure a `pb-core` branch pointing to Phonegap Boilerplate Server
+- Configure a `pb-core` branch representing the Phonegap Boilerplate Server
 
 ```bash
+# Let's say we want a `dev` branch
+git symbolic-ref HEAD refs/heads/dev
 git remote add pb-core git@github.com:dorian-marchal/phonegap-boilerplate-server.git
 git checkout -b pb-core
-git branch --set-upstream-to=pb-core/master
+# We will pull the master branch.
+# You may want to pull dev if you want newer changes
 git pull --rebase pb-core master 
 ```
 
-- Merge the core in your `dev` branch and start coding :+1:
+- Merge the core in your `dev` branch and start coding :)
 
 ```bash
 git checkout dev
 git merge pb-core -m 'Use Phonegap Boilerplate Server'
+```
+
+- Set up the dev environment
+
+```bash
+make install-dev
 ```
 
 - Duplicate and edit the default config files
@@ -85,4 +103,6 @@ nano config.js
 
 ### Build the app (dist)
 
-*Coming soon*
+```bash
+make build
+```
