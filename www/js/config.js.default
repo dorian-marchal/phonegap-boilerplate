@@ -9,7 +9,7 @@ define({
     // Your app Name
     appName: 'Phonegap Boilerplate',
 
-    // True if token authentification is used
+    // True if token authentication is used
     useAuth: false,
 
     // API server infos
@@ -30,14 +30,14 @@ define({
         app: 'js/app',
         config: 'js/config',
         __: 'js/app/singletons/i18n',
-        jquery: 'bower_components/jquery/dist/jquery.min',
-        backbone: 'bower_components/backbone/backbone',
-        underscore: 'bower_components/underscore/underscore-min',
-        text: 'bower_components/text/text',
-        fastclick: 'bower_components/fastclick/lib/fastclick',
-        domReady: 'bower_components/domReady/domReady',
-        async: 'bower_components/async/lib/async',
-        i18next: 'bower_components/i18next/i18next',
+        jquery: 'js/lib/jquery.min',
+        backbone: 'js/lib/backbone',
+        underscore: 'js/lib/underscore-min',
+        text: 'js/lib/text',
+        fastclick: 'js/lib/fastclick',
+        domReady: 'js/lib/domReady',
+        async: 'js/lib/async',
+        i18next: 'js/lib/i18next',
     },
 
     shim: {
