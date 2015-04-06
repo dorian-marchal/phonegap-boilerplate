@@ -2,5 +2,5 @@
 
 - [Set up a project](setup.md)
 - [Internationalization](i18n.md)
-- [Authentification](auth.md)
+- [Authentication](auth.md)
 - [Generating an icon/splashscreen](icon.md)

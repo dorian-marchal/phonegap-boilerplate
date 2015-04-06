@@ -1,5 +1,5 @@
 /**
- * Singleton used to manage the user authentification.
+ * Singleton used to manage the user authentication.
  * @param {ApiHelper} api
  */
 define([
@@ -76,7 +76,7 @@ define([
         this.checkLogin = function(callback) {
             callback = callback || function() {};
 
-            // No authentification without token
+            // No authentication without token
             if (!this.token) {
                 callback(false);
                 return;

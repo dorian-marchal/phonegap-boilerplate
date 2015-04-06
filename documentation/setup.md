@@ -108,3 +108,5 @@ On the branch targetted by the merge, this command merges `pb-core` in one big c
 ```bash
 make build
 ```
+
+[[Back to index documentation](index.md)]
