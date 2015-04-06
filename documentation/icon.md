@@ -1,0 +1,2 @@
+# Generating an icon/splashscreen
+
