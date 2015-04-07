@@ -55,6 +55,13 @@ require(['config'], function(config) {
 
                 var toWait = {};
 
+                // We wait a few seconds to let the splashscreen shine
+                toWait.letSplash = function(done) {
+                    setTimeout(function() {
+                        done();
+                    }, config.splashScreenMinimumDurationMs);
+                };
+
                 // Check if authentificated
                 if (config.useAuth) {
                     toWait.login = function(done) {
@@ -73,6 +80,9 @@ require(['config'], function(config) {
                     router.setController(new Controller());
                     router.setSlider(new PageSlider($('body')));
                     Backbone.history.start();
+
+                    // Hide the splashscreen
+                    navigator.splashscreen.hide();
                 });
             });
         };

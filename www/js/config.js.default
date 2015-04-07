@@ -9,6 +9,8 @@ define({
     // Your app Name
     appName: 'Phonegap Boilerplate',
 
+    splashScreenMinimumDurationMs: 1500,
+
     // True if token authentication is used
     useAuth: false,
 
