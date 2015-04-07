@@ -97,11 +97,15 @@ The `pb` command must be used from the project root.
 __Update branch `pb-core` : `pb update`__
 
 On the `pb-core` branch, this command pulls changes of the configured remote branch and pushes them on `origin/pb-core`.
-Be careful, never develop directly on `pb-core`, this branch is only updated with this command.
 
 __Merge boilerplate code in your project : `pb merge`__
 
 On the branch targetted by the merge, this command merges `pb-core` in one big commit but doesn't commit. You have to manually commit the changes after running this command.
+
+__Improve Phonegap Boilerplate : `pb push`__
+
+If you have the permission to do so, you can improve Phonegap Boilerplate directly on `pb-core` and push your modifications on both `pb-core (remote)` and `origin` with the command `pb push`.
+Be careful with this command (only use it if you know what you are doing).
 
 ### Build the app (dist)
 
