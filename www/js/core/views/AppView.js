@@ -7,7 +7,8 @@
     'jquery',
     'underscore',
     'backbone',
-], function ($, _, Backbone) {
+    'app/singletons/router',
+], function ($, _, Backbone, router) {
     'use strict';
 
     return Backbone.View.extend({
@@ -31,7 +32,7 @@
                     event.preventDefault();
                 },
                 'click [data-route]' : function(event) {
-                    location.hash = $(event.currentTarget).attr('data-route');
+                    router.navigate($(event.currentTarget).attr('data-route'), true);
                     event.preventDefault();
                 }
             });
