@@ -31,7 +31,7 @@
                     event.preventDefault();
                 },
                 'click [data-route]' : function(event) {
-                    location.hash = $(event.target).attr('data-route');
+                    location.hash = $(event.currentTarget).attr('data-route');
                     event.preventDefault();
                 }
             });
