@@ -24,7 +24,7 @@ if [ "$1" = "update" ]; then
         echo "Error: Not on branch 'pb-core'"
     fi
 
-# Push pb-core on origin/pb-core and pb-core/pb_branch
+# Push pb-core on origin/pb-core and pb-core/dev
 # Don't use this command if you're not a Phonegap Boilerplate maintainer
 elif [ "$1" = "push" ]; then
 
