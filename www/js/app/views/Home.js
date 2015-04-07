@@ -8,8 +8,6 @@ define([
 
     return PageView.extend({
 
-        className: 'container',
-
         layoutOptions: {
             title: __.t('Accueil'),
         },

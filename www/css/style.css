@@ -2,3 +2,102 @@
 @import 'smart-grid.css';
 @import 'pageslider.css';
 @import './lib/topcoat/css/topcoat-mobile-light.min.css';
+
+/*
+ * vert clair  : #C5D66A
+ * vert moyen  : #699F4D
+ * vert fonce  : #0A652E
+ * beige clair : #FFF9E8
+ */
+
+/* GENERAL */
+body {
+	background-color: #FFF9E8;
+}
+
+li {
+	list-style-type: none;
+}
+
+.button {
+	display: inline-block;
+	height: 32px;
+	width: 32px;
+	background-color: #0A652E;
+}
+
+.button:hover {
+	background-color: #0E9341;
+}
+
+/* MAIN LISTS */
+.main-item {
+	position: relative;
+	height: 120px;
+	margin: 10px 0px;
+	background-color: #C5D66A;
+}
+
+.main-item a {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	color: inherit;
+}
+
+.main-item a:hover {
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+.main-item .image {
+	position: absolute;
+		left: 0px;
+		top: 0px;
+	width: 120px;
+	height: 120px;
+}
+
+.main-item .legend {
+	box-sizing: border-box;
+	position: absolute;
+		left: 0px;
+		bottom: 0px;
+	padding: 3px 6px;
+	width: 100%;
+
+	font-size: 0.9em;
+	font-weight: bold;
+	text-align: right;
+
+	color: #FFF;
+	background-color: #000;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+
+.main-item .content {
+	height: 100px;
+	padding: 10px;
+	margin-left: 120px;
+
+	line-height: 1.3em;
+
+	overflow: hidden;
+}
+
+.main-item h2 {
+	color: #0A652E;
+	padding-top: 0px;
+	margin-bottom: 10px;
+}
+
+.main-item p {
+	margin-right: 40px;
+}
+
+.main-item .more {
+	position: absolute;
+		right: 10px;
+		bottom: 10px;
+}
+
