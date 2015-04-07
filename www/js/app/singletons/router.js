@@ -6,11 +6,16 @@ define([
     var Router = AppRouter.extend({
 
     	routes: {
-    	    '': 'home',
+            '': 'home',
+    	    'territory': 'territory',
     	},
 
-    	home: function () {
-    	    this.controller.home();
+        home: function () {
+            this.controller.home();
+        },
+
+    	territory: function () {
+    	    this.controller.territory();
     	},
     });
 
