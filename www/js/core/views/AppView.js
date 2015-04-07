@@ -26,11 +26,13 @@
 
             // Some default events
             $.extend(that.events, {
-                'click [data-back]' : function() {
+                'click [data-back]' : function(event) {
                     history.back();
+                    event.preventDefault();
                 },
                 'click [data-route]' : function(event) {
                     location.hash = $(event.target).attr('data-route');
+                    event.preventDefault();
                 }
             });
 
