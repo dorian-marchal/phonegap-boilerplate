@@ -20,7 +20,7 @@ define([
         layout.setOptions(pageView.layoutOptions);
         layout.setContentView(pageView);
         this.slider.slidePage(layout.render().$el);
-    }
+    };
 
     return AppController;
 
