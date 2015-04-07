@@ -28,8 +28,8 @@ if [ "$1" = "update" ]; then
 # Don't use this command if you're not a Phonegap Boilerplate maintainer
 elif [ "$1" = "push" ]; then
 
-    git push pb-core "$pb_branch"
-    git push origin pb-core
+    git push pb-core pb-core:dev
+    git push origin pb-core:pb-core
 
 
 # Merge pb-core on the current branch
