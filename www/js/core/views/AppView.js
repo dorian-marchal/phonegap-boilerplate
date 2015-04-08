@@ -27,7 +27,7 @@
 
             // Some default events
             $.extend(that.events, {
-                'click [data-back]' : function(event) {
+                'click [data-history]' : function(event) {
                     history.back();
                     event.preventDefault();
                 },
