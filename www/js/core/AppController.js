@@ -16,10 +16,11 @@ define([
      * Load a PageView in the given layout.
      */
     AppController.prototype.loadPage = function (layout, pageView) {
-        pageView.delegateEvents();
         layout.setOptions(pageView.layoutOptions);
         layout.setContentView(pageView);
         this.slider.slidePage(layout.render().$el);
+        layout.delegateEvents();
+        pageView.delegateEvents();
     };
 
     return AppController;
