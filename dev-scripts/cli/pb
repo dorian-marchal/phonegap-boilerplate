@@ -46,4 +46,5 @@ else
     echo "Usage:"
     echo "* pb update (on the 'pb-core' branch): pulls the changes and pushes them on 'origin'"
     echo "* pb merge (on the target branch): merges in the branch pb-core"
+    echo "* pb push (on the 'pb-core' branch): pushes the changes on 'origin/pb-core' and 'pb-core/dev'"
 fi
