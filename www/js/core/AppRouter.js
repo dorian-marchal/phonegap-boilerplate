@@ -16,17 +16,6 @@ define([
         setController: function(controller) {
             this.controller = controller;
         },
-
-        /**
-         * Load a PageView in the given layout.
-         */
-        loadPage: function(layout, pageView) {
-            pageView.delegateEvents();
-            layout.setOptions(pageView.layoutOptions);
-            layout.setContentView(pageView);
-            this.slider.slidePage(layout.render().$el);
-        },
-
     });
 
 });
