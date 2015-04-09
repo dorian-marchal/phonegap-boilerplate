@@ -30,7 +30,7 @@ generate-resources:
 	rm config.xml.generation-backup
 
 # Extract the translatable strings and build the app
-build: i18n-extract generate-resources
+build:
 	# Export needed dependencies
 	cp bower_components/requirejs/require.js www/js/lib/
 	cp bower_components/jquery/dist/jquery.min.js www/js/lib/
