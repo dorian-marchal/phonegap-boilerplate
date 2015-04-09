@@ -1,5 +1,7 @@
 // load config file
-require(['config'], function(config) {
+require([
+    'app/singletons/conf',
+], function(config) {
     'use strict';
 
     require.config(config);

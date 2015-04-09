@@ -4,7 +4,7 @@
  * The general code of the models goes here.
  */
  define([
-    'config',
+    'conf',
     'backbone',
 ], function (config, Backbone) {
     'use strict';

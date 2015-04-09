@@ -2,7 +2,7 @@
  * Singleton used to manage the server API.
  */
 define([
-    'config',
+    'conf',
     'core/utils/ApiHelper',
 ], function (config, ApiHelper) {
 

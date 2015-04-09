@@ -3,17 +3,6 @@ define({
     // Remove this line to enable caching
     urlArgs: 'bust=' + (new Date()).getTime(),
 
-    // Your app base URL (without trailing slash)
-    baseUrl: '',
-
-    // Your app Name
-    appName: 'Phonegap Boilerplate',
-
-    splashScreenMinimumDurationMs: 1500,
-
-    // True if token authentication is used
-    useAuth: false,
-
     // API server infos
     server: {
         host: 'localhost',
@@ -24,44 +13,6 @@ define({
         useWeinre: false,
         weinreHost: 'localhost',
         weinrePort: 8181,
-    },
-
-    // RequireJS paths
-    paths: {
-        core: 'js/core',
-        app: 'js/app',
-        config: 'js/config',
-        __: 'js/app/singletons/i18n',
-        jquery: 'js/lib/jquery.min',
-        backbone: 'js/lib/backbone',
-        underscore: 'js/lib/underscore-min',
-        text: 'js/lib/text',
-        fastclick: 'js/lib/fastclick',
-        domReady: 'js/lib/domReady',
-        async: 'js/lib/async',
-        i18next: 'js/lib/i18next',
-        gm_async: 'js/lib/gm_async',
-        gmaps: 'js/lib/gmaps',
-        google_maps: 'http://maps.google.com/maps/api/js?sensor=true',
-    },
-
-    shim: {
-        backbone: {
-            deps: ['underscore', 'jquery'],
-            exports: 'Backbone'
-        },
-        underscore: {
-            exports: '_'
-        },
-        i18next: {
-            exports: 'i18n'
-        },
-        gmaps: {
-            deps: [
-                'gm_async!google_maps',
-            ],
-            exports: 'GMaps'
-        },
     },
 
 });
