@@ -37,7 +37,7 @@ require([
                 'backbone',
                 'fastclick',
                 'core/utils/PageSlider',
-                'app/singletons/router',
+                'app/router',
                 'app/singletons/auth'
             ], function (globals, domReady, async, $, Backbone, FastClick, PageSlider, Router, auth) {
 

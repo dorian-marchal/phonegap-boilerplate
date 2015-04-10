@@ -7,7 +7,7 @@
     'jquery',
     'underscore',
     'backbone',
-    'app/singletons/router',
+    'app/router',
 ], function ($, _, Backbone, router) {
     'use strict';
 
