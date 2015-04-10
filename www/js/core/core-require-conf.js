@@ -10,7 +10,7 @@ define({
     paths: {
         core: 'js/core',
         app: 'js/app',
-        conf: 'js/app/singletons/conf',
+        globals: 'js/app/singletons/globals',
         __: 'js/app/singletons/i18n',
         jquery: 'js/lib/jquery.min',
         backbone: 'js/lib/backbone',

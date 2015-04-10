@@ -6,6 +6,6 @@ define([
     var Router = AppRouter.extend({
     });
 
-    return new Router();
+    return Router;
 
 });

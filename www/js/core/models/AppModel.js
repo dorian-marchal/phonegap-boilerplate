@@ -4,9 +4,9 @@
  * The general code of the models goes here.
  */
  define([
-    'conf',
+    'globals',
     'backbone',
-], function (config, Backbone) {
+], function (globals, Backbone) {
     'use strict';
 
     /**
@@ -15,7 +15,7 @@
     return Backbone.Model.extend({
 
         initialize: function() {
-            this.url = 'http://' + config.server.host + ':' + config.server.port + this.route;
+            this.url = 'http://' + globals.config.server.host + ':' + globals.config.server.port + this.route;
         },
     });
 

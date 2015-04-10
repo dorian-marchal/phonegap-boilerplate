@@ -12,10 +12,6 @@ define([
         setSlider: function(slider) {
             this.slider = slider;
         },
-
-        setController: function(controller) {
-            this.controller = controller;
-        },
     });
 
 });

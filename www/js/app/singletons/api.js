@@ -2,11 +2,11 @@
  * Singleton used to manage the server API.
  */
 define([
-    'conf',
+    'globals',
     'core/utils/ApiHelper',
-], function (config, ApiHelper) {
+], function (globals, ApiHelper) {
 
     'use strict';
 
-    return new ApiHelper(config.server.host, config.server.port);
+    return new ApiHelper(globals.config.server.host, globals.config.server.port);
 });

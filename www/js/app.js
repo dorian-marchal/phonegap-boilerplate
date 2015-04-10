@@ -30,16 +30,16 @@ require([
         var start = function() {
 
             require([
+                'globals',
                 'domReady!',
                 'async',
                 'jquery',
                 'backbone',
                 'fastclick',
                 'core/utils/PageSlider',
-                'app/Controller',
                 'app/singletons/router',
                 'app/singletons/auth'
-            ], function (domReady, async, $, Backbone, FastClick, PageSlider, Controller, router, auth) {
+            ], function (globals, domReady, async, $, Backbone, FastClick, PageSlider, Router, auth) {
 
                 // Use application/x-www-form-urlencoded
                 Backbone.emulateJSON = true;
@@ -79,8 +79,10 @@ require([
                     if (err) {
                         throw err;
                     }
-                    router.setController(new Controller());
+
+                    var router = new Router();
                     router.setSlider(new PageSlider($('body')));
+                    globals.setRouter(router);
                     Backbone.history.start();
 
                     // Hide the splashscreen
