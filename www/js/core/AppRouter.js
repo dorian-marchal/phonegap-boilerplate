@@ -27,7 +27,7 @@ define([
             // Load all the controllers
             for (var i in this.uses) {
                 controller = new this.uses[i]();
-                this.controllers[controller.route] = controller;
+                this.controllers[controller.name] = controller;
             }
 
         },
@@ -43,6 +43,7 @@ define([
             // Controller functions that begins with "_" are not actions
             if (typeof this.controllers[controller] !== 'undefined' &&
                 action.charAt(0) !== '_' &&
+                action !== 'extend' &&
                 typeof this.controllers[controller][action] === 'function') {
                 this.callAction(controller, action, params);
             }
@@ -52,7 +53,15 @@ define([
         },
 
         callAction: function(controller, action, params) {
-            this.controllers[controller][action].apply(this.controllers[controller], params);
+
+            params = params || [];
+
+            if (typeof this.controllers[controller][action] !== 'undefined') {
+                this.controllers[controller][action].apply(this.controllers[controller], params);
+            }
+            else {
+                this.unknownRoute(controller + '.' + action + '(' + params.join(', ') + ')');
+            }
         },
 
         /**
