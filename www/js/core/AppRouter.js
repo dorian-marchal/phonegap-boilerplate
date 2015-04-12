@@ -20,8 +20,8 @@ define([
             var controller = null;
 
             // Add the child routes
-            for (var key in this.additionalRoutes) {
-                this.route(key, this.additionalRoutes[key]);
+            for (var key in this.customRoutes) {
+                this.route(key, this.customRoutes[key]);
             }
 
             // Load all the controllers
