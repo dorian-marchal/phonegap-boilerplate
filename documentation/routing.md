@@ -21,7 +21,7 @@ Layout
 |
 |- `Layout.defaultOptions` properties are overriden by
      `PageView.layoutOptions` if needed
-|- Render with its `PageView` as content
+|- Render with its `PageView` and `subviews` as content
 v
 
 PageSlider
@@ -85,7 +85,14 @@ Since it has not been overrided, the action do the following :
 - Slide the layout element as a new page : `pageSlider.slidePage(layout.$el)`
 - Delegate the layout and page events
 
-3 . 
+3 . The layout is rendered
+
+The layout, its subviews and the pageView are rendered.
+
+4 . pageView.transitionEnd
+
+Once the transition is ended (or immediatly, if this is the first loaded page), the `pageView.transitionEnd` method is called.
+Useful to execute some code after the rendering, without interrupting the transition.
 
 
 [[Back to index documentation](index.md)]
