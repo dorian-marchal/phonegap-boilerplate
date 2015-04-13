@@ -47,10 +47,13 @@ define([
 
             container.append(page);
 
+            // First loaded page
             if (!currentPage || !from) {
                 page.attr('class', 'page page-center');
                 currentPage = page;
                 currentPage.addClass('no-transition');
+                // We call the transition end callback anyway
+                onTransitionEnd();
                 return;
             }
 
