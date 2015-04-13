@@ -13,6 +13,9 @@ define([
         // Global conf object
         this.config = config;
 
+        // Global route params
+        this.route = {};
+
         // Set the global app router
         this.setRouter = function(router) {
             that.router = router;

@@ -2,9 +2,10 @@
  * The object from wich the app router must inherit.
  */
 define([
+    'globals',
     'jquery',
     'backbone',
-], function ($, Backbone) {
+], function (globals, $, Backbone) {
     'use strict';
 
     return Backbone.Router.extend({
@@ -39,6 +40,9 @@ define([
             // index is the default action
             action = action || 'index';
 
+            // Reset the global route parameters
+            globals.route = {};
+
             // If the controller/action couple exists, we call controller.action(param1, param2, ...)
             // Controller functions that begins with "_" are not actions
             if (typeof this.controllers[controller] !== 'undefined' &&
@@ -55,6 +59,13 @@ define([
         callAction: function(controller, action, params) {
 
             params = params || [];
+
+            // Set the globals.route parameter
+            globals.route = {
+                controller: controller,
+                action: action,
+                params: params,
+            };
 
             if (typeof this.controllers[controller][action] !== 'undefined') {
                 this.controllers[controller][action].apply(this.controllers[controller], params);

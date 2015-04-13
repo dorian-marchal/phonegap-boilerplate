@@ -27,7 +27,7 @@ define([
         /**
          * Merge the given options with the default layout options
          */
-        setOptions: function(options) {
+        _loadPageViewOptions: function(options) {
             // Reset the options first (add __ for i18n)
             this.options = {
                 __: __,
@@ -37,13 +37,16 @@ define([
         },
 
         /**
-         * Set the layout content view.
-         * This view is rendered in the '.content' element of the layout template.
-         * @param {AppView} contentView Layout content
+         * Set the layout page view and populate the layout options with
+         * the page "layoutOptions" property.
+         * This PageView is rendered in the '.content' element of the layout template.
+         * @param {PageView} pageView Layout content
          */
-        setContentView: function(contentView) {
-            this.contentView = contentView;
+        setPageView: function(pageView) {
+            this.pageView = pageView;
+            this._loadPageViewOptions(pageView.layoutOptions);
         },
+
     });
 
 });

@@ -10,6 +10,11 @@ define([
          */
         layoutOptions: {},
 
+        /**
+         * Called on page transition end (overridable)
+         */
+        transitionEnd: function() {},
+
     });
 
 });

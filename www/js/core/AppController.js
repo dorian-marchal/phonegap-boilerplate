@@ -46,8 +46,9 @@ define([
                 };
             };
 
-            for (var pageName in this.layoutForPages) {
-                var layoutName = this.layoutForPages[pageName];
+            for (var actionName in this.pageForActions) {
+                var pageName = this.pageForActions[actionName].page;
+                var layoutName = this.pageForActions[actionName].layout;
                 this[pageName] = loadPageMaker(that.layouts[layoutName], this.pages[pageName]);
             }
         },
@@ -56,9 +57,13 @@ define([
          * Load a PageView in the given layout.
          */
         _loadPage: function (layout, pageView) {
-            layout.setOptions(pageView.layoutOptions);
-            layout.setContentView(pageView);
-            slider.slidePage(layout.render().$el);
+            layout.setPageView(pageView);
+            slider.slidePage(layout.render().$el, function() {
+                // Lets the UI thread breathe a little
+                setTimeout(function() {
+                    pageView.transitionEnd();
+                }, 0);
+            });
             layout.delegateEvents();
             pageView.delegateEvents();
         },
