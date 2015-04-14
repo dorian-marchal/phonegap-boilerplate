@@ -38,8 +38,9 @@ require([
                 'fastclick',
                 'core/utils/PageSlider',
                 'app/router',
-                'app/singletons/auth'
-            ], function (globals, domReady, async, $, Backbone, FastClick, PageSlider, Router, auth) {
+                'app/singletons/auth',
+                'app/initHook',
+            ], function (globals, domReady, async, $, Backbone, FastClick, PageSlider, Router, auth, initHook) {
 
                 // Use application/x-www-form-urlencoded
                 Backbone.emulateJSON = true;
@@ -62,6 +63,13 @@ require([
                     setTimeout(function() {
                         done();
                     }, config.splashScreenMinimumDurationMs);
+                };
+
+                // Execute some code before starting the app (during the splashscreen)
+                toWait.init = function(done) {
+                    initHook(function() {
+                        done();
+                    });
                 };
 
                 // Check if authentificated
