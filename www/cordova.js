@@ -21,7 +21,9 @@ navigator.splashscreen.hide = function() {};
 
 // deviceready
 document.addEventListener('ready-to-shim', function() {
-    document.dispatchEvent(new Event('deviceready'));
-});
+    var deviceReadyShimEvent = document.createEvent('Event');
+    deviceReadyShimEvent.initEvent('deviceready', true, true);
+    document.dispatchEvent(deviceReadyShimEvent);
+}, false);
 
 })();

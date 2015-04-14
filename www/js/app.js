@@ -24,7 +24,9 @@ require([
         }, false);
 
         // The fake cordova.js (www/cordova.js) listen to this event to shim deviceready event
-        document.dispatchEvent(new Event('ready-to-shim'));
+        var readyToShimEvent = document.createEvent('Event');
+        readyToShimEvent.initEvent('ready-to-shim', true, true);
+        document.dispatchEvent(readyToShimEvent);
 
         // Load the app
         var start = function() {
