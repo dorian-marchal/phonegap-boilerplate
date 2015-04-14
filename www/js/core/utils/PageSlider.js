@@ -10,7 +10,7 @@ define([
 
     return function PageSlider(container) {
 
-        var currentPage,
+        var $currentPage,
             stateHistory = [];
 
         this.back = function () {
@@ -19,51 +19,60 @@ define([
 
         // Use this function if you want PageSlider to automatically determine
         // the sliding direction based on the state history.
-        // onTransitionEnd function is called when the transition ends
-        this.slidePage = function (page, onTransitionEnd) {
+        // onTransitionEndCallback function is called when the transition ends
+        this.slidePage = function ($newPage, onTransitionEndCallback) {
 
             var l = stateHistory.length,
                 state = window.location.hash;
 
             if (l === 0) {
                 stateHistory.push(state);
-                this.slidePageFrom(page, null, onTransitionEnd);
+                this.slidePageFrom($newPage, null, onTransitionEndCallback);
                 return;
             }
             if (state === stateHistory[l - 2]) {
                 stateHistory.pop();
-                this.slidePageFrom(page, 'page-left', onTransitionEnd);
+                this.slidePageFrom($newPage, 'page-left', onTransitionEndCallback);
             } else {
                 stateHistory.push(state);
-                this.slidePageFrom(page, 'page-right', onTransitionEnd);
+                this.slidePageFrom($newPage, 'page-right', onTransitionEndCallback);
             }
 
         };
 
         // Use this function directly if you want to control the sliding direction outside PageSlider
-        this.slidePageFrom = function (page, from, onTransitionEnd) {
+        this.slidePageFrom = function ($newPage, from, onTransitionEndCallback) {
 
-            onTransitionEnd = onTransitionEnd || $.noop;
+            onTransitionEndCallback = onTransitionEndCallback || $.noop;
 
-            container.append(page);
+            // Current page must be removed after the transition
+            var $oldPage = $currentPage;
 
-            // First loaded page
-            if (!currentPage || !from) {
-                page.attr('class', 'page page-center');
-                currentPage = page;
-                currentPage.addClass('no-transition');
+            container.append($newPage);
+
+            $newPage.addClass('page');
+
+            // First loaded page (no old page)
+            if (!$oldPage || !from) {
+                $newPage.addClass('page-center no-transition');
+
+                $currentPage = $newPage;
+
                 // We call the transition end callback anyway
-                onTransitionEnd();
+                onTransitionEndCallback();
                 return;
             }
 
             // Position the page at the starting position of the animation
-            page.attr('class', 'page ' + from);
+            $newPage.addClass(from);
 
-            currentPage.one('transitionend webkitTransitionEnd', function (e) {
-                $(e.target).remove();
-                currentPage.addClass('no-transition');
-                onTransitionEnd();
+            // Shim transitionend if it's not fired
+            var shimTransitionEnd = setTimeout(function() {
+                onTransitionEnd($oldPage);
+            }, 600);
+
+            $currentPage.one('transitionend webkitTransitionEnd', function (e) {
+                onTransitionEnd($(e.target));
             });
 
             // Force reflow. More information here: http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/
@@ -71,9 +80,24 @@ define([
             container[0].offsetWidth;
 
             // Position the new page and the current page at the ending position of their animation with a transition class indicating the duration of the animation
-            page.attr('class', 'page transition page-center');
-            currentPage.attr('class', 'page transition ' + (from === 'page-left' ? 'page-right' : 'page-left'));
-            currentPage = page;
+            $newPage
+                .removeClass('page-left page-right')
+                .addClass('transition page-center');
+
+            $oldPage
+                .removeClass('page-center no-transition')
+                .addClass('transition ' + (from === 'page-left' ? 'page-right' : 'page-left'));
+
+            $currentPage = $newPage;
+
+            var onTransitionEnd = function ($toRemovePage) {
+                $toRemovePage.remove();
+                $currentPage
+                    .removeClass('transition')
+                    .addClass('no-transition');
+                clearTimeout(shimTransitionEnd);
+                onTransitionEndCallback();
+            };
         };
 
     };
