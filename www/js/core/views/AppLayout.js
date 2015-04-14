@@ -5,7 +5,7 @@
  * - template : not yet compiled template. Will be compiled in this.tpl at init
  *
  * The child layout may have these properties :
- * - defaultOptions : layout default options (overridable by PageView)
+ * - defaultOptions : layout default options (overridable by Page)
  */
 define([
     'jquery',
@@ -34,7 +34,7 @@ define([
         /**
          * Merge the given options with the default layout options
          */
-        _loadPageViewOptions: function(options) {
+        _loadPageOptions: function(options) {
             // Reset the options first (add __ for i18n)
             this.options = {
                 __: __,
@@ -46,16 +46,16 @@ define([
         /**
          * Set the layout page view and populate the layout options with
          * the page "layoutOptions" property.
-         * This PageView is rendered in the '.content' element of the layout template.
-         * @param {PageView} pageView Layout content
+         * This Page is rendered in the '.content' element of the layout template.
+         * @param {Page} page Layout content
          */
-        setPageView: function(pageView) {
-            this.pageView = pageView;
-            this._loadPageViewOptions(pageView.layoutOptions);
+        setPage: function(page) {
+            this.page = page;
+            this._loadPageOptions(page.layoutOptions);
         },
 
         /**
-         * Render the pageView and the subviews
+         * Render the page and the subviews
          */
         render: function() {
             $('title').html(this.options.title);
@@ -69,7 +69,7 @@ define([
                 this.assign(subview, selector);
             }
 
-            this.$el.find('.content').html(this.pageView.render().$el);
+            this.$el.find('.content').html(this.page.render().$el);
 
             return this;
         },

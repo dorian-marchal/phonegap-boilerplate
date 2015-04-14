@@ -2,7 +2,10 @@
  * $.ajax wrapper to easily make request to the server API
  * Example :
  *     var api = new ApiHelper('localhost', 8080);
- *     api.get('/mymodels', )
+ *     api.get('/mymodels', {
+ *         success: sucessCallback,
+ *         error: errorCallback,
+ *     })
  */
 define([
     'jquery',

@@ -54,18 +54,18 @@ define([
         },
 
         /**
-         * Load a PageView in the given layout.
+         * Load a Page in the given layout.
          */
-        _loadPage: function (layout, pageView) {
-            layout.setPageView(pageView);
+        _loadPage: function (layout, page) {
+            layout.setPage(page);
             slider.slidePage(layout.render().$el, function() {
                 // Lets the UI thread breathe a little
                 setTimeout(function() {
-                    pageView.transitionEnd();
+                    page.transitionEnd();
                 }, 0);
             });
             layout.delegateEvents();
-            pageView.delegateEvents();
+            page.delegateEvents();
         },
 
     };
