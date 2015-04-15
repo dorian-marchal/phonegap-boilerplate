@@ -1,4 +1,4 @@
-# Set up a project
+# Setting up a project
 
 #### Requirements
 
@@ -15,7 +15,7 @@ cd <your-repo>
 g c --allow-empty -m "Let's go !" 
 ```
 
-- Configure a `pb-core` branch representing the Phonegap Boilerplate
+- Configure a `pb-core` branch following the evolution of Phonegap Boilerplate
 
 ```bash
 # Let's say we want a `dev` branch

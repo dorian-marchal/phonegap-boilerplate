@@ -1,6 +1,6 @@
 # Documentation
 
-- [Set up a project](setup.md)
+- [Setting up a project](setup.md)
 - [Routing](routing.md)
     + [Configure the router](router.md)
     + [Configure a Controller](controller.md)

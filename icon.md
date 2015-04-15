@@ -10,7 +10,7 @@ Then, you can run `make generate-resources`.
 
 All resources are automatically generated, juste use `make build` to build your changes.
 
-__Note :__ : Dev dependencies are required (`make install-dev`).
+__Note :__ Dev dependencies are required (`make install-dev`).
 
 ### Based on
 
