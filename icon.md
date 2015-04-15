@@ -16,5 +16,3 @@ __Note :__ : Dev dependencies are required (`make install-dev`).
 
 - [org.apache.cordova.splashscreen](https://github.com/apache/cordova-plugin-splashscreen)
 - [ionic](https://github.com/driftyco/ionic)
-
-[[Back to index documentation](index.md)]

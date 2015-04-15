@@ -95,6 +95,3 @@ The layout, its subviews and the Page are rendered.
 
 Once the transition is ended (or immediatly, if this is the first loaded page), the `page.transitionEnd` method is called.
 This method is useful to execute some code after the rendering, without interrupting the transition.
-
-
-[[Back to index documentation](index.md)]

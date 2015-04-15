@@ -112,5 +112,3 @@ Be careful with this command (only use it if you know what you are doing).
 ```bash
 make build
 ```
-
-[[Back to index documentation](index.md)]

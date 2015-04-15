@@ -48,6 +48,3 @@ define(function(require) {
 
 Generally, the `pageForActions` property is good enough but you may want to add actions manually. All the methods of the controller are converted to routes, unless it begins with a `_`.
 If you want to know more, you can [look at the code](../www/js/core/AppController.js).
-
-
-[[Back to index documentation](index.md)]

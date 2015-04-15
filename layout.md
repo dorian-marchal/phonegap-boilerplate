@@ -39,6 +39,3 @@ define(function (require) {
 ```
 
 On layout render, the current [`Page`](page.md) will be rendered in the `.content` element of the template.
-
-
-[[Back to index documentation](index.md)]

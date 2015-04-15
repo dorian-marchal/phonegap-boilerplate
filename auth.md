@@ -91,5 +91,3 @@ auth.logout(callback)
 - [Passport](http://passportjs.org/)
 - [Node UUID](https://github.com/broofa/node-uuid)
 - [Passport HTTP Bearer](https://github.com/jaredhanson/passport-http-bearer)
-
-[[Back to index documentation](index.md)]
