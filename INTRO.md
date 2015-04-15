@@ -3,7 +3,7 @@
 Phonegap Boilerplate is a foundation to make Phonegap based apps.  
 It must be coupled to a [Phonegap Boilerplate Server](https://github.com/dorian-marchal/phonegap-boilerplate-server).
 
-### Based on
+### Based on (among other)
 
 __Client side:__
 
@@ -11,11 +11,9 @@ __Client side:__
 - Backbone
 - RequireJS
 - jQuery
-- ...
 
 __Server side:__
 
 - Express
 - Passport
 - Mongoose
-- ...
