@@ -1,5 +1,7 @@
 // load config file
-require(['config'], function(config) {
+require([
+    'app/singletons/conf',
+], function(config) {
     'use strict';
 
     require.config(config);
@@ -22,22 +24,25 @@ require(['config'], function(config) {
         }, false);
 
         // The fake cordova.js (www/cordova.js) listen to this event to shim deviceready event
-        document.dispatchEvent(new Event('ready-to-shim'));
+        var readyToShimEvent = document.createEvent('Event');
+        readyToShimEvent.initEvent('ready-to-shim', true, true);
+        document.dispatchEvent(readyToShimEvent);
 
         // Load the app
         var start = function() {
 
             require([
+                'globals',
                 'domReady!',
                 'async',
                 'jquery',
                 'backbone',
                 'fastclick',
                 'core/utils/PageSlider',
-                'app/Controller',
-                'app/singletons/router',
-                'app/singletons/auth'
-            ], function (domReady, async, $, Backbone, FastClick, PageSlider, Controller, router, auth) {
+                'app/router',
+                'app/singletons/auth',
+                'app/initHook',
+            ], function (globals, domReady, async, $, Backbone, FastClick, PageSlider, Router, auth, initHook) {
 
                 // Use application/x-www-form-urlencoded
                 Backbone.emulateJSON = true;
@@ -55,6 +60,20 @@ require(['config'], function(config) {
 
                 var toWait = {};
 
+                // We wait a few seconds to let the splashscreen shine
+                toWait.letSplash = function(done) {
+                    setTimeout(function() {
+                        done();
+                    }, config.splashScreenMinimumDurationMs);
+                };
+
+                // Execute some code before starting the app (during the splashscreen)
+                toWait.init = function(done) {
+                    initHook(function() {
+                        done();
+                    });
+                };
+
                 // Check if authentificated
                 if (config.useAuth) {
                     toWait.login = function(done) {
@@ -70,9 +89,14 @@ require(['config'], function(config) {
                     if (err) {
                         throw err;
                     }
-                    router.setController(new Controller());
+
+                    var router = new Router();
                     router.setSlider(new PageSlider($('body')));
+                    globals.setRouter(router);
                     Backbone.history.start();
+
+                    // Hide the splashscreen
+                    navigator.splashscreen.hide();
                 });
             });
         };

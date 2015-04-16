@@ -1,55 +1,25 @@
 define({
 
-    // Remove this line to enable caching
-    urlArgs: 'bust=' + (new Date()).getTime(),
+    // You can manage multiple environment by naming them
+    environment: 'dev',
 
-    // Your app base URL (without trailing slash)
-    baseUrl: '',
+    environmentConfig: {
 
-    // Your app Name
-    appName: 'Phonegap Boilerplate',
+        dev: {
+            // Remove this line to enable caching
+            urlArgs: 'bust=' + (new Date()).getTime(),
 
-    // True if token authentication is used
-    useAuth: false,
+            // API server infos
+            server: {
+                host: 'localhost',
+                port: 8080,
+            },
 
-    // API server infos
-    server: {
-        host: 'localhost',
-        port: 8080,
-    },
-
-    debug: {
-        useWeinre: false,
-        weinreHost: 'localhost',
-        weinrePort: 8181,
-    },
-
-    // RequireJS paths
-    paths: {
-        core: 'js/core',
-        app: 'js/app',
-        config: 'js/config',
-        __: 'js/app/singletons/i18n',
-        jquery: 'js/lib/jquery.min',
-        backbone: 'js/lib/backbone',
-        underscore: 'js/lib/underscore-min',
-        text: 'js/lib/text',
-        fastclick: 'js/lib/fastclick',
-        domReady: 'js/lib/domReady',
-        async: 'js/lib/async',
-        i18next: 'js/lib/i18next',
-    },
-
-    shim: {
-        backbone: {
-            deps: ['underscore', 'jquery'],
-            exports: 'Backbone'
-        },
-        underscore: {
-            exports: '_'
-        },
-        i18next: {
-            exports: 'i18n'
+            debug: {
+                useWeinre: false,
+                weinreHost: 'localhost',
+                weinrePort: 8181,
+            },
         },
     },
 

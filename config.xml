@@ -18,26 +18,28 @@
     <preference name="ios-statusbarstyle" value="black-opaque" />
     <preference name="detect-data-types" value="true" />
     <preference name="exit-on-suspend" value="false" />
-    <preference name="show-splash-screen-spinner" value="true" />
-    <preference name="auto-hide-splash-screen" value="true" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="15000" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="10" />
     <preference name="android-installLocation" value="auto" />
 
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <platform name="android">
-             <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi" />
-             <icon src="resources/android/icon/drawable-mdpi-icon.png" density="mdpi" />
-             <icon src="resources/android/icon/drawable-hdpi-icon.png" density="hdpi" />
-             <icon src="resources/android/icon/drawable-xhdpi-icon.png" density="xhdpi" />
+        <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi" />
+        <icon src="resources/android/icon/drawable-mdpi-icon.png" density="mdpi" />
+        <icon src="resources/android/icon/drawable-hdpi-icon.png" density="hdpi" />
+        <icon src="resources/android/icon/drawable-xhdpi-icon.png" density="xhdpi" />
     </platform>
 
-    <splash src="resources/android/splash/drawable-xhdpi-port-screen.png" />
+    <splash src="resources/android/splash/drawable-port-xhdpi-screen.png" />
     <platform name="android">
-        <splash src="resources/android/splash/drawable-ldpi-port-screen.png" density="port-ldpi"/>
-        <splash src="resources/android/splash/drawable-mdpi-port-screen.png" density="port-mdpi"/>
-        <splash src="resources/android/splash/drawable-hdpi-port-screen.png" density="port-hdpi"/>
-        <splash src="resources/android/splash/drawable-xhdpi-port-screen.png" density="port-xhdpi"/>
+        <splash src="resources/android/splash/drawable-port-ldpi-screen.png" density="port-ldpi"/>
+        <splash src="resources/android/splash/drawable-port-mdpi-screen.png" density="port-mdpi"/>
+        <splash src="resources/android/splash/drawable-port-hdpi-screen.png" density="port-hdpi"/>
+        <splash src="resources/android/splash/drawable-port-xhdpi-screen.png" density="port-xhdpi"/>
     </platform>
 
     <access origin="*" />

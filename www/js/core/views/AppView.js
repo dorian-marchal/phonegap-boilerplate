@@ -4,10 +4,11 @@
  * The general code of the views goes here.
  */
  define([
+    'globals',
     'jquery',
     'underscore',
     'backbone',
-], function ($, _, Backbone) {
+], function (globals, $, _, Backbone) {
     'use strict';
 
     return Backbone.View.extend({
@@ -26,11 +27,13 @@
 
             // Some default events
             $.extend(that.events, {
-                'click [data-back]' : function() {
+                'click [data-history]' : function(event) {
                     history.back();
+                    event.preventDefault();
                 },
                 'click [data-route]' : function(event) {
-                    location.hash = $(event.target).attr('data-route');
+                    globals.router.navigate($(event.currentTarget).attr('data-route'), true);
+                    event.preventDefault();
                 }
             });
 

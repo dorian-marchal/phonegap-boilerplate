@@ -30,7 +30,7 @@ generate-resources:
 	rm config.xml.generation-backup
 
 # Extract the translatable strings and build the app
-build: i18n-extract generate-resources
+build:
 	# Export needed dependencies
 	cp bower_components/requirejs/require.js www/js/lib/
 	cp bower_components/jquery/dist/jquery.min.js www/js/lib/
@@ -41,11 +41,14 @@ build: i18n-extract generate-resources
 	cp bower_components/domReady/domReady.js www/js/lib/
 	cp bower_components/async/lib/async.js www/js/lib/
 	cp bower_components/i18next/i18next.js www/js/lib/
+	cp bower_components/gmaps.js/gmaps.js www/js/lib/
+	cp bower_components/requirejs-plugins/src/async.js www/js/lib/gm_async.js
 	mkdir -p www/css/lib/topcoat
 	mkdir -p www/css/lib/topcoat/css
 	cp bower_components/topcoat/css/topcoat-mobile-light.min.css www/css/lib/topcoat/css
 	cp -R bower_components/topcoat/font www/css/lib/topcoat/
 	cp -R bower_components/topcoat/img www/css/lib/topcoat/
+
 	# Phonegap build
 	phonegap build
 
