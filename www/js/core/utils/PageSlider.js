@@ -40,7 +40,16 @@ define([
 
         };
 
-        // Use this function directly if you want to control the sliding direction outside PageSlider
+        /**
+         * Use this function directly if you want to control the sliding direction outside PageSlider
+         * @param  {$} $newPage The new page to slide in
+         * @param  {String} from Origin of the slide ('page-left', 'page-right', or null)
+         * @param  {function} onTransitionEndCallback Called when the slide end
+         *                    or immediately if there is no transition.
+         *                    A boolean is passed to the callback : true if we just slide
+         *                    in the very first page.
+         *
+         */
         this.slidePageFrom = function ($newPage, from, onTransitionEndCallback) {
 
             onTransitionEndCallback = onTransitionEndCallback || $.noop;
@@ -52,14 +61,14 @@ define([
 
             $newPage.addClass('page');
 
-            // First loaded page (no old page)
+            // First loaded page (no old page) or no transition
             if (!$oldPage || !from) {
                 $newPage.addClass('page-center no-transition');
 
                 $currentPage = $newPage;
 
                 // We call the transition end callback anyway
-                onTransitionEndCallback();
+                onTransitionEndCallback(true);
                 return;
             }
 
@@ -96,7 +105,7 @@ define([
                     .removeClass('transition')
                     .addClass('no-transition');
                 clearTimeout(shimTransitionEnd);
-                onTransitionEndCallback();
+                onTransitionEndCallback(false);
             };
         };
 
