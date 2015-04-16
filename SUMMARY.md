@@ -1,4 +1,6 @@
-# Documentation
+# Phonegap Boilerplate Documentation
+
+Documentation of Phonegap Boilerplate : https://github.com/dorian-marchal/phonegap-boilerplate
 
 - [Setting up a project](documentation/setup.md)
 - [Working with Phonegap Boilerplate](documentation/routing.md)
