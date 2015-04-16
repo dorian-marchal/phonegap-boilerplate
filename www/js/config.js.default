@@ -1,18 +1,26 @@
 define({
 
-    // Remove this line to enable caching
-    urlArgs: 'bust=' + (new Date()).getTime(),
+    // You can manage multiple environment by naming them
+    environment: 'dev',
 
-    // API server infos
-    server: {
-        host: 'localhost',
-        port: 8080,
-    },
+    environmentConfig: {
 
-    debug: {
-        useWeinre: false,
-        weinreHost: 'localhost',
-        weinrePort: 8181,
+        dev: {
+            // Remove this line to enable caching
+            urlArgs: 'bust=' + (new Date()).getTime(),
+
+            // API server infos
+            server: {
+                host: 'localhost',
+                port: 8080,
+            },
+
+            debug: {
+                useWeinre: false,
+                weinreHost: 'localhost',
+                weinrePort: 8181,
+            },
+        },
     },
 
 });

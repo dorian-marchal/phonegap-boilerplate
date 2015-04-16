@@ -1,5 +1,10 @@
 /**
  * Singleton used to get the app configuration.
+ * This module return the merge of all the config files :
+ * - js/core/core-require-conf.js : Phonegap Boilerplate core conf
+ *   (checked in version control)
+ * - js/core.js : Application core config (checked in version control)
+ * - js/config.js : The environment config  (not checked in version control)
  */
 define([
     'core/core-require-conf',
@@ -26,8 +31,9 @@ define([
         }
     }
 
-    for (key in appConfig) {
-        coreConfig[key] = appConfig[key];
+    // Merge only the selected environment configuration
+    for (key in appConfig.environmentConfig[appConfig.environment]) {
+        coreConfig[key] = appConfig.environmentConfig[appConfig.environment][key];
     }
 
     return coreConfig;
