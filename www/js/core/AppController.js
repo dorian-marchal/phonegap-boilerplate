@@ -73,10 +73,7 @@ define([
 
                         // Force reflow before hiding the splashscreen.
                         /*jshint -W030*/
-                        var $reflowEl = $('<div>', { id: 'pb-force-reflow' });
-                        $('body').append($reflowEl);
-                        $reflowEl.get(0).offsetHeight;
-                        $reflowEl.remove();
+                        layout.el.offsetHeight;
 
                         // Hide the splashscreen
                         navigator.splashscreen.hide();
