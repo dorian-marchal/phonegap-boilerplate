@@ -19,7 +19,7 @@ define([
         /**
          * Called on page transition end (overridable)
          */
-        transitionEnd: function() {},
+        afterRender: function() {},
 
     });
 

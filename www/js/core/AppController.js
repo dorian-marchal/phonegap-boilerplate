@@ -63,9 +63,9 @@ define([
             layout.setPage(page);
             slider.slidePage(layout.render().$el, function(wasFirstSlide) {
 
-                // Lets the UI thread breathe a little before calling transitionEnd
+                // Lets the UI thread breathe a little before calling afterRender
                 setTimeout(function() {
-                    page.transitionEnd();
+                    page.afterRender();
                 }, 0);
 
                 // If we just rendered the first page, we hide the splashscreen
