@@ -8,6 +8,6 @@ __Provide help for :__
 - Internationalization ([See documentation](http://dorian-marchal.gitbooks.io/phonegap-boilerplate-documentation/content/i18n.html))
 - Icon / Splashscreen generation ([See documentation](http://dorian-marchal.gitbooks.io/phonegap-boilerplate-documentation/content/icon.html))
 
-### Set up a project
+### Setting up a project
 
 [See documentation](http://dorian-marchal.gitbooks.io/phonegap-boilerplate-documentation/content/setup.html) (You will need `git` and `npm`)

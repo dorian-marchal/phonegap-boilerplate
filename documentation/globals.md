@@ -1,6 +1,7 @@
 # `globals` singleton
 
 The `globals` module (`app/singletons/globals`) is a singleton where all the global app data are stored.
+It was added mainly to avoid circular dependencies (with objects like app router).
 
 ### - `globals.config`
 
