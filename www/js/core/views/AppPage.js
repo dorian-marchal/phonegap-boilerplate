@@ -11,6 +11,12 @@ define([
         layoutOptions: {},
 
         /**
+         * Called before page slide
+         * The route parameters are passed to this function
+         */
+        beforeRender: function() {},
+
+        /**
          * Called on page transition end (overridable)
          */
         transitionEnd: function() {},

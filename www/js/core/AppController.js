@@ -43,6 +43,8 @@ define([
             // Associate pages with layouts
             var loadPageMaker = function(layout, page) {
                 return function() {
+                    // We pass the action arguments to page.beforeRender
+                    page.beforeRender.apply(page, arguments);
                     that._loadPage(layout, page);
                 };
             };
