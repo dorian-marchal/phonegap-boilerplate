@@ -79,11 +79,11 @@ define([
 
             // Shim transitionend if it's not fired
             var shimTransitionEnd = setTimeout(function() {
-                onTransitionEnd($oldPage);
+                onTransitionEnd();
             }, 600);
 
-            $currentPage.one('transitionend webkitTransitionEnd', function (e) {
-                onTransitionEnd($(e.target));
+            $currentPage.one('transitionend webkitTransitionEnd', function () {
+                onTransitionEnd();
             });
 
             // Force reflow. More information here: http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/
@@ -92,7 +92,7 @@ define([
 
             // Position the new page and the current page at the ending position of their animation with a transition class indicating the duration of the animation
             $newPage
-                .removeClass('page-left page-right')
+                .removeClass('page-left page-right no-transition')
                 .addClass('transition page-center');
 
             $oldPage
@@ -101,11 +101,15 @@ define([
 
             $currentPage = $newPage;
 
-            var onTransitionEnd = function ($toRemovePage) {
-                $toRemovePage.remove();
+            var onTransitionEnd = function () {
+                $(container).find('> .page:not(:last)').remove();
                 $currentPage
                     .removeClass('transition')
                     .addClass('no-transition');
+
+                // Force reflow.
+                container[0].offsetWidth;
+
                 clearTimeout(shimTransitionEnd);
                 onTransitionEndCallback(false);
             };
