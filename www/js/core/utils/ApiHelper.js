@@ -21,11 +21,13 @@ define([
          */
         this.setToken = function(token) {
 
-            $.ajaxSetup({
-                data: {
-                    access_token: token,
-                },
-            });
+            var ajaxDataSetup = {};
+
+            if (token) {
+                ajaxDataSetup.access_token = token;
+            }
+
+            $.ajaxSetup({ ajaxDataSetup });
         };
 
         this._ajax = function(method, url, settings) {
