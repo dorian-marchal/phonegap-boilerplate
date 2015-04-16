@@ -56,19 +56,21 @@ define([
 
             // Current page must be removed after the transition
             var $oldPage = $currentPage;
+            var firstSlide = !$oldPage;
 
             container.append($newPage);
 
             $newPage.addClass('page');
 
             // First loaded page (no old page) or no transition
-            if (!$oldPage || !from) {
+            if (firstSlide || !from) {
+
                 $newPage.addClass('page-center no-transition');
 
                 $currentPage = $newPage;
 
                 // We call the transition end callback anyway
-                onTransitionEndCallback(true);
+                onTransitionEndCallback(firstSlide);
                 return;
             }
 

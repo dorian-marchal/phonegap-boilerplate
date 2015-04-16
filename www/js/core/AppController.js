@@ -3,9 +3,10 @@
  * The controller is controlled by the router and manage the different views.
  */
 define([
+    'globals',
     'jquery',
     'core/utils/PageSlider',
-], function ($, PageSlider) {
+], function (globals, $, PageSlider) {
     'use strict';
 
     var slider = new PageSlider($('body'));
@@ -58,11 +59,30 @@ define([
          */
         _loadPage: function (layout, page) {
             layout.setPage(page);
-            slider.slidePage(layout.render().$el, function() {
-                // Lets the UI thread breathe a little
+            slider.slidePage(layout.render().$el, function(wasFirstSlide) {
+
+                // Lets the UI thread breathe a little before calling transitionEnd
                 setTimeout(function() {
                     page.transitionEnd();
                 }, 0);
+
+                // If we just rendered the first page, we hide the splashscreen
+                if (wasFirstSlide) {
+
+                    setTimeout(function() {
+
+                        // Force reflow before hiding the splashscreen.
+                        /*jshint -W030*/
+                        var $reflowEl = $('<div>', { id: 'pb-force-reflow' });
+                        $('body').append($reflowEl);
+                        $reflowEl.get(0).offsetHeight;
+                        $reflowEl.remove();
+
+                        // Hide the splashscreen
+                        navigator.splashscreen.hide();
+
+                    }, globals.config.splashScreenMinimumDurationMs);
+                }
             });
             layout.delegateEvents();
             page.delegateEvents();
