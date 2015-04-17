@@ -60,7 +60,9 @@ define([
 
         // Set the token in the localStorage
         this.setToken = function(token) {
-            localStorage.token = token;
+            if (token) {
+                localStorage.token = token;
+            }
             this.token = token;
             api.setToken(token);
         };
