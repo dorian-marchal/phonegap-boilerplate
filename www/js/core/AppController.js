@@ -61,7 +61,10 @@ define([
          */
         _loadPage: function (layout, page) {
             layout.setPage(page);
-            slider.slidePage(layout.render().$el, function(wasFirstSlide) {
+            layout.render();
+            layout.$el.addClass(page.name);
+
+            slider.slidePage(layout.$el, function(wasFirstSlide) {
 
                 // Lets the UI thread breathe a little before calling afterRender
                 setTimeout(function() {

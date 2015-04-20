@@ -6,6 +6,13 @@ define([
     return AppView.extend({
 
         /**
+         * Must be unique through your app.
+         * This property is used to identify the page in the controller
+         * Moreover, the name is added as a class on the .page
+         */
+        name: '',
+
+        /**
          * Options passed to the layout
          */
         layoutOptions: {},
