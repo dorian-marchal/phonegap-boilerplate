@@ -52,6 +52,7 @@ define([
         setPage: function(page) {
             this.page = page;
             this._loadPageOptions(page.layoutOptions);
+            this.subviewInstances['.content'] = page;
         },
 
         /**
@@ -68,8 +69,6 @@ define([
                 subview.options = this.options;
                 this.assign(subview, selector);
             }
-
-            this.$el.find('.content').html(this.page.render().$el);
 
             return this;
         },
