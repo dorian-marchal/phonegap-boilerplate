@@ -4,6 +4,11 @@ define([
     'use strict';
 
     var Router = AppRouter.extend({
+        uses: [
+        ],
+
+        customRoutes: {
+        },
     });
 
     return Router;
