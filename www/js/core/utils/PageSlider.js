@@ -10,8 +10,14 @@ define([
 
     return function PageSlider(container) {
 
+        var animationsEnabled = true;
+
         var $currentPage,
             stateHistory = [];
+
+        this.setAnimationsEnabled = function(enableAnimation) {
+            animationsEnabled = enableAnimation;
+        };
 
         this.back = function () {
             location.hash = stateHistory[stateHistory.length - 2];
@@ -59,12 +65,14 @@ define([
             var firstSlide = !$oldPage;
             var to = (from === 'left' ? 'right' : 'left');
 
-            container.append($newPage);
-
-            $newPage.addClass('page');
+            container.append($newPage.addClass('page'));
 
             // First loaded page (no old page) or no transition
-            if (firstSlide || !from) {
+            if (firstSlide || !from || !animationsEnabled) {
+                // Remove old page if it exists
+                if ($oldPage) {
+                    $oldPage.remove();
+                }
 
                 $newPage.addClass('page-center');
 
