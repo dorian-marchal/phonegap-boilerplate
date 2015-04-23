@@ -11,6 +11,11 @@ body {
     -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;      /* prevent copy paste, to allow, change 'none' to 'text' */
 }
+
+input, textarea, select {
+   -webkit-appearance: none;
+ }
+
 .clearfix:after {
     content: ".";
     display: block;
