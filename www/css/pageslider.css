@@ -26,22 +26,22 @@
 }
 
 .page.from-left {
-    -webkit-animation: from-left .5s;
-    animation: from-left .5s;
+    -webkit-animation: from-left .3s;
+    animation: from-left .3s;
 }
 
 .page.from-right {
-    -webkit-animation: from-right .5s;
-    animation: from-right .5s;
+    -webkit-animation: from-right .3s;
+    animation: from-right .3s;
 }
 
 .page.to-left {
-    -webkit-animation: to-left .5s;
-    animation: to-left .5s;
+    -webkit-animation: to-left .3s;
+    animation: to-left .3s;
 }
 .page.to-right {
-    -webkit-animation: to-right .5s;
-    animation: to-right .5s;
+    -webkit-animation: to-right .3s;
+    animation: to-right .3s;
 }
 
 @-webkit-keyframes from-left {
