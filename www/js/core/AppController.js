@@ -42,6 +42,7 @@ define([
 
             // Associate pages with layouts
             var loadPageMaker = function(layout, page) {
+
                 return function() {
                     // We pass the action arguments to page.beforeRender
                     page.beforeRender.apply(page, arguments);
@@ -52,7 +53,16 @@ define([
             for (var actionName in this.pageForActions) {
                 var pageName = this.pageForActions[actionName].page;
                 var layoutName = this.pageForActions[actionName].layout;
-                this[pageName] = loadPageMaker(that.layouts[layoutName], this.pages[pageName]);
+
+                if (!this.pages[pageName]) {
+                    console.error('Unknown page in Controller: ' + pageName);
+                }
+                else if (!this.layouts[layoutName]) {
+                    console.error('Unknown layout in Controller: ' + layoutName);
+                }
+                else {
+                    this[pageName] = loadPageMaker(this.layouts[layoutName], this.pages[pageName]);
+                }
             }
         },
 
