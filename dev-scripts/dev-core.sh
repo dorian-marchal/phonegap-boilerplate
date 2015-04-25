@@ -23,8 +23,10 @@ if [ -z "$(git config pb.repo)" ]; then
 
     git ls-remote --exit-code "$pb_repo" &> /dev/null
 
-    if [ "$?" -ne 0 ]; then
-        echo "Error: Unable to join the repo '$pb_repo'"
+    exit_code="$?"
+
+    if [ "$exit_code" -ne 0 ]; then
+        echo "Error $exit_code: Unable to join the repo '$pb_repo'"
         exit 1;
     fi
 
