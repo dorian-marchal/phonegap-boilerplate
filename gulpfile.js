@@ -21,7 +21,7 @@ function notifyLiveReload(event) {
     });
 }
 
-gulp.task('livereload', ['watch'], function() {
+gulp.task('livereload', function() {
     tinylr = require('tiny-lr')();
     tinylr.listen(lrPort);
 
