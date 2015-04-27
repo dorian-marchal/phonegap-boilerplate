@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp  = require('gulp');
+var plumber = require('gulp-plumber');
 
 var webrootPath = 'www';
 var cssPath = webrootPath + '/css';
@@ -46,6 +47,7 @@ gulp.task('compass', function () {
     var compass = require('gulp-compass');
 
     gulp.src(sassPath + '/*.scss')
+        .pipe(plumber())
         .pipe(compass({
             config_file: sassPath + '/config.rb',
             css: cssPath,
