@@ -1,2 +1,44 @@
-@import 'base.css';
-@import 'pageslider.css';
+* { margin: 0; padding: 0; box-sizing: border-box; background-repeat: no-repeat; -webkit-tap-highlight-color: transparent; /* make transparent link selection, adjust last value opacity 0 to 1.0 */ }
+
+body { -webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */ -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */ -webkit-user-select: none; /* prevent copy paste, to allow, change 'none' to 'text' */ }
+
+input, textarea, select { -webkit-appearance: none; }
+
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; zoom: 1; }
+
+.topcoat-text-input { width: 100%; }
+
+#container { position: absolute; width: 100%; height: 100%; overflow: hidden; }
+
+.page { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+.page.page-left { left: -100%; }
+
+.page.page-right { left: 100%; }
+
+.page.page-center { left: 0%; }
+
+.page.from-left { -webkit-animation: from-left .3s; animation: from-left .3s; }
+
+.page.from-right { -webkit-animation: from-right .3s; animation: from-right .3s; }
+
+.page.to-left { -webkit-animation: to-left .3s; animation: to-left .3s; }
+
+.page.to-right { -webkit-animation: to-right .3s; animation: to-right .3s; }
+
+@-webkit-keyframes from-left { from { left: -100%; }
+  to { left: 0%; } }
+@-webkit-keyframes to-left { from { left: 0%; }
+  to { left: -100%; } }
+@-webkit-keyframes from-right { from { left: 100%; }
+  to { left: 0%; } }
+@-webkit-keyframes to-right { from { left: 0%; }
+  to { left: 100%; } }
+@keyframes from-left { from { left: -100%; }
+  to { left: 0%; } }
+@keyframes to-left { from { left: 0%; }
+  to { left: -100%; } }
+@keyframes from-right { from { left: 100%; }
+  to { left: 0%; } }
+@keyframes to-right { from { left: 0%; }
+  to { left: 100%; } }
