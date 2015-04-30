@@ -44,8 +44,8 @@ define([
             var loadPageMaker = function(layout, page) {
 
                 return function() {
-                    // We pass the action arguments to page.beforeRender
-                    page.beforeRender.apply(page, arguments);
+                    // We pass the action arguments to page.beforeLoad
+                    page.beforeLoad.apply(page, arguments);
                     that._loadPage(layout, page);
                 };
             };
@@ -76,9 +76,9 @@ define([
 
             slider.slidePage(layout.$el, function(wasFirstSlide) {
 
-                // Lets the UI thread breathe a little before calling afterRender
+                // Lets the UI thread breathe a little before calling afterLoad
                 setTimeout(function() {
-                    page.afterRender();
+                    page.afterLoad();
                 }, 0);
 
                 // If we just rendered the first page, we hide the splashscreen

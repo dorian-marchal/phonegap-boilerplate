@@ -18,15 +18,15 @@ define([
         layoutOptions: {},
 
         /**
-         * Called before page slide
+         * Called before the page is added to the DOM on page slide
          * The route parameters are passed to this function
          */
-        beforeRender: function() {},
+        beforeLoad: function() {},
 
         /**
          * Called on page transition end (overridable)
          */
-        afterRender: function() {},
+        afterLoad: function() {},
 
     });
 
