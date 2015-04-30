@@ -74,27 +74,33 @@ define([
             layout.render();
             layout.$el.addClass(page.name);
 
-            slider.slidePage(layout.$el, function(wasFirstSlide) {
+            slider.slidePage(layout.$el, {
 
-                // Lets the UI thread breathe a little before calling afterLoad
-                setTimeout(function() {
-                    page.afterLoad();
-                }, 0);
+                beforeTransition: function() {
+                    page.afterRender.apply(page);
+                },
+                afterTransition: function(wasFirstSlide) {
 
-                // If we just rendered the first page, we hide the splashscreen
-                if (wasFirstSlide) {
-
+                    // Lets the UI thread breathe a little before calling afterLoad
                     setTimeout(function() {
+                        page.afterLoad();
+                    }, 0);
 
-                        // Force reflow before hiding the splashscreen.
-                        /*jshint -W030*/
-                        layout.el.offsetHeight;
+                    // If we just rendered the first page, we hide the splashscreen
+                    if (wasFirstSlide) {
 
-                        // Hide the splashscreen
-                        navigator.splashscreen.hide();
+                        setTimeout(function() {
 
-                    }, globals.config.splashScreenMinimumDurationMs);
-                }
+                            // Force reflow before hiding the splashscreen.
+                            /*jshint -W030*/
+                            layout.el.offsetHeight;
+
+                            // Hide the splashscreen
+                            navigator.splashscreen.hide();
+
+                        }, globals.config.splashScreenMinimumDurationMs);
+                    }
+                },
             });
             layout.delegateEvents();
             page.delegateEvents();

@@ -24,6 +24,12 @@ define([
         beforeLoad: function() {},
 
         /**
+         * Called after the page has been added to the DOM
+         * And juste before the page transition
+         */
+        afterRender: function() {},
+
+        /**
          * Called on page transition end (overridable)
          */
         afterLoad: function() {},
