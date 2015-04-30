@@ -1,5 +1,5 @@
 {
-    "node": true,
+    "browser": true,
     "globalstrict": true,
     "esnext": true,
     "quotmark": "single",
