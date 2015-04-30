@@ -77,9 +77,17 @@ define([
             slider.slidePage(layout.$el, {
 
                 beforeTransition: function() {
-                    page.afterRender.apply(page);
+                    page.afterRender();
+
+                    // Switch the fixed element to absolute positionning
+                    // To prevent odd behaviour during transition
+                    $('[data-fixed]').attr('data-fixed', 'absolute');
+                    console.log($('[data-fixed]'));
                 },
                 afterTransition: function(wasFirstSlide) {
+
+                    // Switch back the fixed elements
+                    $('[data-fixed]').attr('data-fixed', 'fixed');
 
                     // Lets the UI thread breathe a little before calling afterLoad
                     setTimeout(function() {

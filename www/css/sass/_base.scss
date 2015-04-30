@@ -22,9 +22,13 @@ input, textarea, select {
     height: 0;
     clear: both;
     visibility: hidden;
-    zoom: 1
+    zoom: 1;
 }
 
-.topcoat-text-input {
-    width: 100%;
+[data-fixed="fixed"] {
+   position: fixed;
+}
+
+[data-fixed="absolute"] {
+   position: absolute;
 }
