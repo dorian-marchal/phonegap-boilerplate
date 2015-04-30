@@ -33,15 +33,15 @@ define([
 
             if (l === 0) {
                 stateHistory.push(state);
-                this.slidePageFrom($newPage, null, options.afterTransition);
+                this.slidePageFrom($newPage, null, options);
                 return;
             }
             if (state === stateHistory[l - 2]) {
                 stateHistory.pop();
-                this.slidePageFrom($newPage, 'left', options.afterTransition);
+                this.slidePageFrom($newPage, 'left', options);
             } else {
                 stateHistory.push(state);
-                this.slidePageFrom($newPage, 'right', options.afterTransition);
+                this.slidePageFrom($newPage, 'right', options);
             }
 
         };
