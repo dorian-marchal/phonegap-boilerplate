@@ -22,9 +22,9 @@ generate-resources:
 	cp config.xml config.xml.generation-backup
 	node_modules/ionic/bin/ionic resources
 	# Remove useless resources
-	rm resources/android/splash/drawable-land*
-	rm resources/android/splash/drawable-port-xx*
-	rm resources/android/icon/drawable-xx*
+	rm -f resources/android/splash/drawable-land*
+	rm -f resources/android/splash/drawable-port-xx*
+	rm -f resources/android/icon/drawable-xx*
 	# Restore the config file (edited by ionic resources)
 	cp config.xml.generation-backup config.xml
 	rm config.xml.generation-backup
