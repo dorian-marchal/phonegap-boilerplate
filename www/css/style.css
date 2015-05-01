@@ -1,4 +1,4 @@
-* { margin: 0; padding: 0; box-sizing: border-box; background-repeat: no-repeat; -webkit-tap-highlight-color: transparent; }
+* { margin: 0; padding: 0; box-sizing: border-box; background-repeat: no-repeat; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
 body { -webkit-touch-callout: none; -webkit-text-size-adjust: none; -webkit-user-select: none; }
 
@@ -6,39 +6,26 @@ input, textarea, select { -webkit-appearance: none; }
 
 .clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; zoom: 1; }
 
-.topcoat-text-input { width: 100%; }
+[data-fixed="fixed"] { position: fixed; }
+
+[data-fixed="absolute"] { position: absolute; }
 
 #container { position: absolute; width: 100%; height: 100%; overflow: hidden; }
 
-.page { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.page { position: absolute; top: 0; left: 0; width: 100%; height: 100%; -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
 
-.page.page-left { left: -100%; }
+.page.page-left { -webkit-transform: translate3d(-100%, 0, 0); transform: translate3d(-100%, 0, 0); }
 
-.page.page-right { left: 100%; }
+.page.page-center { -webkit-transform: translate3d(0, 0, 0); transform: translate3d(0, 0, 0); }
 
-.page.page-center { left: 0%; }
+.page.page-right { -webkit-transform: translate3d(100%, 0, 0); transform: translate3d(100%, 0, 0); }
 
-.page.from-left { -webkit-animation: from-left .3s; animation: from-left .3s; }
+.page.transition { -webkit-transition-duration: 300ms; transition-duration: 300ms; }
 
-.page.from-right { -webkit-animation: from-right .3s; animation: from-right .3s; }
+.not-accelerated .page, .page.no-transition { -webkit-transform: none !important; transform: none !important; }
 
-.page.to-left { -webkit-animation: to-left .3s; animation: to-left .3s; }
+.not-accelerated .page { -webkit-transition-duration: 0s !important; transition-duration: 0s !important; }
 
-.page.to-right { -webkit-animation: to-right .3s; animation: to-right .3s; }
+.not-accelerated .page.page-left { left: -100%; }
 
-@-webkit-keyframes from-left { from { left: -100%; }
-  to { left: 0%; } }
-@-webkit-keyframes to-left { from { left: 0%; }
-  to { left: -100%; } }
-@-webkit-keyframes from-right { from { left: 100%; }
-  to { left: 0%; } }
-@-webkit-keyframes to-right { from { left: 0%; }
-  to { left: 100%; } }
-@keyframes from-left { from { left: -100%; }
-  to { left: 0%; } }
-@keyframes to-left { from { left: 0%; }
-  to { left: -100%; } }
-@keyframes from-right { from { left: 100%; }
-  to { left: 0%; } }
-@keyframes to-right { from { left: 0%; }
-  to { left: 100%; } }
+.not-accelerated .page.page-right { left: 100%; }

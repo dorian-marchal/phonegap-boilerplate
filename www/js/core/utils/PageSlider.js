@@ -10,14 +10,10 @@ define([
 
     return function PageSlider(container) {
 
-        var animationsEnabled = true;
+        this.animationsEnabled = true;
 
         var $currentPage,
             stateHistory = [];
-
-        this.setAnimationsEnabled = function(enableAnimation) {
-            animationsEnabled = enableAnimation;
-        };
 
         this.back = function () {
             location.hash = stateHistory[stateHistory.length - 2];
@@ -72,7 +68,8 @@ define([
             options.beforeTransition();
 
             // First loaded page (no old page) or no transition
-            if (firstSlide || !from || !animationsEnabled) {
+            if (firstSlide || !from || !this.animationsEnabled) {
+
                 // Remove old page if it exists
                 if ($oldPage) {
                     $oldPage.remove();

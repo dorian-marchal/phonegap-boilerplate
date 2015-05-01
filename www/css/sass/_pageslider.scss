@@ -35,6 +35,21 @@
     transition-duration: 300ms;
 }
 
+.not-accelerated .page,
 .page.no-transition {
-    transform: none;
+    -webkit-transform: none !important;
+    transform: none !important;
+}
+
+.not-accelerated .page {
+    -webkit-transition-duration: 0s !important;
+    transition-duration: 0s !important;
+}
+
+.not-accelerated .page.page-left {
+    left: -100%;
+}
+
+.not-accelerated .page.page-right {
+    left: 100%;
 }
