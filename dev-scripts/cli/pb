@@ -10,16 +10,20 @@ if [ "$1" = "update" ]; then
 
     if [ "$(git rev-parse --abbrev-ref HEAD)" = "pb-core" ]; then
 
+        git tag pb-backup-before-update
+
         git pull --rebase pb-core "$pb_branch"
         git fetch pb-core
         read -p "Everything went well ? Push on 'origin' [Y/n] ? " push;
 
         if [ "$push" = "n" ]; then
-            git reset --hard ORIG_HEAD
+            git reset --hard pb-backup-before-update
             echo 'Update aborted.'
         else
             git push origin pb-core
         fi
+
+        git tag -d pb-backup-before-update
     else
         echo "Error: Not on branch 'pb-core'"
     fi

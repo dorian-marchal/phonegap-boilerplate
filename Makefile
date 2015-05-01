@@ -22,9 +22,9 @@ generate-resources:
 	cp config.xml config.xml.generation-backup
 	node_modules/ionic/bin/ionic resources
 	# Remove useless resources
-	rm resources/android/splash/drawable-land*
-	rm resources/android/splash/drawable-port-xx*
-	rm resources/android/icon/drawable-xx*
+	rm -f resources/android/splash/drawable-land*
+	rm -f resources/android/splash/drawable-port-xx*
+	rm -f resources/android/icon/drawable-xx*
 	# Restore the config file (edited by ionic resources)
 	cp config.xml.generation-backup config.xml
 	rm config.xml.generation-backup
@@ -43,11 +43,6 @@ build:
 	cp bower_components/i18next/i18next.js www/js/lib/
 	cp bower_components/gmaps.js/gmaps.js www/js/lib/
 	cp bower_components/requirejs-plugins/src/async.js www/js/lib/gm_async.js
-	mkdir -p www/css/lib/topcoat
-	mkdir -p www/css/lib/topcoat/css
-	cp bower_components/topcoat/css/topcoat-mobile-light.min.css www/css/lib/topcoat/css
-	cp -R bower_components/topcoat/font www/css/lib/topcoat/
-	cp -R bower_components/topcoat/img www/css/lib/topcoat/
 
 	# Phonegap build
 	phonegap build

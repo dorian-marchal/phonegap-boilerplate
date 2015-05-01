@@ -91,12 +91,19 @@ require([
                     }
 
                     var router = new Router();
-                    router.setSlider(new PageSlider($('body')));
+                    var slider = new PageSlider($('body'));
+
+                    // On old Android devices, hardware acceleration causes
+                    // fucked up behavior on scroll with fixed elements
+                    // so we disable it.
+                    if (device.platform === 'Android' && parseFloat(device.version) < 4.2) {
+                        $('html').addClass('not-accelerated');
+                        slider.animationsEnabled = false;
+                    }
+
+                    router.setSlider(slider);
                     globals.setRouter(router);
                     Backbone.history.start();
-
-                    // Hide the splashscreen
-                    navigator.splashscreen.hide();
                 });
             });
         };

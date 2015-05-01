@@ -51,6 +51,7 @@ IOS/www/
 
 # Boilerplate
 
+.sass-cache
 /.idea
 /node_modules
 /platforms/android/assets/*

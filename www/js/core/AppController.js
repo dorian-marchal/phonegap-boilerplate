@@ -9,8 +9,6 @@ define([
 ], function (globals, $, PageSlider) {
     'use strict';
 
-    var slider = new PageSlider($('body'));
-
     var AppController = function() {
         this._init();
     };
@@ -42,9 +40,10 @@ define([
 
             // Associate pages with layouts
             var loadPageMaker = function(layout, page) {
+
                 return function() {
-                    // We pass the action arguments to page.beforeRender
-                    page.beforeRender.apply(page, arguments);
+                    // We pass the action arguments to page.beforeLoad
+                    page.beforeLoad.apply(page, arguments);
                     that._loadPage(layout, page);
                 };
             };
@@ -52,7 +51,16 @@ define([
             for (var actionName in this.pageForActions) {
                 var pageName = this.pageForActions[actionName].page;
                 var layoutName = this.pageForActions[actionName].layout;
-                this[pageName] = loadPageMaker(that.layouts[layoutName], this.pages[pageName]);
+
+                if (!this.pages[pageName]) {
+                    console.error('Unknown page in Controller: ' + pageName);
+                }
+                else if (!this.layouts[layoutName]) {
+                    console.error('Unknown layout in Controller: ' + layoutName);
+                }
+                else {
+                    this[pageName] = loadPageMaker(this.layouts[layoutName], this.pages[pageName]);
+                }
             }
         },
 
@@ -61,27 +69,43 @@ define([
          */
         _loadPage: function (layout, page) {
             layout.setPage(page);
-            slider.slidePage(layout.render().$el, function(wasFirstSlide) {
+            layout.render();
+            layout.$el.addClass(page.name);
 
-                // Lets the UI thread breathe a little before calling afterRender
-                setTimeout(function() {
+            globals.router.slider.slidePage(layout.$el, {
+
+                beforeTransition: function() {
                     page.afterRender();
-                }, 0);
 
-                // If we just rendered the first page, we hide the splashscreen
-                if (wasFirstSlide) {
+                    // Switch the fixed element to absolute positionning
+                    // To prevent odd behaviour during transition
+                    $('[data-fixed]').attr('data-fixed', 'absolute');
+                },
+                afterTransition: function(wasFirstSlide) {
 
+                    // Switch back the fixed elements
+                    $('[data-fixed]').attr('data-fixed', 'fixed');
+
+                    // Lets the UI thread breathe a little before calling afterLoad
                     setTimeout(function() {
+                        page.afterLoad();
+                    }, 0);
 
-                        // Force reflow before hiding the splashscreen.
-                        /*jshint -W030*/
-                        layout.el.offsetHeight;
+                    // If we just rendered the first page, we hide the splashscreen
+                    if (wasFirstSlide) {
 
-                        // Hide the splashscreen
-                        navigator.splashscreen.hide();
+                        setTimeout(function() {
 
-                    }, globals.config.splashScreenMinimumDurationMs);
-                }
+                            // Force reflow before hiding the splashscreen.
+                            /*jshint -W030*/
+                            layout.el.offsetHeight;
+
+                            // Hide the splashscreen
+                            navigator.splashscreen.hide();
+
+                        }, 500); // 500ms safety to prevent splashscreen flickering
+                    }
+                },
             });
             layout.delegateEvents();
             page.delegateEvents();

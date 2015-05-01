@@ -67,7 +67,8 @@ define([
                 params: params,
             };
 
-            if (typeof this.controllers[controller][action] !== 'undefined') {
+            if (typeof this.controllers[controller] !== 'undefined' &&
+                typeof this.controllers[controller][action] !== 'undefined') {
                 this.controllers[controller][action].apply(this.controllers[controller], params);
             }
             else {

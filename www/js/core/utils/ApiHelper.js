@@ -27,7 +27,7 @@ define([
                 ajaxDataSetup.access_token = token;
             }
 
-            $.ajaxSetup({ ajaxDataSetup });
+            $.ajaxSetup({ data: ajaxDataSetup });
         };
 
         this._ajax = function(method, url, settings) {

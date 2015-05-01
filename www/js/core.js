@@ -8,7 +8,7 @@
      // Your app Name
      appName: 'Phonegap Boilerplate',
 
-     splashScreenMinimumDurationMs: 1000,
+     splashScreenMinimumDurationMs: 0,
 
      // True if token authentification is used
      useAuth: false,
