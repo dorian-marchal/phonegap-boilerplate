@@ -3,10 +3,9 @@
  * The controller is controlled by the router and manage the different views.
  */
 define([
-    'globals',
     'jquery',
     'core/utils/PageSlider',
-], function (globals, $, PageSlider) {
+], function ($, PageSlider) {
     'use strict';
 
     var slider = new PageSlider($('body'));
@@ -106,7 +105,7 @@ define([
                             // Hide the splashscreen
                             navigator.splashscreen.hide();
 
-                        }, globals.config.splashScreenMinimumDurationMs);
+                        }, 500); // 500ms safety to prevent splashscreen flickering
                     }
                 },
             });

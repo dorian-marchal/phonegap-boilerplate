@@ -94,9 +94,6 @@ require([
                     router.setSlider(new PageSlider($('body')));
                     globals.setRouter(router);
                     Backbone.history.start();
-
-                    // Hide the splashscreen
-                    navigator.splashscreen.hide();
                 });
             });
         };
