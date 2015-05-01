@@ -11,7 +11,13 @@
 navigator.globalization = {};
 
 navigator.globalization.getPreferredLanguage = function(success) {
-	success({ value: 'fr-FR' });
+    success({ value: 'fr-FR' });
+};
+
+// device
+window.device = window.device || {
+    platform: 'browser',
+    version: '42',
 };
 
 // splashscreen
