@@ -3,12 +3,11 @@
  * The controller is controlled by the router and manage the different views.
  */
 define([
+    'globals',
     'jquery',
     'core/utils/PageSlider',
-], function ($, PageSlider) {
+], function (globals, $, PageSlider) {
     'use strict';
-
-    var slider = new PageSlider($('body'));
 
     var AppController = function() {
         this._init();
@@ -73,7 +72,7 @@ define([
             layout.render();
             layout.$el.addClass(page.name);
 
-            slider.slidePage(layout.$el, {
+            globals.router.slider.slidePage(layout.$el, {
 
                 beforeTransition: function() {
                     page.afterRender();
@@ -81,7 +80,6 @@ define([
                     // Switch the fixed element to absolute positionning
                     // To prevent odd behaviour during transition
                     $('[data-fixed]').attr('data-fixed', 'absolute');
-                    console.log($('[data-fixed]'));
                 },
                 afterTransition: function(wasFirstSlide) {
 
