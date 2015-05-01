@@ -25,23 +25,23 @@ define([
 
         // Use this function if you want PageSlider to automatically determine
         // the sliding direction based on the state history.
-        // onTransitionEndCallback function is called when the transition ends
-        this.slidePage = function ($newPage, onTransitionEndCallback) {
+        // afterTransition function is called when the transition ends
+        this.slidePage = function ($newPage, options) {
 
-            var l = stateHistory.length,
-                state = window.location.hash;
+            var l = stateHistory.length;
+            var state = location.hash;
 
             if (l === 0) {
                 stateHistory.push(state);
-                this.slidePageFrom($newPage, null, onTransitionEndCallback);
+                this.slidePageFrom($newPage, null, options.afterTransition);
                 return;
             }
             if (state === stateHistory[l - 2]) {
                 stateHistory.pop();
-                this.slidePageFrom($newPage, 'page-left', onTransitionEndCallback);
+                this.slidePageFrom($newPage, 'page-left', options.afterTransition);
             } else {
                 stateHistory.push(state);
-                this.slidePageFrom($newPage, 'page-right', onTransitionEndCallback);
+                this.slidePageFrom($newPage, 'page-right', options.afterTransition);
             }
 
         };
@@ -50,21 +50,26 @@ define([
          * Use this function directly if you want to control the sliding direction outside PageSlider
          * @param  {$} $newPage The new page to slide in
          * @param  {String} from Origin of the slide ('page-left', 'page-right', or null)
-         * @param  {function} onTransitionEndCallback Called when the slide end
+         * @param  {function} options
+         *  beforeTransition: Called before the transition, after the page is added
+         *                    to the DOM.
+         *   afterTransition: Called when the slide end
          *                    or immediately if there is no transition.
          *                    A boolean is passed to the callback : true if we just slide
          *                    in the very first page.
          *
          */
-        this.slidePageFrom = function ($newPage, from, onTransitionEndCallback) {
+        this.slidePageFrom = function ($newPage, from, options) {
 
-            onTransitionEndCallback = onTransitionEndCallback || $.noop;
+            options.beforeTransition = options.beforeTransition || $.noop;
+            options.afterTransition = options.afterTransition || $.noop;
 
             // Current page must be removed after the transition
             var $oldPage = $currentPage;
             var firstSlide = !$oldPage;
 
             container.append($newPage.addClass('page'));
+            options.beforeTransition();
 
             // First loaded page (no old page) or no transition
             if (firstSlide || !from || !animationsEnabled) {
@@ -78,7 +83,7 @@ define([
                 $currentPage = $newPage;
 
                 // We call the transition end callback anyway
-                onTransitionEndCallback(firstSlide);
+                options.afterTransition(firstSlide);
                 return;
             }
 
@@ -119,7 +124,7 @@ define([
                 container[0].offsetWidth;
 
                 clearTimeout(shimTransitionEnd);
-                onTransitionEndCallback(false);
+                options.afterTransition(false);
             };
         };
 
