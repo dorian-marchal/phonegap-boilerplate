@@ -27,6 +27,7 @@
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="10" />
     <preference name="android-installLocation" value="auto" />
+    <preference name="DisallowOverscroll" value="true"/>
 
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <platform name="android">
