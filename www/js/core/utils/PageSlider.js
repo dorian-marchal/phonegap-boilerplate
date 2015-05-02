@@ -63,8 +63,13 @@ define([
             // Current page must be removed after the transition
             var $oldPage = $currentPage;
             var firstSlide = !$oldPage;
+            var currentScrollPosition = $(window).scrollTop();
+            $newPage
+                .addClass('page')
+                .css('top', currentScrollPosition)
+            ;
 
-            container.append($newPage.addClass('page'));
+            container.append($newPage);
             options.beforeTransition();
 
             // First loaded page (no old page) or no transition
@@ -112,13 +117,19 @@ define([
             $currentPage = $newPage;
 
             var onTransitionEnd = function () {
-                $(container).find('> .page:not(:last)').remove();
                 $currentPage
                     .removeClass('transition')
-                    .addClass('no-transition');
+                    .addClass('no-transition')
+                    .css('top', 0)
+                ;
+
+                var $oldPages = $(container).find('> .page:not(:last)');
+                $oldPages.hide();
 
                 // Force reflow.
                 container[0].offsetWidth;
+
+                $oldPages.remove();
 
                 clearTimeout(shimTransitionEnd);
                 options.afterTransition(false);
