@@ -83,8 +83,8 @@ define([
                 },
                 afterTransition: function(wasFirstSlide) {
 
-                    // Switch back the fixed elements
-                    $('[data-fixed]').attr('data-fixed', 'fixed');
+                    // Switch back the fixed elements (only for the new page)
+                    layout.$('[data-fixed]').attr('data-fixed', 'fixed');
 
                     // Lets the UI thread breathe a little before calling afterLoad
                     setTimeout(function() {

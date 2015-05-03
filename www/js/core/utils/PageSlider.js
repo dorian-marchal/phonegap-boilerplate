@@ -8,7 +8,7 @@ define([
 
     'use strict';
 
-    return function PageSlider(container) {
+    return function PageSlider($container) {
 
         this.animationsEnabled = true;
 
@@ -69,7 +69,7 @@ define([
                 .css('top', currentScrollPosition)
             ;
 
-            container.append($newPage);
+            $container.append($newPage);
             options.beforeTransition();
 
             // First loaded page (no old page) or no transition
@@ -103,7 +103,7 @@ define([
 
             // Force reflow. More information here: http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/
             /*jshint -W030*/
-            container[0].offsetWidth;
+            $container[0].offsetWidth;
 
             // Position the new page and the current page at the ending position of their animation with a transition class indicating the duration of the animation
             $newPage
@@ -122,12 +122,13 @@ define([
                     .addClass('no-transition')
                     .css('top', 0)
                 ;
+                document.scrollTop = 0;
 
-                var $oldPages = $(container).find('> .page:not(:last)');
+                var $oldPages = $container.find('> .page:not(:last)');
                 $oldPages.hide();
 
                 // Force reflow.
-                container[0].offsetWidth;
+                $container[0].offsetWidth;
 
                 $oldPages.remove();
 
