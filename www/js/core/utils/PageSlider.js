@@ -11,22 +11,26 @@ define([
     return function PageSlider($container) {
 
         this.transitionsEnabled = true;
+        this.transitionDurationMs = 300;
 
-        var transitionDurationMs = 300;
         var $currentPage;
         var stateHistory = [];
 
-        $container.attr('id', 'page-slider-container');
-
-        var setPagePosition = function ($page, newLocation, scrollPosition) {
+        /**
+         * Set the the new page position with translate3d
+         * @param {jquery} $page          Page that we want to Position
+         * @param {String} newLocation    New position ('left', 'right' or 'center' (default))
+         * @param {int} yOffset y offset in pixels (useful to keep scroll position on page slide)
+         */
+        var _setPagePosition = function ($page, newLocation, yOffset) {
 
             var position = {
                 x: '0px',
                 y: '0px',
             };
 
-            if (scrollPosition) {
-                position.y = scrollPosition + 'px';
+            if (yOffset) {
+                position.y = yOffset + 'px';
             }
             if (newLocation === 'left') {
                 position.x = '-100%';
@@ -42,14 +46,20 @@ define([
             });
         };
 
-        var enableTransitionOnPage = function ($page) {
+        /**
+         * Enable css transition on the given page.
+         */
+        var _enableTransitionOnPage = function ($page) {
             $page.css({
-                'webkitTransitionDuration': transitionDurationMs + 'ms',
-                'transitionDuration': transitionDurationMs + 'ms',
+                'webkitTransitionDuration': this.transitionDurationMs + 'ms',
+                'transitionDuration': this.transitionDurationMs + 'ms',
             });
         };
 
-        var disableTransitionOnPage = function ($page) {
+        /**
+         * Disable css transition on the given page.
+         */
+        var _disableTransitionOnPage = function ($page) {
             $page.css({
                 'webkitTransform': 'none',
                 'transform': 'none',
@@ -115,16 +125,19 @@ define([
 
             // Current page must be removed after the transition
             var $oldPage = $currentPage;
-            var firstSlide = !$oldPage;
+            var isFirstPageSlide = !$oldPage;
             var currentScrollPosition = $(window).scrollTop();
-            $newPage.addClass('page');
 
+            $newPage.addClass('page');
             $container.append($newPage);
 
             options.beforeTransition();
 
             // First loaded page (no old page) or no transition
-            if (firstSlide || !from || !this.transitionsEnabled) {
+            if (isFirstPageSlide || !from || !this.transitionsEnabled) {
+
+                // Disable transition
+                _disableTransitionOnPage($newPage);
 
                 // Remove old page if it exists
                 if ($oldPage) {
@@ -134,21 +147,21 @@ define([
                 $currentPage = $newPage;
 
                 // We call the transition end callback anyway
-                options.afterTransition(firstSlide);
+                options.afterTransition(isFirstPageSlide);
                 return;
             }
 
             // Move the current page at the top
-            setPagePosition($oldPage, 0, -currentScrollPosition);
+            _setPagePosition($oldPage, 0, -currentScrollPosition);
             window.scrollTo(0, 0);
 
             // Position the page at the starting position of the animation
-            setPagePosition($newPage, from, 0);
+            _setPagePosition($newPage, from, 0);
 
             // Shim transitionend if it's not fired
             var shimTransitionEnd = setTimeout(function() {
                 onTransitionEnd();
-            }, transitionDurationMs + 100);
+            }, this.transitionDurationMs + 100);
 
             $currentPage.one('transitionend webkitTransitionEnd', function () {
                 onTransitionEnd();
@@ -160,19 +173,17 @@ define([
 
             // Position the new page and the current page at the ending position of their animation with a transition class indicating the duration of the animation
 
-            enableTransitionOnPage($newPage);
-            enableTransitionOnPage($oldPage);
+            _enableTransitionOnPage.call(this, $newPage);
+            _enableTransitionOnPage.call(this, $oldPage);
 
             setTimeout(function () {
-                setPagePosition($newPage, 'center', 0);
-                setPagePosition($oldPage,  (from === 'left' ? 'right' : 'left'), -currentScrollPosition);
+                _setPagePosition($newPage, 'center', 0);
+                _setPagePosition($oldPage,  (from === 'left' ? 'right' : 'left'), -currentScrollPosition);
                 $currentPage = $newPage;
-            }, 200);
-
-
+            }, 0);
 
             var onTransitionEnd = function () {
-                disableTransitionOnPage($currentPage);
+                _disableTransitionOnPage($currentPage);
 
                 // Force reflow.
                 $container[0].offsetWidth;
