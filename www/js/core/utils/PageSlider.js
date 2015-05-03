@@ -12,8 +12,51 @@ define([
 
         this.animationsEnabled = true;
 
-        var $currentPage,
-            stateHistory = [];
+        var transitionDurationMs = 1000;
+        var $currentPage;
+        var stateHistory = [];
+
+        $container.attr('id', 'page-slider-container');
+
+        var setPagePosition = function ($page, newLocation, scrollPosition) {
+
+            var position = {
+                x: '0px',
+                y: '0px',
+            };
+
+            if (scrollPosition) {
+                position.y = scrollPosition + 'px';
+            }
+            if (newLocation === 'page-left') {
+                position.x = '-100%';
+            }
+            else if (newLocation === 'page-right') {
+                position.x = '100%';
+            }
+            var transform = 'translate3d(' + position.x + ', ' + position.y + ', 0px)';
+
+            $page.css({
+                'webkitTransform': transform,
+                'transform': transform,
+            });
+        };
+
+        var enableTransitionOnPage = function ($page) {
+            $page.css({
+                'webkitTransitionDuration': transitionDurationMs + 'ms',
+                'transitionDuration': transitionDurationMs + 'ms',
+            });
+        };
+
+        var disableTransitionOnPage = function ($page) {
+            $page.css({
+                'webkitTransform': 'none',
+                'transform': 'none',
+                'webkitTransitionDuration': '0s',
+                'transition-duration': '0s',
+            });
+        };
 
         this.back = function () {
             location.hash = stateHistory[stateHistory.length - 2];
@@ -64,12 +107,10 @@ define([
             var $oldPage = $currentPage;
             var firstSlide = !$oldPage;
             var currentScrollPosition = $(window).scrollTop();
-            $newPage
-                .addClass('page')
-                .css('top', currentScrollPosition)
-            ;
+            $newPage.addClass('page');
 
             $container.append($newPage);
+
             options.beforeTransition();
 
             // First loaded page (no old page) or no transition
@@ -80,7 +121,7 @@ define([
                     $oldPage.remove();
                 }
 
-                $newPage.addClass('page-center no-transition');
+                $newPage.addClass('page-center');
 
                 $currentPage = $newPage;
 
@@ -89,13 +130,17 @@ define([
                 return;
             }
 
+            // Move the current page at the top
+            setPagePosition($oldPage, 0, -currentScrollPosition);
+            window.scrollTo(0, 0);
+
             // Position the page at the starting position of the animation
-            $newPage.addClass(from);
+            setPagePosition($newPage, from, 0);
 
             // Shim transitionend if it's not fired
             var shimTransitionEnd = setTimeout(function() {
                 onTransitionEnd();
-            }, 600);
+            }, transitionDurationMs + 100);
 
             $currentPage.one('transitionend webkitTransitionEnd', function () {
                 onTransitionEnd();
@@ -106,35 +151,30 @@ define([
             $container[0].offsetWidth;
 
             // Position the new page and the current page at the ending position of their animation with a transition class indicating the duration of the animation
-            $newPage
-                .removeClass('page-left page-right no-transition')
-                .addClass('transition page-center');
 
-            $oldPage
-                .removeClass('page-center no-transition')
-                .addClass('transition ' + (from === 'page-left' ? 'page-right' : 'page-left'));
+            enableTransitionOnPage($newPage);
+            enableTransitionOnPage($oldPage);
 
-            $currentPage = $newPage;
+            setTimeout(function () {
+                setPagePosition($newPage, 'page-center', 0);
+                setPagePosition($oldPage,  (from === 'page-left' ? 'page-right' : 'page-left'), -currentScrollPosition);
+                $currentPage = $newPage;
+            }, 200);
+
+
 
             var onTransitionEnd = function () {
-                $currentPage
-                    .removeClass('transition')
-                    .addClass('no-transition')
-                    .css('top', 0)
-                ;
-                document.scrollTop = 0;
-
-                var $oldPages = $container.find('> .page:not(:last)');
-                $oldPages.hide();
+                disableTransitionOnPage($currentPage);
 
                 // Force reflow.
                 $container[0].offsetWidth;
 
-                $oldPages.remove();
+                $container.find('> .page:not(:last)').remove();
 
                 clearTimeout(shimTransitionEnd);
                 options.afterTransition(false);
             };
+
         };
 
     };
