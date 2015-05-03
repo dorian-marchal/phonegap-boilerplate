@@ -10,9 +10,9 @@ define([
 
     return function PageSlider($container) {
 
-        this.animationsEnabled = true;
+        this.transitionsEnabled = true;
 
-        var transitionDurationMs = 1000;
+        var transitionDurationMs = 300;
         var $currentPage;
         var stateHistory = [];
 
@@ -28,10 +28,10 @@ define([
             if (scrollPosition) {
                 position.y = scrollPosition + 'px';
             }
-            if (newLocation === 'page-left') {
+            if (newLocation === 'left') {
                 position.x = '-100%';
             }
-            else if (newLocation === 'page-right') {
+            else if (newLocation === 'right') {
                 position.x = '100%';
             }
             var transform = 'translate3d(' + position.x + ', ' + position.y + ', 0px)';
@@ -54,12 +54,22 @@ define([
                 'webkitTransform': 'none',
                 'transform': 'none',
                 'webkitTransitionDuration': '0s',
-                'transition-duration': '0s',
+                'transitionDuration': '0s',
             });
         };
 
-        this.back = function () {
-            location.hash = stateHistory[stateHistory.length - 2];
+        /**
+         * Disable css transition on page
+         */
+        this.disableTransitions = function () {
+            this.transitionsEnabled = false;
+        };
+
+        /**
+         * Enable css transition on page
+         */
+        this.enableTransitions = function () {
+            this.transitionsEnabled = true;
         };
 
         // Use this function if you want PageSlider to automatically determine
@@ -77,10 +87,10 @@ define([
             }
             if (state === stateHistory[l - 2]) {
                 stateHistory.pop();
-                this.slidePageFrom($newPage, 'page-left', options);
+                this.slidePageFrom($newPage, 'left', options);
             } else {
                 stateHistory.push(state);
-                this.slidePageFrom($newPage, 'page-right', options);
+                this.slidePageFrom($newPage, 'right', options);
             }
 
         };
@@ -88,7 +98,7 @@ define([
         /**
          * Use this function directly if you want to control the sliding direction outside PageSlider
          * @param  {$} $newPage The new page to slide in
-         * @param  {String} from Origin of the slide ('page-left', 'page-right', or null)
+         * @param  {String} from Origin of the slide ('left', 'right', or null)
          * @param  {function} options
          *  beforeTransition: Called before the transition, after the page is added
          *                    to the DOM.
@@ -114,14 +124,12 @@ define([
             options.beforeTransition();
 
             // First loaded page (no old page) or no transition
-            if (firstSlide || !from || !this.animationsEnabled) {
+            if (firstSlide || !from || !this.transitionsEnabled) {
 
                 // Remove old page if it exists
                 if ($oldPage) {
                     $oldPage.remove();
                 }
-
-                $newPage.addClass('page-center');
 
                 $currentPage = $newPage;
 
@@ -156,8 +164,8 @@ define([
             enableTransitionOnPage($oldPage);
 
             setTimeout(function () {
-                setPagePosition($newPage, 'page-center', 0);
-                setPagePosition($oldPage,  (from === 'page-left' ? 'page-right' : 'page-left'), -currentScrollPosition);
+                setPagePosition($newPage, 'center', 0);
+                setPagePosition($oldPage,  (from === 'left' ? 'right' : 'left'), -currentScrollPosition);
                 $currentPage = $newPage;
             }, 200);
 
