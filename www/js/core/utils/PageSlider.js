@@ -1,7 +1,7 @@
 /**
  * Helper to slide a new page in the app.
  * This helper only works well if the container is at 100% height.
- * 
+ *
  * Based on : https://github.com/ccoenraets/directory-backbone-topcoat-require
  *
  */
@@ -176,6 +176,11 @@ define([
             // Position the page at the starting position of the animation
             _setPagePosition($newPage, from);
 
+            // Force reflow. More information here:
+            // http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/
+            /*jshint -W030*/
+            $container[0].offsetWidth;
+
             // Shim transitionend if it's not fired
             var shimTransitionEnd = setTimeout(function() {
                 onTransitionEnd();
@@ -188,11 +193,10 @@ define([
             // Position the new page and the current page at the ending position of their animation
             // And enable their animation via transition
 
-            // Force reflow. More information here: http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/
-            /*jshint -W030*/
+            _enableTransitionOnPages.call(this, [$newPage, $oldPage]);
+
             $container[0].offsetWidth;
 
-            _enableTransitionOnPages.call(this, [$newPage, $oldPage]);
 
             setTimeout(function () {
                 _setPagePosition($newPage, 'center');
@@ -202,9 +206,6 @@ define([
 
             var onTransitionEnd = function () {
                 _disableTransitionOnPages($currentPage);
-
-                // Force reflow.
-                $container[0].offsetWidth;
 
                 $container.find('> .page:not(:last)').remove();
 
