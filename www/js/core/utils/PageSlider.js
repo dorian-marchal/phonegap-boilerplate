@@ -1,6 +1,9 @@
 /**
  * Helper to slide a new page in the app.
- * Use : https://github.com/ccoenraets/directory-backbone-topcoat-require
+ * This helper only works well if the container is at 100% height.
+ * 
+ * Based on : https://github.com/ccoenraets/directory-backbone-topcoat-require
+ *
  */
 define([
     'jquery',
