@@ -16,29 +16,28 @@ define([
         var $currentPage;
         var stateHistory = [];
 
+        // The container need specific style
+        $container.addClass('page-slider-container');
+
         /**
-         * Set the the new page position with translate3d
-         * @param {jquery} $page          Page that we want to Position
-         * @param {String} newLocation    New position ('left', 'right' or 'center' (default))
-         * @param {int} yOffset y offset in pixels (useful to keep scroll position on page slide)
+         * Set a page position via translate3d
+         * @param {jquery} $page Page that we want to Position
+         * @param {String} newLocation New position ('left', 'right' or 'center' (default))
          */
-        var _setPagePosition = function ($page, newLocation, yOffset) {
+        var _setPagePosition = function ($page, newLocation) {
 
-            var position = {
-                x: '0px',
-                y: '0px',
-            };
+            var newPosition = '0px';
 
-            if (yOffset) {
-                position.y = yOffset + 'px';
+            switch (newLocation) {
+                case 'left':
+                    newPosition = '-100%';
+                    break;
+                case 'right':
+                    newPosition = '100%';
+                    break;
             }
-            if (newLocation === 'left') {
-                position.x = '-100%';
-            }
-            else if (newLocation === 'right') {
-                position.x = '100%';
-            }
-            var transform = 'translate3d(' + position.x + ', ' + position.y + ', 0px)';
+
+            var transform = 'translate3d(' + newPosition + ', 0px , 0px)';
 
             $page.css({
                 'webkitTransform': transform,
@@ -46,11 +45,29 @@ define([
             });
         };
 
+        var _jQueryArrayToCollection = function (jqueryArray) {
+
+            if (jqueryArray instanceof $) {
+                return jqueryArray;
+            }
+
+            var $collection = $();
+
+            jqueryArray.forEach(function ($el) {
+                $collection = $collection.add($el);
+            });
+
+            return $collection;
+        };
+
         /**
          * Enable css transition on the given page.
          */
-        var _enableTransitionOnPage = function ($page) {
-            $page.css({
+        var _enableTransitionOnPages = function ($pages) {
+
+            $pages = _jQueryArrayToCollection($pages);
+
+            $pages.css({
                 'webkitTransitionDuration': this.transitionDurationMs + 'ms',
                 'transitionDuration': this.transitionDurationMs + 'ms',
             });
@@ -59,8 +76,11 @@ define([
         /**
          * Disable css transition on the given page.
          */
-        var _disableTransitionOnPage = function ($page) {
-            $page.css({
+        var _disableTransitionOnPages = function ($pages) {
+
+            $pages = _jQueryArrayToCollection($pages);
+
+            $pages.css({
                 'webkitTransform': 'none',
                 'transform': 'none',
                 'webkitTransitionDuration': '0s',
@@ -126,7 +146,6 @@ define([
             // Current page must be removed after the transition
             var $oldPage = $currentPage;
             var isFirstPageSlide = !$oldPage;
-            var currentScrollPosition = $(window).scrollTop();
 
             $newPage.addClass('page');
             $container.append($newPage);
@@ -137,7 +156,7 @@ define([
             if (isFirstPageSlide || !from || !this.transitionsEnabled) {
 
                 // Disable transition
-                _disableTransitionOnPage($newPage);
+                _disableTransitionOnPages($newPage);
 
                 // Remove old page if it exists
                 if ($oldPage) {
@@ -151,12 +170,8 @@ define([
                 return;
             }
 
-            // Move the current page at the top
-            _setPagePosition($oldPage, 0, -currentScrollPosition);
-            window.scrollTo(0, 0);
-
             // Position the page at the starting position of the animation
-            _setPagePosition($newPage, from, 0);
+            _setPagePosition($newPage, from);
 
             // Shim transitionend if it's not fired
             var shimTransitionEnd = setTimeout(function() {
@@ -167,23 +182,23 @@ define([
                 onTransitionEnd();
             });
 
+            // Position the new page and the current page at the ending position of their animation
+            // And enable their animation via transition
+
             // Force reflow. More information here: http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/
             /*jshint -W030*/
             $container[0].offsetWidth;
 
-            // Position the new page and the current page at the ending position of their animation with a transition class indicating the duration of the animation
-
-            _enableTransitionOnPage.call(this, $newPage);
-            _enableTransitionOnPage.call(this, $oldPage);
+            _enableTransitionOnPages.call(this, [$newPage, $oldPage]);
 
             setTimeout(function () {
-                _setPagePosition($newPage, 'center', 0);
-                _setPagePosition($oldPage,  (from === 'left' ? 'right' : 'left'), -currentScrollPosition);
+                _setPagePosition($newPage, 'center');
+                _setPagePosition($oldPage,  (from === 'left' ? 'right' : 'left'));
                 $currentPage = $newPage;
             }, 0);
 
             var onTransitionEnd = function () {
-                _disableTransitionOnPage($currentPage);
+                _disableTransitionOnPages($currentPage);
 
                 // Force reflow.
                 $container[0].offsetWidth;
