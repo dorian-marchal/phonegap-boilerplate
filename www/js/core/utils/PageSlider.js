@@ -106,6 +106,23 @@ define([
         };
 
         /**
+         * Return the type of slide ('first', 'next' or 'back')
+         */
+        this.getNextSlideBehaviour = function () {
+            var historyLength = stateHistory.length;
+
+            if (historyLength === 0) {
+                return 'first';
+            }
+            else if (location.hash === stateHistory[historyLength - 2]) {
+                return 'prev';
+            }
+            else {
+                return 'forward';
+            }
+        };
+
+        /**
          * Use this function if you want PageSlider to automatically determine
          * the sliding direction based on the state history.
          * afterTransition function is called when the transition ends
@@ -115,24 +132,24 @@ define([
          */
         this.slidePage = function ($newPage, options) {
 
-            var l = stateHistory.length;
             var state = location.hash;
 
-            if (l === 0) {
-                stateHistory.push(state);
-                this.slidePageFrom($newPage, null, options);
-                return 'forward';
-            }
-            if (state === stateHistory[l - 2]) {
-                stateHistory.pop();
-                this.slidePageFrom($newPage, 'left', options);
-                return 'forward';
-            } else {
-                stateHistory.push(state);
-                this.slidePageFrom($newPage, 'right', options);
-                return 'prev';
-            }
+            var slideBehaviour = this.getNextSlideBehaviour();
 
+            switch (slideBehaviour) {
+                case 'first':
+                    stateHistory.push(state);
+                    this.slidePageFrom($newPage, null, options);
+                    break;
+                case 'prev':
+                    stateHistory.pop();
+                    this.slidePageFrom($newPage, 'left', options);
+                    break;
+                case 'forward':
+                    stateHistory.push(state);
+                    this.slidePageFrom($newPage, 'right', options);
+                    break;
+            }
         };
 
         /**
