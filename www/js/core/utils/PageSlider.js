@@ -105,9 +105,14 @@ define([
             this.transitionsEnabled = true;
         };
 
-        // Use this function if you want PageSlider to automatically determine
-        // the sliding direction based on the state history.
-        // afterTransition function is called when the transition ends
+        /**
+         * Use this function if you want PageSlider to automatically determine
+         * the sliding direction based on the state history.
+         * afterTransition function is called when the transition ends
+         *
+         * @return {String} The slide behaviour
+         *     ('forward' or 'back' according to the slide direction)
+         */
         this.slidePage = function ($newPage, options) {
 
             var l = stateHistory.length;
@@ -116,14 +121,16 @@ define([
             if (l === 0) {
                 stateHistory.push(state);
                 this.slidePageFrom($newPage, null, options);
-                return;
+                return 'forward';
             }
             if (state === stateHistory[l - 2]) {
                 stateHistory.pop();
                 this.slidePageFrom($newPage, 'left', options);
+                return 'forward';
             } else {
                 stateHistory.push(state);
                 this.slidePageFrom($newPage, 'right', options);
+                return 'prev';
             }
 
         };
@@ -176,11 +183,6 @@ define([
             // Position the page at the starting position of the animation
             _setPagePosition($newPage, from);
 
-            // Force reflow. More information here:
-            // http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/
-            /*jshint -W030*/
-            $container[0].offsetWidth;
-
             // Shim transitionend if it's not fired
             var shimTransitionEnd = setTimeout(function() {
                 onTransitionEnd();
@@ -195,8 +197,10 @@ define([
 
             _enableTransitionOnPages.call(this, [$newPage, $oldPage]);
 
+            // Force reflow. More information here:
+            // http://www.phpied.com/rendering-repaint-reflowrelayout-restyle/
+            /*jshint -W030*/
             $container[0].offsetWidth;
-
 
             setTimeout(function () {
                 _setPagePosition($newPage, 'center');
