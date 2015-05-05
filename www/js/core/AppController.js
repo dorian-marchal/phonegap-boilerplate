@@ -41,13 +41,15 @@ define([
             // Associate pages with layouts
             var loadPageMaker = function(layout, page) {
 
-                return function() {
-                    // We pass the action arguments to page.beforeLoad
-                    page.beforeLoad.apply(page, arguments);
-                    that._loadPage(layout, page);
+                return function () {
+
+                    var actionArguments = Array.prototype.slice.call(arguments);
+
+                    that._loadPage(layout, page, actionArguments);
                 };
             };
 
+            // Convert this.pageForActions to controller actions
             for (var actionName in this.pageForActions) {
                 var pageName = this.pageForActions[actionName].page;
                 var layoutName = this.pageForActions[actionName].layout;
@@ -66,13 +68,26 @@ define([
 
         /**
          * Load a Page in the given layout.
+         * @param {AppLayout} layout         The layout of the page
+         * @param {AppPage} page           The page to load
+         * @param {Array} actionArguments The arguments passed to the controller
+         *    action. (controller, action, params)
          */
-        _loadPage: function (layout, page) {
+        _loadPage: function (layout, page, actionArguments) {
+
+            var slider = globals.router.slider;
+
+            // We call page.beforeLoad before loading the page
+            page.beforeLoad.call(page, {
+                actionArguments: actionArguments || [],
+                history: slider.getNextSlideBehaviour(),
+            });
+
             layout.setPage(page);
             layout.render();
             layout.$el.addClass(page.name);
 
-            globals.router.slider.slidePage(layout.$el, {
+            slider.slidePage(layout.$el, {
 
                 beforeTransition: function() {
                     page.afterRender();
