@@ -106,7 +106,7 @@ define([
         };
 
         /**
-         * Return the type of slide ('first', 'next' or 'back')
+         * Return the type of slide ('first', 'forward' or 'back')
          */
         this.getNextSlideBehaviour = function () {
             var historyLength = stateHistory.length;
@@ -115,7 +115,7 @@ define([
                 return 'first';
             }
             else if (location.hash === stateHistory[historyLength - 2]) {
-                return 'prev';
+                return 'back';
             }
             else {
                 return 'forward';
@@ -126,9 +126,6 @@ define([
          * Use this function if you want PageSlider to automatically determine
          * the sliding direction based on the state history.
          * afterTransition function is called when the transition ends
-         *
-         * @return {String} The slide behaviour
-         *     ('forward' or 'back' according to the slide direction)
          */
         this.slidePage = function ($newPage, options) {
 
@@ -141,7 +138,7 @@ define([
                     stateHistory.push(state);
                     this.slidePageFrom($newPage, null, options);
                     break;
-                case 'prev':
+                case 'back':
                     stateHistory.pop();
                     this.slidePageFrom($newPage, 'left', options);
                     break;
