@@ -2,21 +2,40 @@
     baseUrl: '',
 
     paths: {
+        config: 'js/config',
         core: 'js/core',
         app: 'js/app',
-        jquery: 'bower_components/jquery/dist/jquery.min',
-        backbone: 'bower_components/backbone/backbone',
-        underscore: 'bower_components/underscore/underscore-min',
-        text: 'bower_components/text/text',
+        globals: 'js/app/singletons/globals',
+        __: 'js/app/singletons/i18n',
+        jquery: 'js/lib/jquery.min',
+        backbone: 'js/lib/backbone',
+        underscore: 'js/lib/underscore-min',
+        text: 'js/lib/text',
+        fastclick: 'js/lib/fastclick',
+        domReady: 'js/lib/domReady',
+        async: 'js/lib/async',
+        i18next: 'js/lib/i18next',
+        gm_async: 'js/lib/gm_async',
+        gmaps: 'js/lib/gmaps',
+        google_maps: 'http://maps.google.com/maps/api/js?sensor=true',
     },
 
-    shim : {
+    shim: {
         backbone: {
             deps: ['underscore', 'jquery'],
             exports: 'Backbone'
         },
         underscore: {
             exports: '_'
+        },
+        i18next: {
+            exports: 'i18n'
+        },
+        gmaps: {
+            deps: [
+                'gm_async!google_maps',
+            ],
+            exports: 'GMaps'
         },
     },
 
@@ -26,5 +45,5 @@
     removeCombined: true,
     findNestedDependencies: true,
     preserveLicenseComments: false,
+    wrapShim: true,
 })
-

@@ -47,6 +47,9 @@ build:
 	# Phonegap build
 	phonegap build
 
+	# Requirejs Optimizer
+	cd www && r.js -o build.js
+
 # Prepare the repo to start developing
 install-dev:
 	npm install
