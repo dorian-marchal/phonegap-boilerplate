@@ -34,7 +34,7 @@ generate-resources:
 
 # Build the app
 .PHONY: build
-build: build-core-dependencies build-app-dependencies build-optimize build-phonegap
+build: build-core-dependencies build-app-dependencies build-compass build-optimize build-phonegap
 
 # Export needed dependencies
 .PHONY: build-core-dependencies
@@ -50,10 +50,17 @@ build-core-dependencies:
 	cp bower_components/i18next/i18next.js www/js/lib/
 	cp bower_components/gmaps.js/gmaps.js www/js/lib/
 	cp bower_components/requirejs-plugins/src/async.js www/js/lib/gm_async.js
+	cp bower_components/page-slider/lib/page-slider.min.js www/js/lib/
+	cp bower_components/page-slider/lib/page-slider.css www/css/lib/_page-slider.scss
 
 # Your app specific build needs go here
 .PHONY: build-app-dependencies
 build-app-dependencies:
+
+# Compile scss files to css
+.PHONY: build-compass
+build-compass:
+	gulp compass
 
 # Build dist file with require optimizer
 .PHONY: build-optimize
