@@ -5,10 +5,18 @@
  * Based on : https://github.com/ccoenraets/directory-backbone-topcoat-require
  *
  */
-define([
-    'jquery',
-], function ($) {
-
+ (function (root, factory) {
+     if (typeof define === 'function' && define.amd) {
+         // AMD. Register as an anonymous module.
+         define(['jquery'], factory);
+     } else if (typeof exports === 'object') {
+         // Node.
+         module.exports = factory(require('jquery'));
+     } else {
+         // Browser globals (root is window)
+         root.PageSlider = factory(root.jQuery);
+     }
+ }(this, function ($) {
     'use strict';
 
     return function PageSlider($container) {
@@ -20,12 +28,16 @@ define([
         var stateHistory = [];
 
         // The container need specific style
-        $container.addClass('page-slider-container');
+        $container.css({
+            height: '100%',
+            width: '100%',
+            overflow: 'hidden',
+        });
 
         /**
          * Set a page position via translate3d
          * @param {jquery} $page Page that we want to Position
-         * @param {String} newLocation New position ('left', 'right' or 'center' (default))
+         * @param {String} newLocation New position ('left', 'right' or null (default))
          */
         var _setPagePosition = function ($page, newLocation) {
 
@@ -92,6 +104,13 @@ define([
         };
 
         /**
+         * Set transition duration in milliseconds
+         */
+        this.setTransitionDurationMs = function (durationMs) {
+            this.transitionDurationMs = durationMs;
+        };
+
+        /**
          * Disable css transition on page
          */
         this.disableTransitions = function () {
@@ -106,19 +125,19 @@ define([
         };
 
         /**
-         * Return the type of slide ('first', 'forward' or 'back')
+         * Return the type of slide (null, 'left' or 'right')
          */
-        this.getNextSlideBehaviour = function () {
+        this.getNextSlideOrigin = function () {
             var historyLength = stateHistory.length;
 
             if (historyLength === 0) {
-                return 'first';
+                return null;
             }
             else if (location.hash === stateHistory[historyLength - 2]) {
-                return 'back';
+                return 'left';
             }
             else {
-                return 'forward';
+                return 'right';
             }
         };
 
@@ -131,20 +150,20 @@ define([
 
             var state = location.hash;
 
-            var slideBehaviour = this.getNextSlideBehaviour();
+            var slideBehaviour = this.getNextSlideOrigin();
 
             switch (slideBehaviour) {
-                case 'first':
-                    stateHistory.push(state);
-                    this.slidePageFrom($newPage, null, options);
-                    break;
-                case 'back':
+                case 'left':
                     stateHistory.pop();
                     this.slidePageFrom($newPage, 'left', options);
                     break;
-                case 'forward':
+                case 'right':
                     stateHistory.push(state);
                     this.slidePageFrom($newPage, 'right', options);
+                    break;
+                default:
+                    stateHistory.push(state);
+                    this.slidePageFrom($newPage, null, options);
                     break;
             }
         };
@@ -152,7 +171,7 @@ define([
         /**
          * Use this function directly if you want to control the sliding direction outside PageSlider
          * @param  {$} $newPage The new page to slide in
-         * @param  {String} from Origin of the slide ('left', 'right', or null)
+         * @param  {String} origin Origin of the slide ('left', 'right', or null)
          * @param  {function} options
          *  beforeTransition: Called before the transition, after the page is added
          *                    to the DOM.
@@ -162,8 +181,9 @@ define([
          *                    in the very first page.
          *
          */
-        this.slidePageFrom = function ($newPage, from, options) {
+        this.slidePageFrom = function ($newPage, origin, options) {
 
+            options = options || {};
             options.beforeTransition = options.beforeTransition || $.noop;
             options.afterTransition = options.afterTransition || $.noop;
 
@@ -177,7 +197,7 @@ define([
             options.beforeTransition();
 
             // First loaded page (no old page) or no transition
-            if (isFirstPageSlide || !from || !this.transitionsEnabled) {
+            if (isFirstPageSlide || !origin || !this.transitionsEnabled) {
 
                 // Disable transition
                 _disableTransitionOnPages($newPage);
@@ -195,7 +215,7 @@ define([
             }
 
             // Position the page at the starting position of the animation
-            _setPagePosition($newPage, from);
+            _setPagePosition($newPage, origin);
 
             // Shim transitionend if it's not fired
             var shimTransitionEnd = setTimeout(function() {
@@ -218,7 +238,7 @@ define([
 
             setTimeout(function () {
                 _setPagePosition($newPage, 'center');
-                _setPagePosition($oldPage,  (from === 'left' ? 'right' : 'left'));
+                _setPagePosition($oldPage,  (origin === 'left' ? 'right' : 'left'));
                 $currentPage = $newPage;
             }, 0);
 
@@ -234,5 +254,4 @@ define([
         };
 
     };
-
-});
+}));

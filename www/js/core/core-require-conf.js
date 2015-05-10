@@ -22,6 +22,7 @@ define({
         i18next: 'js/lib/i18next',
         gm_async: 'js/lib/gm_async',
         gmaps: 'js/lib/gmaps',
+        pageslider: 'js/lib/page-slider.min',
         google_maps: 'http://maps.google.com/maps/api/js?sensor=true',
     },
 

@@ -5,8 +5,7 @@
 define([
     'globals',
     'jquery',
-    'core/utils/PageSlider',
-], function (globals, $, PageSlider) {
+], function (globals, $) {
     'use strict';
 
     var AppController = function() {
@@ -77,10 +76,17 @@ define([
 
             var slider = globals.router.slider;
 
+            var slideOrigin = slider.getNextSlideOrigin();
+
+            var history = 'first';
+            if (slideOrigin) {
+                history = slideOrigin === 'right' ? 'forward' : 'back';
+            }
+
             // We call page.beforeLoad before loading the page
             page.beforeLoad.call(page, {
                 actionArguments: actionArguments || [],
-                history: slider.getNextSlideBehaviour(),
+                history: history,
             });
 
             layout.setPage(page);

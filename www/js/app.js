@@ -38,7 +38,7 @@ require([
                 'jquery',
                 'backbone',
                 'fastclick',
-                'core/utils/PageSlider',
+                'pageslider',
                 'app/router',
                 'app/singletons/auth',
                 'app/initHook',
