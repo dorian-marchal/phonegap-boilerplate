@@ -4,11 +4,13 @@
     "jquery": "latest",
     "backbone": "latest",
     "text": "latest",
-    "topcoat": "latest",
     "requirejs": "latest",
     "async": "~0.9.2",
     "i18next": "~1.8.0",
     "gmaps.js": "~0.4.17",
-    "requirejs-plugins": "~1.0.3"
+    "requirejs-plugins": "~1.0.3",
+    "domReady": "~2.0.1",
+    "fastclick": "~1.0.6",
+    "page-slider": "~0.3.1"
   }
 }

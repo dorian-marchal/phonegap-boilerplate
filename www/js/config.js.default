@@ -1,6 +1,8 @@
 define({
 
     // You can manage multiple environment by naming them
+    // If you want to distribute your app, don't forget to
+    // update the data-main configuration in index.html
     environment: 'dev',
 
     environmentConfig: {

@@ -5,8 +5,7 @@
 define([
     'globals',
     'jquery',
-    'core/utils/PageSlider',
-], function (globals, $, PageSlider) {
+], function (globals, $) {
     'use strict';
 
     var AppController = function() {
@@ -41,13 +40,15 @@ define([
             // Associate pages with layouts
             var loadPageMaker = function(layout, page) {
 
-                return function() {
-                    // We pass the action arguments to page.beforeLoad
-                    page.beforeLoad.apply(page, arguments);
-                    that._loadPage(layout, page);
+                return function () {
+
+                    var actionArguments = Array.prototype.slice.call(arguments);
+
+                    that._loadPage(layout, page, actionArguments);
                 };
             };
 
+            // Convert this.pageForActions to controller actions
             for (var actionName in this.pageForActions) {
                 var pageName = this.pageForActions[actionName].page;
                 var layoutName = this.pageForActions[actionName].layout;
@@ -66,13 +67,33 @@ define([
 
         /**
          * Load a Page in the given layout.
+         * @param {AppLayout} layout         The layout of the page
+         * @param {AppPage} page           The page to load
+         * @param {Array} actionArguments The arguments passed to the controller
+         *    action. (controller, action, params)
          */
-        _loadPage: function (layout, page) {
+        _loadPage: function (layout, page, actionArguments) {
+
+            var slider = globals.router.slider;
+
+            var slideOrigin = slider.getNextSlideOrigin();
+
+            var history = 'first';
+            if (slideOrigin) {
+                history = slideOrigin === 'right' ? 'forward' : 'back';
+            }
+
+            // We call page.beforeLoad before loading the page
+            page.beforeLoad.call(page, {
+                actionArguments: actionArguments || [],
+                history: history,
+            });
+
             layout.setPage(page);
             layout.render();
             layout.$el.addClass(page.name);
 
-            globals.router.slider.slidePage(layout.$el, {
+            slider.slidePage(layout.$el, {
 
                 beforeTransition: function() {
                     page.afterRender();
@@ -83,8 +104,8 @@ define([
                 },
                 afterTransition: function(wasFirstSlide) {
 
-                    // Switch back the fixed elements
-                    $('[data-fixed]').attr('data-fixed', 'fixed');
+                    // Switch back the fixed elements (only for the new page)
+                    layout.$('[data-fixed]').attr('data-fixed', 'fixed');
 
                     // Lets the UI thread breathe a little before calling afterLoad
                     setTimeout(function() {

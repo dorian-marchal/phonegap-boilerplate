@@ -38,7 +38,7 @@ require([
                 'jquery',
                 'backbone',
                 'fastclick',
-                'core/utils/PageSlider',
+                'pageslider',
                 'app/router',
                 'app/singletons/auth',
                 'app/initHook',
@@ -97,8 +97,7 @@ require([
                     // fucked up behavior on scroll with fixed elements
                     // so we disable it.
                     if (device.platform === 'Android' && parseFloat(device.version) < 4.2) {
-                        $('html').addClass('not-accelerated');
-                        slider.animationsEnabled = false;
+                        slider.disableTransitions();
                     }
 
                     router.setSlider(slider);

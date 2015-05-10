@@ -1,0 +1,39 @@
+{
+  "name": "page-slider",
+  "version": "0.3.1",
+  "homepage": "https://github.com/dorian-marchal/page-slider",
+  "authors": [
+    "dorian-marchal <marchal.dorian@gmail.com>"
+  ],
+  "description": "A little library to add CSS transitions between pages in a mobile web app",
+  "main": "lib/page-slider.min.js",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "pageslider"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "2.1.x"
+  },
+  "_release": "0.3.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.3.1",
+    "commit": "0bfc0a4f2adf366ea5d227a3b10323b6be15d2f8"
+  },
+  "_source": "git://github.com/dorian-marchal/page-slider.git",
+  "_target": "~0.3.1",
+  "_originalSource": "page-slider",
+  "_direct": true
+}
