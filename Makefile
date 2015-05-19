@@ -65,7 +65,7 @@ build-compass:
 # Build dist file with require optimizer
 .PHONY: build-optimize
 build-optimize:
-	cd www && r.js -o build.js
+	cd www && ../node_modules/requirejs/bin/r.js -o build.js
 
 # Phonegap build
 build-phonegap:
