@@ -1,6 +1,7 @@
 define([
+    'globals',
     'core/views/AppView',
-], function (AppView) {
+], function (globals, AppView) {
     'use strict';
 
     return AppView.extend({
@@ -21,18 +22,26 @@ define([
          * Called before the page is added to the DOM on page slide
          * The route parameters are passed to this function
          */
-        beforeLoad: function() {},
+        beforeLoad: function () {},
 
         /**
          * Called after the page has been added to the DOM
          * And juste before the page transition
          */
-        afterRender: function() {},
+        afterRender: function () {},
 
         /**
          * Called on page transition end (overridable)
          */
-        afterLoad: function() {},
+        afterLoad: function () {},
+
+        /**
+         * Return true if this is the current loaded page
+         */
+        isCurrentPage: function () {
+            return globals.currentPage == this;
+        }
+
 
     });
 
