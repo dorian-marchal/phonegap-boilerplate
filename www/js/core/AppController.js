@@ -107,6 +107,8 @@ define([
                     // Switch back the fixed elements (only for the new page)
                     layout.$('[data-fixed]').attr('data-fixed', 'fixed');
 
+                    globals.currentPage = page;
+
                     // Lets the UI thread breathe a little before calling afterLoad
                     setTimeout(function() {
                         page.afterLoad();
