@@ -36,6 +36,12 @@ define([
         afterLoad: function () {},
 
         /**
+         * Called just before the page slide out
+         * (just after newPage.afterRender)
+         */
+        beforeLeave: function () {},
+
+        /**
          * Return true if this is the current loaded page
          */
         isCurrentPage: function () {
