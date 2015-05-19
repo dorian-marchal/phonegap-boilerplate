@@ -2,6 +2,7 @@
     baseUrl: '',
 
     paths: {
+        cordova: 'empty:', // Cordova path depends on the target platform
         config: 'js/config',
         core: 'js/core',
         app: 'js/app',
