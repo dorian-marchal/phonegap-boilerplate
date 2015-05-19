@@ -22,6 +22,20 @@
                         }
                     ]
                 }
+            },
+            "AndroidManifest.xml": {
+                "parents": {
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 1
+                        }
+                    ]
+                }
             }
         }
     },
@@ -34,6 +48,9 @@
         },
         "org.apache.cordova.device": {
             "PACKAGE_NAME": "fr.spixel.phonegap_boilerplate"
+        },
+        "org.apache.cordova.geolocation": {
+            "PACKAGE_NAME": "fr.moobee.yay"
         }
     },
     "dependent_plugins": {}
