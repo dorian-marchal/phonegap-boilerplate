@@ -56,19 +56,21 @@ define([
                 return;
             }
 
-            if (geolocation.isTracking()) {
-                this.marker.setVisible(true);
-            }
-
-            this.listenTo(geolocation, 'trackingStart', function () {
-                this.marker.setVisible(true);
-            }.bind(true));
-
             this.listenTo(geolocation, 'trackingStop', function () {
                 this.marker.setVisible(false);
             }.bind(true));
 
             this.listenTo(geolocation, 'locationSuccess', function (position) {
+
+                // If the marker is not visible, we show it. This is done on
+                // locationSuccess event to avoid showing a marker on a wrong position
+                if (!this.marker.getVisible()) {
+                    this.marker.setVisible(true);
+
+                    // The first time the marker is shown, the map is centered on it
+                    this.map.setCenter(position.coords.latitude, position.coords.longitude);
+                }
+
                 this._updateMarkerPosition(position.coords.latitude, position.coords.longitude);
             }.bind(this));
         },
