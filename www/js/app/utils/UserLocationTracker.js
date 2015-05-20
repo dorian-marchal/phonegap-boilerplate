@@ -16,6 +16,7 @@ define([
         constructor: UserLocationTracker,
         map: null,
         marker: null,
+        markerOptions: { lat: 0, lng: 0 },
 
         setMap: function (map) {
 
@@ -32,6 +33,12 @@ define([
             else {
                 this._createMarker();
             }
+        },
+
+        setMarkerIconOptions: function (iconOptions) {
+            _.extend(this.markerOptions, {
+                icon: iconOptions
+            });
         },
 
         /**
@@ -87,7 +94,7 @@ define([
                 return;
             }
 
-            this.marker = this.map.addMarker({ lat: 0, lng: 0 });
+            this.marker = this.map.addMarker(this.markerOptions);
             this.marker.setVisible(false);
         },
 
