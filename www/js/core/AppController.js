@@ -97,7 +97,10 @@ define([
 
                 beforeTransition: function() {
                     page.afterRender();
-                    globals.currentPage.beforeLeave();
+
+                    if (globals.currentPage) {
+                        globals.currentPage.beforeLeave();
+                    }
 
                     // Switch the fixed element to absolute positionning
                     // To prevent odd behaviour during transition
