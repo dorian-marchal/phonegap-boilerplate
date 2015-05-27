@@ -68,6 +68,7 @@ build-optimize:
 	cd www && ../node_modules/requirejs/bin/r.js -o build.js
 
 # Phonegap build
+.PHONY: build-phonegap
 build-phonegap:
 	# ios build...
 	-@(phonegap build ios && echo "iOS build successful!") || (echo "/!\ Unable to build iOS platform, are you on OSX ?")
