@@ -71,8 +71,17 @@ navigator.geolocation.clearWatch = function (watcher) {
     clearInterval(watcher);
 };
 
-
-
+// socialsharing
+window.plugins = {
+    socialsharing: {
+        share: function (subject, message, imageUrl, url) {
+            console.log('Sujet:', subject);
+            console.log('Message:', message);
+            console.log('Url:', url);
+            console.log('ImageUrl:', imageUrl);
+        }
+    }
+};
 
 // deviceready
 document.addEventListener('ready-to-shim', function() {

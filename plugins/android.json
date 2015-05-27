@@ -19,6 +19,10 @@
                         {
                             "xml": "<feature name=\"Device\"><param name=\"android-package\" value=\"org.apache.cordova.device.Device\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SocialSharing\"><param name=\"android-package\" value=\"nl.xservices.plugins.SocialSharing\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -32,6 +36,10 @@
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />",
+                            "count": 1
+                        },
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
                             "count": 1
                         }
                     ]
@@ -50,6 +58,9 @@
             "PACKAGE_NAME": "fr.spixel.phonegap_boilerplate"
         },
         "org.apache.cordova.geolocation": {
+            "PACKAGE_NAME": "fr.moobee.yay"
+        },
+        "nl.x-services.plugins.socialsharing": {
             "PACKAGE_NAME": "fr.moobee.yay"
         }
     },
