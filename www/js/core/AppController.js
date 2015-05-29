@@ -98,6 +98,10 @@ define([
                 beforeTransition: function() {
                     page.afterRender();
 
+                    if (globals.currentPage) {
+                        globals.currentPage.beforeLeave();
+                    }
+
                     // Switch the fixed element to absolute positionning
                     // To prevent odd behaviour during transition
                     $('[data-fixed]').attr('data-fixed', 'absolute');
@@ -106,6 +110,8 @@ define([
 
                     // Switch back the fixed elements (only for the new page)
                     layout.$('[data-fixed]').attr('data-fixed', 'fixed');
+
+                    globals.currentPage = page;
 
                     // Lets the UI thread breathe a little before calling afterLoad
                     setTimeout(function() {
