@@ -10,11 +10,15 @@ require([
     require([
         'cordova',
         '__',
-    ], function (cordova, __) {
+        'moment',
+    ], function (cordova, __, moment) {
 
         // We wait for the device to be ready
         document.addEventListener('deviceready', function() {
             navigator.globalization.getPreferredLanguage(function(language) {
+
+                // Load the moment locale
+                moment.locale(language.value.substr(0, 2));
 
                 // Initialize i18n
                 __.init(language.value, function() {

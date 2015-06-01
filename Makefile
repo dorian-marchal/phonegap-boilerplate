@@ -51,6 +51,7 @@ build-core-dependencies:
 	cp bower_components/gmaps.js/gmaps.js www/js/lib/
 	cp bower_components/requirejs-plugins/src/async.js www/js/lib/gm_async.js
 	cp bower_components/page-slider/lib/page-slider.min.js www/js/lib/
+	cp bower_components/moment/min/moment-with-locales.js www/js/lib/moment.js
 	cp bower_components/page-slider/lib/page-slider.css www/css/lib/_page-slider.scss
 
 # Your app specific build needs go here

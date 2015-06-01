@@ -11,6 +11,7 @@
     "requirejs-plugins": "~1.0.3",
     "domReady": "~2.0.1",
     "fastclick": "~1.0.6",
-    "page-slider": "~0.3.1"
+    "page-slider": "~0.3.1",
+    "moment": "~2.10.3"
   }
 }
