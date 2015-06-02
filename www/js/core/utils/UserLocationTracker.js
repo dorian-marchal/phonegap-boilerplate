@@ -17,6 +17,8 @@ define([
         map: null,
         marker: null,
         markerOptions: { lat: 0, lng: 0 },
+        // When true, the map is centered on the user on first positioning
+        centerOnFirstPositioning: false,
 
         setMap: function (map) {
 
@@ -68,7 +70,9 @@ define([
                     this.marker.setVisible(true);
 
                     // The first time the marker is shown, the map is centered on it
-                    this.map.setCenter(position.coords.latitude, position.coords.longitude);
+                    if (this.centerOnFirstPositioning) {
+                        this.map.setCenter(position.coords.latitude, position.coords.longitude);
+                    }
                 }
 
                 this._updateMarkerPosition(position.coords.latitude, position.coords.longitude);
