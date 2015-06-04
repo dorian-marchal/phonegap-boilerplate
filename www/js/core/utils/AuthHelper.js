@@ -3,7 +3,8 @@
  * @param {ApiHelper} api
  */
 define([
-], function () {
+    'jquery',
+], function ($) {
 
     'use strict';
 
@@ -25,13 +26,14 @@ define([
             callback = callback || function() {};
 
             api.post('/login', {
+                dataType: 'json',
                 data: {
                     username: username,
                     password: password,
                 },
-                success: function(token) {
+                success: function(user) {
                     that.loggedIn = true;
-                    that.setToken(token);
+                    that.setUser(user);
                     callback(true);
                 },
                 error: function() {
@@ -58,17 +60,20 @@ define([
             });
         };
 
-        // Set the token in the localStorage
-        this.setToken = function(token) {
-            if (token) {
-                localStorage.token = token;
+        // Set the user in the localStorage
+        this.setUser = function(user) {
+            if (user && user.token) {
+                localStorage.user = JSON.stringify(user);
+                api.setToken(user.token);
             }
-            this.token = token;
-            api.setToken(token);
+            else {
+                api.setToken(null);
+            }
+            this.user = user;
         };
 
         this.clearToken = function() {
-            this.setToken(null);
+            this.setUser(null);
         };
 
         /**
@@ -79,7 +84,7 @@ define([
             callback = callback || function() {};
 
             // No authentication without token
-            if (!this.token) {
+            if (!this.user || !this.user.token) {
                 callback(false);
                 return;
             }
@@ -96,8 +101,9 @@ define([
             });
         };
 
-        // Load the token from the localStorage
-        this.setToken(localStorage.token);
+        // Load the user from the localStorage
+        var storedUser = localStorage.user;
+        this.setUser(storedUser ? JSON.parse(storedUser) : null);
     };
 
     return AuthHelper;
