@@ -71,13 +71,6 @@ require([
                     }, config.splashScreenMinimumDurationMs);
                 };
 
-                // Execute some code before starting the app (during the splashscreen)
-                toWait.init = function(done) {
-                    initHook(function() {
-                        done();
-                    });
-                };
-
                 // Check if authentificated
                 if (config.useAuth) {
                     toWait.login = function(done) {
@@ -94,19 +87,22 @@ require([
                         throw err;
                     }
 
-                    var router = new Router();
-                    var slider = new PageSlider($('body'));
+                    // Execute some code before starting the app (after the splashscreen)
+                    initHook(function() {
+                        var router = new Router();
+                        var slider = new PageSlider($('body'));
 
-                    // On old Android devices, hardware acceleration causes
-                    // fucked up behavior on scroll with fixed elements
-                    // so we disable it.
-                    if (device.platform === 'Android' && parseFloat(device.version) < 4.2) {
-                        slider.disableTransitions();
-                    }
+                        // On old Android devices, hardware acceleration causes
+                        // fucked up behavior on scroll with fixed elements
+                        // so we disable it.
+                        if (device.platform === 'Android' && parseFloat(device.version) < 4.2) {
+                            slider.disableTransitions();
+                        }
 
-                    router.setSlider(slider);
-                    globals.setRouter(router);
-                    Backbone.history.start();
+                        router.setSlider(slider);
+                        globals.setRouter(router);
+                        Backbone.history.start();
+                    });
                 });
             });
         };
