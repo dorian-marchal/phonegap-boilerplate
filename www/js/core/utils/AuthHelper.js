@@ -38,6 +38,7 @@ define([
                 },
                 error: function() {
                     that.loggedIn = false;
+                    that.setUser(null);
                     callback(false);
                 },
             });
@@ -50,7 +51,7 @@ define([
             api.post('/logout', {
                 success: function() {
                     that.loggedIn = false;
-                    that.clearToken();
+                    that.clearUser();
                     callback(true);
                 },
                 error: function() {
@@ -67,12 +68,13 @@ define([
                 api.setToken(user.token);
             }
             else {
+                localStorage.user = null;
                 api.setToken(null);
             }
             this.user = user;
         };
 
-        this.clearToken = function() {
+        this.clearUser = function() {
             this.setUser(null);
         };
 
