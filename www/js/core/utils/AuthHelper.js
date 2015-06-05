@@ -47,6 +47,7 @@ define([
         this.logout = function(callback) {
 
             var that = this;
+            callback = callback || $.noop;
 
             api.post('/logout', {
                 success: function() {
