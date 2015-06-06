@@ -25,6 +25,7 @@ define({
         pageslider: 'js/lib/page-slider.min',
         google_maps: 'http://maps.google.com/maps/api/js?sensor=true',
         moment: 'js/lib/moment',
+        spinner: 'js/lib/spin',
     },
 
     shim: {
