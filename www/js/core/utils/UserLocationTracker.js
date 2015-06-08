@@ -62,7 +62,7 @@ define([
 
             this.listenTo(geolocation, 'trackingStop', function () {
                 this.marker.setVisible(false);
-            }.bind(true));
+            }.bind(this));
 
             this.listenTo(geolocation, 'locationSuccess', function (position) {
 
