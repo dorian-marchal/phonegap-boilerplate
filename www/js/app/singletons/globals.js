@@ -16,6 +16,9 @@ define([
         // Global route params
         this.route = {};
 
+        // All loaded urls fragments (Backbone.history.fragment)
+        this.fragments = [];
+
         // Set the global app router
         this.setRouter = function(router) {
             that.router = router;

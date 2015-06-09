@@ -4,8 +4,9 @@
  */
 define([
     'globals',
+    'backbone',
     'jquery',
-], function (globals, $) {
+], function (globals, Backbone, $) {
     'use strict';
 
     var AppController = function() {
@@ -85,8 +86,12 @@ define([
 
             // If we are on page that is not willing to leave, we cancel the page load
             if (oldPage && !oldPage.isWillingToLeave()) {
+                // Revert the fragment change
+                globals.router.navigate(globals.fragments[globals.fragments.length - 1]);
                 return;
             }
+
+            globals.fragments.push(Backbone.history.fragment);
 
             // We call page.beforeLoad before loading the page
             page.beforeLoad.call(page, {
