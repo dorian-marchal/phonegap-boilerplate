@@ -20,9 +20,14 @@ define([
 
         /**
          * Called before the page is added to the DOM on page slide
-         * The route parameters are passed to this function
+         * The route parameters are passed to this function.
+         * If this function return false, the page change is canceled.
+         *
+         * @return {Boolean} true if the page can be left, false otherwise
          */
-        beforeLoad: function () {},
+        beforeLoad: function () {
+            return true;
+        },
 
         /**
          * Called after the page has been added to the DOM

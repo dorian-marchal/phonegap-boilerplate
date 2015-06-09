@@ -84,10 +84,14 @@ define([
             }
 
             // We call page.beforeLoad before loading the page
-            page.beforeLoad.call(page, {
+            var pageIsWillingToLeave = page.beforeLoad.call(page, {
                 actionArguments: actionArguments || [],
                 history: history,
             });
+
+            if (!pageIsWillingToLeave) {
+                return;
+            }
 
             layout.setPage(page);
             layout.render();
