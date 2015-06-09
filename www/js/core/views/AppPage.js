@@ -21,9 +21,6 @@ define([
         /**
          * Called before the page is added to the DOM on page slide
          * The route parameters are passed to this function.
-         * If this function return false, the page change is canceled.
-         *
-         * @return {Boolean} false is the page change must be blocked
          */
         beforeLoad: function () {},
 
@@ -37,6 +34,14 @@ define([
          * Called on page transition end (overridable)
          */
         afterLoad: function () {},
+
+        /**
+         * Allow the page to cancel the page change by returning false.
+         * @return {Boolean} true if the page is willing to leave, false otherwise
+         */
+        isWillingToLeave: function () {
+            return true;
+        },
 
         /**
          * Called just before the page slide out

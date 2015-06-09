@@ -74,8 +74,8 @@ define([
          */
         _loadPage: function (layout, page, actionArguments) {
 
+            var oldPage = globals.currentPage;
             var slider = globals.router.slider;
-
             var slideOrigin = slider.getNextSlideOrigin();
 
             var history = 'first';
@@ -83,15 +83,16 @@ define([
                 history = slideOrigin === 'right' ? 'forward' : 'back';
             }
 
+            // If we are on page that is not willing to leave, we cancel the page load
+            if (oldPage && !oldPage.isWillingToLeave()) {
+                return;
+            }
+
             // We call page.beforeLoad before loading the page
-            var pageIsWillingToLeave = page.beforeLoad.call(page, {
+            page.beforeLoad.call(page, {
                 actionArguments: actionArguments || [],
                 history: history,
             });
-
-            if (pageIsWillingToLeave === false) {
-                return;
-            }
 
             layout.setPage(page);
             layout.render();
@@ -102,8 +103,8 @@ define([
                 beforeTransition: function() {
                     page.afterRender();
 
-                    if (globals.currentPage) {
-                        globals.currentPage.beforeLeave();
+                    if (oldPage) {
+                        oldPage.beforeLeave();
                     }
 
                     // Switch the fixed element to absolute positionning
