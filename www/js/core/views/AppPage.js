@@ -23,11 +23,9 @@ define([
          * The route parameters are passed to this function.
          * If this function return false, the page change is canceled.
          *
-         * @return {Boolean} true if the page can be left, false otherwise
+         * @return {Boolean} false is the page change must be blocked
          */
-        beforeLoad: function () {
-            return true;
-        },
+        beforeLoad: function () {},
 
         /**
          * Called after the page has been added to the DOM

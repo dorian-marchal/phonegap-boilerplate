@@ -89,7 +89,7 @@ define([
                 history: history,
             });
 
-            if (!pageIsWillingToLeave) {
+            if (pageIsWillingToLeave === false) {
                 return;
             }
 
