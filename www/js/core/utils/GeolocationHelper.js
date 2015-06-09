@@ -20,6 +20,27 @@ define([
         _.extend(this.options, options);
     };
 
+    /**
+     * Calculate the distance between two points on Earth
+     * @param {object} pointA {latitude, longitude}
+     * @param {object} pointB {latitude, longitude}
+     * @return {int} distance in meters
+     */
+    GeolocationHelper.getDistanceBetween = function (pointA, pointB) {
+        var toRad = function (val) {
+            return val * Math.PI / 180;
+        };
+
+        var aRadLatitude = toRad(pointA.latitude);
+        var aRadLongitude = toRad(pointA.longitude);
+
+        var bRadLatitude = toRad(pointB.latitude);
+        var bRadLongitude = toRad(pointB.longitude);
+
+        return Math.round(6371030 * Math.acos(Math.sin(aRadLatitude) * Math.sin(bRadLatitude) +
+            Math.cos(aRadLatitude) * Math.cos(bRadLatitude) * Math.cos(aRadLongitude - bRadLongitude)));
+    };
+
     _.extend(GeolocationHelper.prototype, Backbone.Events, {
 
         options: {
