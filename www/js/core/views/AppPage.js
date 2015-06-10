@@ -1,7 +1,8 @@
 define([
     'globals',
     'core/views/AppView',
-], function (globals, AppView) {
+    'core/singletons/backbuttonManager',
+], function (globals, AppView, backbuttonManager) {
     'use strict';
 
     return AppView.extend({
@@ -17,6 +18,29 @@ define([
          * Options passed to the layout
          */
         layoutOptions: {},
+
+        initialize: function () {
+            AppView.prototype.initialize.apply(this, arguments);
+
+            // Prepare this.onBackButton
+            backbuttonManager.addListener(function (done) {
+
+                if (this.isCurrentPage()) {
+                    this.onBackButton(done);
+                }
+                else {
+                    done();
+                }
+            }.bind(this));
+        },
+
+        /**
+         * Called when the backbutton is pressed on the current page.
+         * pass false to the done callback to prevent history.back
+         */
+        onBackButton: function (done) {
+            done();
+        },
 
         /**
          * Called before the page is added to the DOM on page slide
