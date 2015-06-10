@@ -60,14 +60,6 @@ define([
         afterLoad: function () {},
 
         /**
-         * Allow the page to cancel the page change by returning false.
-         * @return {Boolean} true if the page is willing to leave, false otherwise
-         */
-        isWillingToLeave: function () {
-            return true;
-        },
-
-        /**
          * Called just before the page slide out
          * (just after newPage.afterRender)
          */
