@@ -61,8 +61,6 @@ IOS/www/
 /platforms/android/CordovaLib/ant-build/*
 /platforms/android/CordovaLib/ant-gen/*
 /platforms/android/CordovaLib/build/*
-/platforms/ios/PhonegapBoilerplate/*
-/platforms/ios/*.xcodeproj
 /platforms/ios/www/*
 /www/js/config.js
 !gitkeep

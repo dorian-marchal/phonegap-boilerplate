@@ -73,7 +73,7 @@ build-optimize:
 .PHONY: build-phonegap
 build-phonegap:
 	# ios build...
-	-@(phonegap build ios && echo "iOS build successful!") || (echo "/!\ Unable to build iOS platform, are you on OSX ?")
+	# -@(phonegap build ios && echo "iOS build successful!") || (echo "/!\ Unable to build iOS platform, are you on OSX ?")
 	# android build...
 	-@(phonegap build android && echo "Android build successful!") || (echo "/!\ Unable to build Android platform, is Android SDK available ?")
 
