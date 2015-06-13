@@ -25,10 +25,12 @@
             "id": "org.apache.cordova.globalization"
         }
     },
-    "org.apache.cordova.splashscreen": {
+    "cordova-plugin-splashscreen": {
         "source": {
             "type": "registry",
-            "id": "org.apache.cordova.splashscreen"
-        }
+            "id": "cordova-plugin-splashscreen"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }
