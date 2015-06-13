@@ -21,8 +21,8 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:rim="http://www.blackberry.com/ns/widgets"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="org.apache.cordova.device"
-    version="0.3.0">
+    id="cordova-plugin-device"
+    version="1.0.0">
     <name>Device</name>
     <description>Cordova Device Plugin</description>
     <license>Apache 2.0</license>
@@ -136,13 +136,6 @@
         </config-file>
 
         <source-file src="src/wp/Device.cs" />
-    </platform>
-
-    <!-- windows8 -->
-    <platform name="windows8">
-        <js-module src="src/windows8/DeviceProxy.js" name="DeviceProxy">
-            <merges target="" />
-        </js-module>
     </platform>
 
     <!-- windows -->

@@ -54,7 +54,7 @@
         "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "fr.spixel.phonegap_boilerplate"
         },
-        "org.apache.cordova.device": {
+        "cordova-plugin-device": {
             "PACKAGE_NAME": "fr.spixel.phonegap_boilerplate"
         },
         "org.apache.cordova.geolocation": {
