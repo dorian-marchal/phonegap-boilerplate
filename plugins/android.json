@@ -48,7 +48,7 @@
         }
     },
     "installed_plugins": {
-        "org.apache.cordova.globalization": {
+        "cordova-plugin-globalization": {
             "PACKAGE_NAME": "fr.spixel.phonegap_boilerplate"
         },
         "cordova-plugin-splashscreen": {
