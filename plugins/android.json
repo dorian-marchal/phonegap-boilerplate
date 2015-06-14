@@ -57,8 +57,8 @@
         "cordova-plugin-device": {
             "PACKAGE_NAME": "fr.spixel.phonegap_boilerplate"
         },
-        "org.apache.cordova.geolocation": {
-            "PACKAGE_NAME": "fr.moobee.yay"
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "fr.spixel.phonegap_boilerplate"
         },
         "nl.x-services.plugins.socialsharing": {
             "PACKAGE_NAME": "fr.moobee.yay"
