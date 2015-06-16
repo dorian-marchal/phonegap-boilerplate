@@ -136,7 +136,6 @@ define([
                 },
             });
             layout.delegateEvents();
-            page.delegateEvents();
         },
 
     };
