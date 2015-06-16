@@ -43,6 +43,9 @@ define([
                     event.preventDefault();
                     globals.router.navigate($(event.currentTarget).attr('data-route'), true);
                 },
+                'click [data-clickable]' : function(event) {
+                    $(event.currentTarget).attr('data-clickable', 'clicked');
+                },
             });
         },
 
