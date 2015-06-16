@@ -8,11 +8,12 @@
  * - defaultOptions : layout default options (overridable by Page)
  */
 define([
+    'globals',
     'jquery',
     'underscore',
     '__',
     'core/views/AppView',
-], function ($, _, __, AppView) {
+], function (globals, $, _, __, AppView) {
     'use strict';
 
     return AppView.extend({
@@ -29,6 +30,20 @@ define([
                 var Subview = this.subviews[selector];
                 this.subviewInstances[selector] = new Subview();
             }
+
+            this.events = this.events || {};
+
+            // Some default events
+            $.extend(this.events, {
+                'click [data-history]' : function(event) {
+                    event.preventDefault();
+                    history.back();
+                },
+                'click [data-route]' : function(event) {
+                    event.preventDefault();
+                    globals.router.navigate($(event.currentTarget).attr('data-route'), true);
+                },
+            });
         },
 
         /**
