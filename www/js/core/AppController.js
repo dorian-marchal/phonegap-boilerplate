@@ -84,7 +84,12 @@ define([
                 history = slideOrigin === 'right' ? 'forward' : 'back';
             }
 
-            // We call page.beforeLoad before loading the page
+            // We call oldPage.beforeLeave before leaving the page...
+            if (oldPage) {
+                oldPage.beforeLeave();
+            }
+
+            // ...and page.beforeLoad before loading the page
             page.beforeLoad.call(page, {
                 actionArguments: actionArguments || [],
                 history: history,
@@ -98,10 +103,6 @@ define([
 
                 beforeTransition: function() {
                     page.afterRender();
-
-                    if (oldPage) {
-                        oldPage.beforeLeave();
-                    }
 
                     // Switch the fixed element to absolute positionning
                     // To prevent odd behaviour during transition
