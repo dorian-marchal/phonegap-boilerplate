@@ -114,7 +114,7 @@ define([
                     layout.$('[data-fixed]').attr('data-fixed', 'fixed');
 
                     // Remove the "clicked" state of the clickable elements
-                    layout.$('[data-clickable]').attr('data-clickable', '');
+                    layout.$('[data-clickable="clicked"]').attr('data-clickable', '');
 
                     globals.currentPage = page;
 
