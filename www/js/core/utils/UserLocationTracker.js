@@ -1,5 +1,7 @@
 /**
  * Helps to add a marker that follow the user on a map.
+ * This helper trigger an 'firstPositioning' event when the first location is found
+ * after tracking start with two parameters : the map and the new position
  */
 define([
     'backbone',
@@ -17,6 +19,8 @@ define([
         map: null,
         marker: null,
         markerOptions: { lat: 0, lng: 0 },
+        // When true, the map is centered on the user on first positioning
+        centerOnFirstPositioning: false,
 
         setMap: function (map) {
 
@@ -58,20 +62,29 @@ define([
 
             this.listenTo(geolocation, 'trackingStop', function () {
                 this.marker.setVisible(false);
-            }.bind(true));
+            }.bind(this));
 
             this.listenTo(geolocation, 'locationSuccess', function (position) {
+
+                var firstPositioning = false;
 
                 // If the marker is not visible, we show it. This is done on
                 // locationSuccess event to avoid showing a marker on a wrong position
                 if (!this.marker.getVisible()) {
+                    firstPositioning = true;
                     this.marker.setVisible(true);
 
                     // The first time the marker is shown, the map is centered on it
-                    this.map.setCenter(position.coords.latitude, position.coords.longitude);
+                    if (this.centerOnFirstPositioning) {
+                        this.map.setCenter(position.coords.latitude, position.coords.longitude);
+                    }
                 }
 
                 this._updateMarkerPosition(position.coords.latitude, position.coords.longitude);
+
+                if (firstPositioning) {
+                    this.trigger('firstPositioning', this.map, position);
+                }
             }.bind(this));
         },
 

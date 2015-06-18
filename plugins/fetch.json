@@ -7,28 +7,36 @@
         "is_top_level": true,
         "variables": {}
     },
-    "org.apache.cordova.device": {
+    "cordova-plugin-device": {
         "source": {
             "type": "registry",
-            "id": "org.apache.cordova.device"
-        }
+            "id": "cordova-plugin-device"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "org.apache.cordova.geolocation": {
+    "cordova-plugin-geolocation": {
         "source": {
             "type": "registry",
-            "id": "org.apache.cordova.geolocation"
-        }
+            "id": "cordova-plugin-geolocation"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "org.apache.cordova.globalization": {
+    "cordova-plugin-globalization": {
         "source": {
             "type": "registry",
-            "id": "org.apache.cordova.globalization"
-        }
+            "id": "cordova-plugin-globalization"
+        },
+        "is_top_level": true,
+        "variables": {}
     },
-    "org.apache.cordova.splashscreen": {
+    "cordova-plugin-splashscreen": {
         "source": {
             "type": "registry",
-            "id": "org.apache.cordova.splashscreen"
-        }
+            "id": "cordova-plugin-splashscreen"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

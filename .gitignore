@@ -57,10 +57,10 @@ IOS/www/
 /platforms/android/assets/*
 /platforms/android/ant-build/*
 /platforms/android/ant-gen/*
+/platforms/android/.gradle/*
 /platforms/android/CordovaLib/ant-build/*
 /platforms/android/CordovaLib/ant-gen/*
-/platforms/ios/PhonegapBoilerplate/*
-/platforms/ios/*.xcodeproj
+/platforms/android/CordovaLib/build/*
 /platforms/ios/www/*
 /www/js/config.js
 !gitkeep

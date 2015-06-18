@@ -51,6 +51,8 @@ build-core-dependencies:
 	cp bower_components/gmaps.js/gmaps.js www/js/lib/
 	cp bower_components/requirejs-plugins/src/async.js www/js/lib/gm_async.js
 	cp bower_components/page-slider/lib/page-slider.min.js www/js/lib/
+	cp bower_components/moment/min/moment-with-locales.js www/js/lib/moment.js
+	cp bower_components/spin.js/spin.js www/js/lib/
 	cp bower_components/page-slider/lib/page-slider.css www/css/lib/_page-slider.scss
 
 # Your app specific build needs go here
@@ -71,7 +73,7 @@ build-optimize:
 .PHONY: build-phonegap
 build-phonegap:
 	# ios build...
-	-@(phonegap build ios && echo "iOS build successful!") || (echo "/!\ Unable to build iOS platform, are you on OSX ?")
+	# -@(phonegap build ios && echo "iOS build successful!") || (echo "/!\ Unable to build iOS platform, are you on OSX ?")
 	# android build...
 	-@(phonegap build android && echo "Android build successful!") || (echo "/!\ Unable to build Android platform, is Android SDK available ?")
 

@@ -4,8 +4,9 @@
  */
 define([
     'globals',
+    'backbone',
     'jquery',
-], function (globals, $) {
+], function (globals, Backbone, $) {
     'use strict';
 
     var AppController = function() {
@@ -74,8 +75,8 @@ define([
          */
         _loadPage: function (layout, page, actionArguments) {
 
+            var oldPage = globals.currentPage;
             var slider = globals.router.slider;
-
             var slideOrigin = slider.getNextSlideOrigin();
 
             var history = 'first';
@@ -83,7 +84,12 @@ define([
                 history = slideOrigin === 'right' ? 'forward' : 'back';
             }
 
-            // We call page.beforeLoad before loading the page
+            // We call oldPage.beforeLeave before leaving the page...
+            if (oldPage) {
+                oldPage.beforeLeave();
+            }
+
+            // ...and page.beforeLoad before loading the page
             page.beforeLoad.call(page, {
                 actionArguments: actionArguments || [],
                 history: history,
@@ -98,10 +104,6 @@ define([
                 beforeTransition: function() {
                     page.afterRender();
 
-                    if (globals.currentPage) {
-                        globals.currentPage.beforeLeave();
-                    }
-
                     // Switch the fixed element to absolute positionning
                     // To prevent odd behaviour during transition
                     $('[data-fixed]').attr('data-fixed', 'absolute');
@@ -110,6 +112,9 @@ define([
 
                     // Switch back the fixed elements (only for the new page)
                     layout.$('[data-fixed]').attr('data-fixed', 'fixed');
+
+                    // Remove the "clicked" state of the clickable elements
+                    layout.$('[data-clickable="clicked"]').attr('data-clickable', '');
 
                     globals.currentPage = page;
 
@@ -135,7 +140,6 @@ define([
                 },
             });
             layout.delegateEvents();
-            page.delegateEvents();
         },
 
     };

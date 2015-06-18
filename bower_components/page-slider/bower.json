@@ -1,6 +1,6 @@
 {
   "name": "page-slider",
-  "version": "0.3.1",
+  "version": "0.3.9",
   "homepage": "https://github.com/dorian-marchal/page-slider",
   "authors": [
     "dorian-marchal <marchal.dorian@gmail.com>"
@@ -13,7 +13,10 @@
     "node"
   ],
   "keywords": [
-    "pageslider"
+    "pageslider",
+    "page",
+    "slide",
+    "slider"
   ],
   "license": "MIT",
   "ignore": [
