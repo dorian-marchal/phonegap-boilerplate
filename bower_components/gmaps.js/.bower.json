@@ -1,16 +1,15 @@
 {
   "name": "gmaps",
-  "version": "0.4.17",
+  "version": "0.4.18",
   "main": "gmaps.js",
   "homepage": "https://github.com/hpneo/gmaps",
-  "_release": "0.4.17",
+  "_release": "0.4.18",
   "_resolution": {
     "type": "version",
-    "tag": "0.4.17",
-    "commit": "ad937e4b9a840374d19c6cf1d4b33457378fe1c1"
+    "tag": "0.4.18",
+    "commit": "2c24b34e689d08bce7e79630ff8c09a98c5281f2"
   },
   "_source": "git://github.com/hpneo/gmaps.git",
   "_target": "~0.4.17",
-  "_originalSource": "gmaps.js",
-  "_direct": true
+  "_originalSource": "gmaps.js"
 }

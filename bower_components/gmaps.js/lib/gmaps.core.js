@@ -40,7 +40,7 @@ var array_map = function(array, callback) {
 
   if (Array.prototype.map && array.map === Array.prototype.map) {
     array_return = Array.prototype.map.call(array, function(item) {
-      callback_params = original_callback_params;
+      var callback_params = original_callback_params.slice(0);
       callback_params.splice(0, 0, item);
 
       return callback.apply(this, callback_params);
@@ -97,11 +97,26 @@ var arrayToLatLng = function(coords, useGeoJSON) {
   return coords;
 };
 
+
+var getElementsByClassName = function (class_name, context) {
+
+    var element,
+        _class = class_name.replace('.', '');
+
+    if ('jQuery' in this && context) {
+        element = $("." + _class, context)[0];
+    } else {
+        element = document.getElementsByClassName(_class)[0];
+    }
+    return element;
+
+};
+
 var getElementById = function(id, context) {
   var element,
   id = id.replace('#', '');
 
-  if ('jQuery' in this && context) {
+  if ('jQuery' in window && context) {
     element = $('#' + id, context)[0];
   } else {
     element = document.getElementById(id);
@@ -144,7 +159,7 @@ var GMaps = (function(global) {
         ],
         events_that_doesnt_hide_context_menu = ['mousemove', 'mouseout', 'mouseover'],
         options_to_be_deleted = ['el', 'lat', 'lng', 'mapType', 'width', 'height', 'markerClusterer', 'enableNewStyle'],
-        container_id = options.el || options.div,
+        identifier = options.el || options.div,
         markerClustererFunction = options.markerClusterer,
         mapType = google.maps.MapTypeId[options.mapType.toUpperCase()],
         map_center = new google.maps.LatLng(options.lat, options.lng),
@@ -179,11 +194,17 @@ var GMaps = (function(global) {
           overviewMapControl: overviewMapControl
         };
 
-    if (typeof(options.el) === 'string' || typeof(options.div) === 'string') {
-      this.el = getElementById(container_id, options.context);
-    } else {
-      this.el = container_id;
-    }
+      if (typeof(options.el) === 'string' || typeof(options.div) === 'string') {
+
+          if (identifier.indexOf("#") > -1) {
+              this.el = getElementById(identifier, options.context);
+          } else {
+              this.el = getElementsByClassName.apply(this, [identifier, options.context]);
+          }
+
+      } else {
+          this.el = identifier;
+      }
 
     if (typeof(this.el) === 'undefined' || this.el === null) {
       throw 'No element defined.';
