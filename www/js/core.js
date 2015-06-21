@@ -10,7 +10,7 @@
 
      splashScreenMinimumDurationMs: 0,
 
-     // True if token authentification is used
+     // True if token authentication is used
      useAuth: false,
 
      // RequireJS config

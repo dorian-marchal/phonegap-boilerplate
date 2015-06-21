@@ -71,7 +71,7 @@ require([
                     }, config.splashScreenMinimumDurationMs);
                 };
 
-                // Check if authentificated
+                // Check if authenticated
                 if (config.useAuth) {
                     toWait.login = function(done) {
                         auth.checkLogin(function() {

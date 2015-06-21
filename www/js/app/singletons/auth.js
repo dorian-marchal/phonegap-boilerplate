@@ -1,5 +1,5 @@
 /**
- * Singleton used to manage the user authentification.
+ * Singleton used to manage the user authentication.
  */
 define([
     'core/utils/AuthHelper',
