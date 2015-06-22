@@ -43,8 +43,21 @@ define([
                     event.preventDefault();
                     globals.router.navigate($(event.currentTarget).attr('data-route'), true);
                 },
-                'click [data-clickable]:not([data-clickable="false"])' : function(event) {
-                    $(event.currentTarget).attr('data-clickable', 'clicked');
+                'click [data-clickable]' : function(event) {
+
+                    var $el = $(event.currentTarget);
+                    var currentState = $el.attr('data-clickable');
+
+                    if (currentState === 'false') {
+                        return;
+                    }
+                    // When "auto", the clicked state is dismissed
+                    else if (currentState === 'auto') {
+                        setTimeout(function () {
+                            $el.attr('data-clickable', '');
+                        }, 300);
+                    }
+                    $el.attr('data-clickable', 'clicked');
                 },
             });
         },
