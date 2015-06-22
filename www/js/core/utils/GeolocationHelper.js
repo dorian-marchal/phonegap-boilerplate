@@ -66,6 +66,21 @@ define([
             }
         },
 
+        /**
+         * Toggle the geolocation tracking
+         * @return {bool} true if the tracking has been started, false otherwise
+         */
+        toggleTracking: function () {
+            if (this.isTracking()) {
+                this.stopTracking();
+                return false;
+            }
+            else {
+                this.startTracking();
+                return true;
+            }
+        },
+
         isTracking: function () {
             return idTracker !== null;
         },
