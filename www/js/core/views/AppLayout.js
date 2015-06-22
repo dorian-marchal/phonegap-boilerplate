@@ -54,7 +54,7 @@ define([
                     // When "auto", the clicked state is dismissed
                     else if (currentState === 'auto') {
                         setTimeout(function () {
-                            $el.attr('data-clickable', '');
+                            $el.attr('data-clickable', 'auto');
                         }, 300);
                     }
                     $el.attr('data-clickable', 'clicked');
