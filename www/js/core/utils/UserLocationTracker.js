@@ -33,6 +33,7 @@ define([
 
             if (this.marker) {
                 this.marker.setMap(map.map);
+                map.addMarker(this.marker);
             }
             else {
                 this._createMarker();
