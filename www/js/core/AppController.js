@@ -113,9 +113,6 @@ define([
                     // Switch back the fixed elements (only for the new page)
                     layout.$('[data-fixed]').attr('data-fixed', 'fixed');
 
-                    // Remove the "clicked" state of the clickable elements
-                    layout.$('[data-clickable="clicked"]').attr('data-clickable', '');
-
                     globals.currentPage = page;
 
                     // Lets the UI thread breathe a little before calling afterLoad
