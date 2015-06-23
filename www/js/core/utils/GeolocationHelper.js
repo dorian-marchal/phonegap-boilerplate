@@ -7,6 +7,10 @@
  *     trackingStop: when tracking stop
  *     locationSuccess: when a location is found (a Position object is passed)
  *     locationError: when an error occur (an Error object is passed)
+ *     currentPositionSuccess: when a one-time location is found (via getCurrentPosition)
+ *                           (a Position object is passed)
+ *     currentPositionError: when an error occur (via getCurrentPosition)
+ *                           (an Error object is passed)
  */
 define([
     'underscore',
@@ -50,6 +54,19 @@ define([
         },
 
         lastPosition: null,
+
+        getCurrentPosition: function (options) {
+            options = options || {};
+
+            navigator.geolocation.getCurrentPosition(
+                this.onCurrentPositionSuccess.bind(this),
+                this.onCurrentPositionError.bind(this),
+                _.extend({}, this.options, {
+                    maximumAge: 15000,
+                    timeout: 15000,
+                }, options)
+            );
+        },
 
         startTracking: function () {
             if (idTracker === null) {
@@ -95,6 +112,14 @@ define([
 
         onLocationError: function (error) {
             this.trigger('locationError', error);
+        },
+
+        onCurrentPositionSuccess: function (position) {
+            this.trigger('currentPositionSuccess', position);
+        },
+
+        onCurrentPositionError: function (error) {
+            this.trigger('currentPositionError', error);
         },
     });
 
