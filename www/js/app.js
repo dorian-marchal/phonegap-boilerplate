@@ -11,7 +11,8 @@ require([
         'cordova',
         '__',
         'moment',
-    ], function (cordova, __, moment) {
+        'app/errorHook',
+    ], function (cordova, __, moment, errorHook) {
 
         // We wait for the device to be ready
         document.addEventListener('deviceready', function() {
@@ -104,7 +105,7 @@ require([
                         Backbone.history.start();
                     });
                 });
-            });
+            }, errorHook);
         };
     });
 });
