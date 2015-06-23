@@ -115,10 +115,12 @@ define([
         },
 
         onCurrentPositionSuccess: function (position) {
+            this.trigger('locationSuccess', position);
             this.trigger('currentPositionSuccess', position);
         },
 
         onCurrentPositionError: function (error) {
+            this.trigger('locationError', error);
             this.trigger('currentPositionError', error);
         },
     });
