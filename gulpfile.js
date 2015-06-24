@@ -27,6 +27,8 @@ function notifyLiveReload(event) {
     });
 }
 
+gulp.task('default', ['live']);
+
 gulp.task('live', ['livecompass', 'livereload']);
 
 gulp.task('livereload', function () {
