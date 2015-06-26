@@ -55,7 +55,7 @@ define([
                     else if (currentState === 'auto') {
                         setTimeout(function () {
                             $el.attr('data-clickable', 'auto');
-                        }, 300);
+                        }, 600);
                     }
                     $el.attr('data-clickable', 'clicked');
                 },
