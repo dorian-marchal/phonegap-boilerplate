@@ -1,17 +1,3 @@
-/**
- * Helper to easily add global geolocation to an app via
- * navigator.geolocation (Phonegap).
- *
- * GeolocationHelper can trigger these events :
- *     trackingStart: when tracking start
- *     trackingStop: when tracking stop
- *     locationSuccess: when a location is found (a Position object is passed)
- *     locationError: when an error occur (an Error object is passed)
- *     currentPositionSuccess: when a one-time location is found (via getCurrentPosition)
- *                           (a Position object is passed)
- *     currentPositionError: when an error occur (via getCurrentPosition)
- *                           (an Error object is passed)
- */
 define([
     'underscore',
     'backbone',
@@ -20,12 +6,18 @@ define([
 
     var idTracker = null;
 
+    /**
+     * Helper to easily add global geolocation to an app via
+     * navigator.geolocation (Phonegap).
+     * @class
+     * @param {object} options Same options as navigator.geolocation.watchPosition
+     */
     var GeolocationHelper = function (options) {
         _.extend(this.options, options);
     };
 
     /**
-     * Calculate the distance between two points on Earth
+     * Static function that calculate the distance between two points on Earth
      * @param {object} pointA {latitude, longitude}
      * @param {object} pointB {latitude, longitude}
      * @return {int} distance in meters
@@ -55,6 +47,14 @@ define([
 
         lastPosition: null,
 
+        /**
+         * Get the current GPS coordinates
+         * @param {object} options Same options as `navigator.geolocation.watchPosition`
+         * @fires locationSuccess when a location is found (a Position object is passed)
+         * @fires currentPositionSuccess when a location is found (a Position object is passed)
+         * @fires locationError when an error occur (an Error object is passed)
+         * @fires currentPositionError when an error occur (an Error object is passed)
+         */
         getCurrentPosition: function (options) {
             options = options || {};
 
@@ -68,6 +68,10 @@ define([
             );
         },
 
+        /**
+         * Start the tracking
+         * @fires trackingStart
+         */
         startTracking: function () {
             if (idTracker === null) {
                 idTracker = navigator.geolocation.watchPosition(this.onLocationSuccess.bind(this), this.onLocationError.bind(this), this.options);
@@ -75,6 +79,10 @@ define([
             }
         },
 
+        /**
+         * Stop the tracking
+         * @fires trackingStop
+         */
         stopTracking: function () {
             if (idTracker !== null) {
                 navigator.geolocation.clearWatch(idTracker);
@@ -85,7 +93,9 @@ define([
 
         /**
          * Toggle the geolocation tracking
-         * @return {bool} true if the tracking has been started, false otherwise
+         * @return {Boolean} true if the tracking has been started, false otherwise
+         * @fires trackingStart if the tracking has been started
+         * @fires trackingStop if the tracking has been stopped
          */
         toggleTracking: function () {
             if (this.isTracking()) {
@@ -98,10 +108,16 @@ define([
             }
         },
 
+        /**
+         * @return {Boolean} true if the tracking is started, false otherwise
+         */
         isTracking: function () {
             return idTracker !== null;
         },
 
+        /**
+         * @return {Position} the last known position
+         */
         getLastPosition: function () {
             return this.lastPosition;
         },

@@ -10,7 +10,7 @@ define([
     /**
      * Create a new loader.
      * @param {$} $el jQuery or DOM element in which the loader will be added
-     * @param {string, object} options Whether :
+     * @param {string|object} options Whether :
      *     - {string} : A preset name previously added with addPreset (or Spin.js
      *                  options object)
      *     - {object} : Additional Spin.js options object
