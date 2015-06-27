@@ -31,11 +31,13 @@ define([
 
         /**
          * @member {String} route The API route
+         * <br>
          */
         route: '',
 
         /**
          * @member {AppModel} model Model in the collection
+         * <br>
          */
         model: null,
 

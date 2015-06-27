@@ -16,12 +16,14 @@ define([
          * Must be unique through your app.
          * This property is used to identify the page in the controller
          * Moreover, the name is added as a class on the .page
+         * <br>
          */
         name: '',
 
         /**
          * @member {Object} layoutOptions override the layout options
          * Options passed to the layout
+         * <br>
          */
         layoutOptions: {},
 

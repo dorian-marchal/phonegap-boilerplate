@@ -37,6 +37,7 @@ define([
 
         /**
          * @member {String} name A unique string to identify the layout in the controller.
+         * <br>
          */
         name: '',
 
@@ -45,6 +46,7 @@ define([
          * This template must have an element with the class .content that
          * will become the AppPage element node.
          * It will be compiled to `this.tpl` at init.
+         * <br>
          */
         template: null,
 
@@ -63,6 +65,7 @@ define([
 
         /**
          * @member {Object} defaultOptions Default layout options that can be overriden by the pages
+         * <br>
          */
         defaultOptions: {},
 

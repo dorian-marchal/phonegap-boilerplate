@@ -28,6 +28,7 @@
 
         /**
          * @member {String} route The API route
+         * <br>
          */
         route: '',
 

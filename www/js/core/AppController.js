@@ -50,16 +50,19 @@ define([
 
         /**
          * @member {Array} useLayouts Required layouts
+         * <br>
          */
         useLayouts: [],
 
         /**
          * @member {Array} usePages Required pages
+         * <br>
          */
         usePages: [],
 
         /**
          * @member {Object} layoutForPages Link between routes, pages and layouts.
+         * <br>
          */
         layoutForPages: {},
 

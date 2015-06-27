@@ -16,6 +16,7 @@ define([
 
         /**
          * @member {Boolean} loggedIn true if the user is logged in
+         * <br>
          */
         this.loggedIn = false;
 

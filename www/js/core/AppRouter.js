@@ -14,6 +14,7 @@ define([
 
         /**
          * @member {Object} controllers Required controllers
+         * <br>
          */
         controllers: {},
 
