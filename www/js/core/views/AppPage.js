@@ -1,3 +1,7 @@
+/**
+ * The object from which all the app pages must inherit.
+ * @class AppPage
+ */
 define([
     'globals',
     'core/views/AppView',
@@ -8,6 +12,7 @@ define([
     return AppView.extend({
 
         /**
+         * @member {String} name the page name
          * Must be unique through your app.
          * This property is used to identify the page in the controller
          * Moreover, the name is added as a class on the .page
@@ -15,6 +20,7 @@ define([
         name: '',
 
         /**
+         * @member {Object} layoutOptions override the layout options
          * Options passed to the layout
          */
         layoutOptions: {},
@@ -37,6 +43,8 @@ define([
         /**
          * Called when the backbutton is pressed on the current page.
          * pass false to the done callback to prevent history.back
+         * @param {Function} done Must be called if you override this method.
+         * Return false to prevent the default behavior.
          */
         onBackButton: function (done) {
             done();
@@ -45,6 +53,11 @@ define([
         /**
          * Called before the page is added to the DOM on page slide
          * The route parameters are passed to this function.
+         * @param {Object} options Load options
+         * {
+         *    actionArguments: [], // Array of url parameters
+         *    history: '' // String identifying the type of loading ('first', 'forward' or 'back')
+         * }
          */
         beforeLoad: function () {},
 
@@ -66,7 +79,7 @@ define([
         beforeLeave: function () {},
 
         /**
-         * Return true if this is the current loaded page
+         * @returns {Boolean} true if the page is the current loadde page
          */
         isCurrentPage: function () {
             return globals.currentPage == this;

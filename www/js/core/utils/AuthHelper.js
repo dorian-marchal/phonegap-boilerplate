@@ -1,23 +1,29 @@
 /**
- * Singleton used to manage the user authentication.
- * @param {ApiHelper} api
+ * Manage the user authentication.
+ * @class AuthHelper
  */
 define([
     'jquery',
 ], function ($) {
-
     'use strict';
 
+    /**
+     * @param {ApiHelper} api ApiHelper instance
+     */
     var AuthHelper = function (api) {
 
         var that = this;
+
+        /**
+         * @member {Boolean} loggedIn true if the user is logged in
+         */
         this.loggedIn = false;
 
         /**
-         * Log the user
-         * @param  {String}   username
-         * @param  {String}   password
-         * @param  {Function} callback Called with a boolean (true = auth success)
+         * Log the user in
+         * @param {String} username
+         * @param {String} password
+         * @param {Function} callback Called with a boolean (true = auth success)
          */
         this.login = function(username, password, callback) {
 
@@ -44,6 +50,11 @@ define([
             });
         };
 
+        /**
+         * Log the user out
+         * @param {Function} callback Called when the user is logged out (false
+         * is passed in parameter if an error occur)
+         */
         this.logout = function(callback) {
 
             var that = this;
@@ -62,7 +73,10 @@ define([
             });
         };
 
-        // Set the user in the localStorage
+        /**
+         * Save the user in the localStorage
+         * @param {object} user User object
+         */
         this.setUser = function(user) {
             if (user && user.token) {
                 localStorage.user = JSON.stringify(user);
@@ -75,13 +89,16 @@ define([
             this.user = user;
         };
 
+        /**
+         * Remove the user from the localStorage
+         */
         this.clearUser = function() {
             this.setUser(null);
         };
 
         /**
          * Check if the token can authenticate the user
-         * @param  {Function} callback A boolean is passed (true = loggedIn)
+         * @param {Function} callback A boolean is passed (true = loggedIn)
          */
         this.checkLogin = function(callback) {
             callback = callback || function() {};

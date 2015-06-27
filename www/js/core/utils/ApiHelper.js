@@ -1,11 +1,16 @@
 /**
- * $.ajax wrapper to easily make request to the server API
+ * $.ajax wrapper to easily make request to the server API.
+ * An instance of ApiHelper is available as `app/singletons/api.js`
+ *
  * Example :
- *     var api = new ApiHelper('localhost', 8080);
- *     api.get('/mymodels', {
- *         success: sucessCallback,
- *         error: errorCallback,
- *     })
+ * ```js
+ * var api = new ApiHelper('localhost', 8080);
+ * api.get('/mymodels', {
+ *     success: sucessCallback,
+ *     error: errorCallback,
+ * });
+ * ```
+ * @module ApiHelper
  */
 define([
     'jquery',
@@ -16,7 +21,7 @@ define([
     var ApiHelper = function (serverHost, serverPort) {
 
         /**
-         * Globally add the token to all Ajax requests
+         * Globally add the access_token to all Ajax requests
          * @param {String} token
          */
         this.setToken = function(token) {
@@ -39,12 +44,22 @@ define([
             return $.ajax(settings);
         };
 
+        /**
+         * $.ajax (GET) wrapper
+         * @param {String} route Your relative route.
+         * @param {object} options $.ajax options
+         */
         this.get = function() {
             var args = Array.prototype.slice.call(arguments);
             args.unshift('get');
             this._ajax.apply(this, args);
         };
 
+        /**
+         * $.ajax (POST) wrapper
+         * @param {String} route Your relative route.
+         * @param {object} options $.ajax options
+         */
         this.post = function() {
             var args = Array.prototype.slice.call(arguments);
             args.unshift('post');

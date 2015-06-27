@@ -1,5 +1,6 @@
 /**
  * Helper used to manage backbutton event on Android
+ * @module backbuttonManager
  */
 define([
     'jquery',
@@ -46,13 +47,21 @@ define([
     var listeners = [];
 
     return {
+
         /**
-         * Add a back button listener.
+         * Add a back button listener. A `done` callback is passed to the given
+         * listener. If the listener call this callback passing false, the default
+         * backbutton action is prevented.
+         * @param {Function} listener Listener to add
          */
         addListener: function (listener) {
             listeners.push(listener);
         },
 
+        /**
+         * Remove a back button listener
+         * @param {Function} listener Listener to remove
+         */
         removeListener: function (listener) {
             listeners.splice(listeners.indexOf(listener), 1);
         },

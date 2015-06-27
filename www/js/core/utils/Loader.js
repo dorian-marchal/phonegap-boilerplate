@@ -1,5 +1,6 @@
 /**
  * Helper used to add a Spin.js loader to an element.
+ * @class Loader
  */
 define([
     'jquery',
@@ -57,9 +58,12 @@ define([
     };
 
     /**
+     * *Static function*
      * Add a preset of options. All presets inherit the default one
      * So the option properties are not all required.
      * The default preset can be overriden.
+     * @param {String} name Name of the preset
+     * @param {Object} preset The preset to add
      */
     Loader.addPreset = function (name, preset) {
         Loader.presets[name] = preset;
@@ -67,10 +71,16 @@ define([
 
     Loader.prototype = {
 
+        /**
+         * Add the spinner to the spinner element
+         */
         start: function() {
             this.spinner.spin(this.el);
         },
 
+        /**
+         * Remove the spinner from the DOM
+         */
         stop: function() {
             this.spinner.stop();
         },

@@ -1,3 +1,6 @@
+/**
+ * Helper to easily preload images before adding them to the DOM
+ */
 define(['jquery'], function ($) {
     'use strict';
 
@@ -16,8 +19,9 @@ define(['jquery'], function ($) {
 
     /**
      * A simple function useful to preload images.
-     * @param src Image source
-     * @param callback Called when the image is preloaded
+     * @function preload
+     * @param {String} src Image source
+     * @param {Function} callback Called when the image is preloaded
      */
     return function (src, callback) {
         callback = callback || $.noop;

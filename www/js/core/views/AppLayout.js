@@ -1,11 +1,28 @@
 /**
  * A base layout. All the layouts of the application must inherit AppLayout.
  *
- * The child layout must have these properties :
- * - template : not yet compiled template. Will be compiled in this.tpl at init
+ * Example :
  *
- * The child layout may have these properties :
- * - defaultOptions : layout default options (overridable by Page)
+ * ```js
+ * define(function (require) {
+ *     'use strict';
+ *     var AppLayout = require('core/views/AppLayout');
+ *
+ *     return AppLayout.extend({
+ *         name: 'simpleLayout',
+ *         template: require('text!app/templates/SimpleLayout.html'),
+ *         defaultOptions: {
+ *             title: 'DefaultTitle',
+ *         },
+ *         render: function() {
+ *             AppLayout.prototype.render.apply(this, arguments);
+ *             return this;
+ *         },
+ *     });
+ * });
+ * ```
+ *
+ * @class AppLayout
  */
 define([
     'globals',
@@ -18,7 +35,37 @@ define([
 
     return AppView.extend({
 
+        /**
+         * @member {String} name A unique string to identify the layout in the controller.
+         */
+        name: '',
+
+        /**
+         * @member {String} template Underscore template of the layout.
+         * This template must have an element with the class .content that
+         * will become the AppPage element node.
+         * It will be compiled to `this.tpl` at init.
+         */
+        template: null,
+
+        /**
+         * @member {Object} subviews List of AppView that will be linked to the given selector.
+         * Example :
+         *
+         * ```js
+         * subviews: {
+         *     // At render, MyViewClass will be rendered in the `.selector` node
+         *     '.selector' : MyViewClass, // Must inherit AppView
+         * }
+         * ```
+         */
+         subviews: {},
+
+        /**
+         * @member {Object} defaultOptions Default layout options that can be overriden by the pages
+         */
         defaultOptions: {},
+
         subviewInstances: {},
 
         initialize: function () {
@@ -79,6 +126,7 @@ define([
          * the page "layoutOptions" property.
          * This Page is rendered in the '.content' element of the layout template.
          * @param {Page} page Layout content
+         * @private
          */
         setPage: function(page) {
             this.page = page;
@@ -88,6 +136,7 @@ define([
 
         /**
          * Render the page and the subviews
+         * @private
          */
         render: function() {
             $('title').html(this.options.title);
