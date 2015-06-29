@@ -23,8 +23,9 @@ define([
         /**
          * @return {String} the base api url
          */
-        this.getUrl = function () {
-            return 'http://' + serverHost + ':' + serverPort;
+        this.getUrl = function (suffix) {
+            suffix = suffix || '';
+            return 'http://' + serverHost + ':' + serverPort + suffix;
         };
 
         /**
@@ -46,14 +47,14 @@ define([
             settings = settings || {};
 
             settings.method = method;
-            settings.url = this.getUrl() + url;
+            settings.url = this.getUrl(url);
 
             return $.ajax(settings);
         };
 
         /**
          * $.ajax (GET) wrapper
-         * @param {String} route Your relative route.
+         * @param {String} route Your relative route (url suffix with leading slash).
          * @param {object} options $.ajax options
          */
         this.get = function() {
@@ -64,7 +65,7 @@ define([
 
         /**
          * $.ajax (POST) wrapper
-         * @param {String} route Your relative route.
+         * @param {String} route Your relative route (url suffix with leading slash).
          * @param {object} options $.ajax options
          */
         this.post = function() {
