@@ -35,6 +35,7 @@ define([
     for (key in appConfig.environmentConfig[appConfig.environment]) {
         coreConfig[key] = appConfig.environmentConfig[appConfig.environment][key];
     }
+    coreConfig.environment = appConfig.environment;
 
     return coreConfig;
 });
