@@ -21,6 +21,13 @@ define([
     var ApiHelper = function (serverHost, serverPort) {
 
         /**
+         * @return {String} the base api url
+         */
+        this.getUrl = function () {
+            return 'http://' + serverHost + ':' + serverPort;
+        };
+
+        /**
          * Globally add the access_token to all Ajax requests
          * @param {String} token
          */
@@ -39,7 +46,7 @@ define([
             settings = settings || {};
 
             settings.method = method;
-            settings.url = 'http://' + serverHost + ':' + serverPort + url;
+            settings.url = this.getUrl() + url;
 
             return $.ajax(settings);
         };
