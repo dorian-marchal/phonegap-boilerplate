@@ -96,7 +96,7 @@ require([
                         // Show a warning if not in production (avoid pushing a dev app in production)
                         if (window.environment !== 'dist' || !globals.config.isProductionConfig) {
                             plugins.toast.show(
-                                __.t('Be careful, you are using a development version of the app (environnement: ' + window.environment + '/' + globals.config.environment + ')'),
+                                __.t('Be careful, you are using a development version of the app (environment: ' + window.environment + '/' + globals.config.environment + ')'),
                                 'long',
                                 'bottom'
                             );
