@@ -51,4 +51,7 @@
     <icon density="xhdpi" src="resources/android/icon/drawable-xhdpi-icon.png" />
     <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
     <access origin="*" />
+    <feature name="Toast">
+        <param name="android-package" value="nl.xservices.plugins.Toast" />
+    </feature>
 </widget>
