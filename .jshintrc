@@ -7,6 +7,7 @@
     "undef": true,
     "unused": true,
     "globals": {
+        "plugins": true,
         "device": true,
         "console": true,
         "define": true,

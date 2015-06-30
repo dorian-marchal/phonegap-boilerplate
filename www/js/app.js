@@ -93,6 +93,15 @@ require([
                         var router = new Router();
                         var slider = new PageSlider($('body'));
 
+                        // Show a warning if not in production (avoid pushing a dev app in production)
+                        if (window.environment !== 'dist' || !globals.config.isProductionConfig) {
+                            plugins.toast.show(
+                                __.t('Be careful, you are using a development version of the app (environnement: ' + window.environment + '/' + globals.config.environment + ')'),
+                                'long',
+                                'bottom'
+                            );
+                        }
+
                         // On old Android devices, hardware acceleration causes
                         // fucked up behavior on scroll with fixed elements
                         // so we disable it.
