@@ -94,7 +94,7 @@ require([
                         var slider = new PageSlider($('body'));
 
                         // Show a warning if not in production (avoid pushing a dev app in production)
-                        if (window.environment !== 'dist' || !globals.config.isProductionConfig) {
+                        if (!globals.config.hideDistWarning && (window.environment !== 'dist' || !globals.config.isProductionConfig)) {
                             var environment = window.environment + '/' + globals.config.environment;
 
                             plugins.toast.show(
