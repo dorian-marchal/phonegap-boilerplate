@@ -86,9 +86,7 @@ window.plugins = {
 // Toast
 window.plugins.toast = {
     show: function (message, duration, position) {
-        console.log('Toast:', message);
-        console.log('duration:', duration);
-        console.log('position:', position);
+        console.log('[Toast ' + position + '/' + duration + ']', message);
     },
 };
 
