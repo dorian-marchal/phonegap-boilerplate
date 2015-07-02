@@ -95,11 +95,15 @@ require([
 
                         // Show a warning if not in production (avoid pushing a dev app in production)
                         if (window.environment !== 'dist' || !globals.config.isProductionConfig) {
+                            var environment = window.environment + '/' + globals.config.environment;
+
                             plugins.toast.show(
-                                __.t('Be careful, you are using a development version of the app (environment: ' + window.environment + '/' + globals.config.environment + ')'),
+                                __.t('Be careful, you are using a development version of the app (' + environment + ')'),
                                 'long',
                                 'bottom'
                             );
+
+                            console.log('[' + environment + '] In production set the `environment` var to "dist" in `/index.html` and set `isProductionConfig` to true in your config file.');
                         }
 
                         // On old Android devices, hardware acceleration causes
