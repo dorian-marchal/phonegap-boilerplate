@@ -12,7 +12,8 @@ require([
         '__',
         'moment',
         'app/errorHook',
-    ], function (cordova, __, moment, errorHook) {
+        'app/beforeInitHook',
+    ], function (cordova, __, moment, errorHook, beforeInitHook) {
 
         // We wait for the device to be ready
         document.addEventListener('deviceready', function() {
@@ -23,7 +24,9 @@ require([
 
                 // Initialize i18n
                 __.init(language.value, function() {
-                    start();
+                    beforeInitHook(function () {
+                        init();
+                    });
                 });
             });
         }, false);
@@ -34,7 +37,7 @@ require([
         document.dispatchEvent(readyToShimEvent);
 
         // Load the app
-        var start = function() {
+        var init = function() {
 
             require([
                 'globals',
