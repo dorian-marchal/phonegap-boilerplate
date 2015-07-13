@@ -123,6 +123,7 @@ define([
         },
 
         onLocationSuccess: function (position) {
+            this.lastPosition = position; // cache the last position
             this.trigger('locationSuccess', position);
         },
 
