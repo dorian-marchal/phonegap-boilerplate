@@ -22,6 +22,3 @@ git config --local remote.pb-core.tagopt --no-tags
 
 # Restore current branch
 git checkout "$current_branch"
-
-# Lead to the next step
-echo "Don't forget to create the config file (www/js/config.js) :)"

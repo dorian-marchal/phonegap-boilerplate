@@ -1,5 +1,7 @@
 /**
  * The object from wich the app router must inherit.
+ * Inherit Backbone.Router.
+ * @class AppRouter
  */
 define([
     'globals',
@@ -10,11 +12,33 @@ define([
 
     return Backbone.Router.extend({
 
+        /**
+         * @member {Object} controllers Required controllers
+         * <br>
+         */
         controllers: {},
 
         routes: {
             '(:controller)(/:action)(/*params)': 'routeAction',
         },
+
+        /**
+         * @member {Object} routes list of Backbone.Router.route bound to actions
+         * Can contain :controller, :action and *params.
+         *
+         * Example :
+         *
+         * ```js
+         * customRoutes: {
+         *     '' : 'home',
+         *     ':action(/*params)' : 'simpleAction',
+         * },
+         * simpleAction: function (action, stringParams) {
+         *     this.routeAction('ctrl', action, stringParams);
+         * }
+         * ```
+         */
+        customRoutes: {},
 
         initialize: function() {
 
@@ -33,6 +57,13 @@ define([
 
         },
 
+        /**
+         * Call a controller action
+         * @param {String} controller Controller name
+         * @param {String} action action name (default: index)
+         * @param {String} stringParams List of parameters passed to the action
+         *                              separated by '/'
+         */
         routeAction: function(controller, action, stringParams) {
 
             var params = this.extractParams(stringParams);
@@ -56,6 +87,12 @@ define([
             }
         },
 
+        /**
+         * Call a controller action. Call this.unknownRoute if the action is not found.
+         * @param {String} controller Controller name
+         * @param {String} action Action name
+         * @param {Array} params List of parameters
+         */
         callAction: function(controller, action, params) {
 
             params = params || [];
@@ -77,7 +114,8 @@ define([
         },
 
         /**
-         * Called when no matching routes is found (can be implemented by the child)
+         * Called when no matching routes is found
+         * @param {String} other controller.action(param1, param2, ...)
          */
         unknownRoute: function(other) {
             console.error('Unknown route : ' + other);
@@ -85,8 +123,8 @@ define([
 
         /**
          * Convert stringParams string in array of parameters
-         * @param  {String} stringParams
-         * @return {Array}
+         * @param  {String} stringParams List of parameters separated by '/'
+         * @return {Array} Parameters list
          */
         extractParams: function(stringParams) {
             var params = [];

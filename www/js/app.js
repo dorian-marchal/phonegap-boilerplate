@@ -11,7 +11,9 @@ require([
         'cordova',
         '__',
         'moment',
-    ], function (cordova, __, moment) {
+        'app/errorHook',
+        'app/beforeInitHook',
+    ], function (cordova, __, moment, errorHook, beforeInitHook) {
 
         // We wait for the device to be ready
         document.addEventListener('deviceready', function() {
@@ -22,7 +24,9 @@ require([
 
                 // Initialize i18n
                 __.init(language.value, function() {
-                    start();
+                    beforeInitHook(function () {
+                        init();
+                    });
                 });
             });
         }, false);
@@ -33,7 +37,7 @@ require([
         document.dispatchEvent(readyToShimEvent);
 
         // Load the app
-        var start = function() {
+        var init = function() {
 
             require([
                 'globals',
@@ -71,7 +75,7 @@ require([
                     }, config.splashScreenMinimumDurationMs);
                 };
 
-                // Check if authentificated
+                // Check if authenticated
                 if (config.useAuth) {
                     toWait.login = function(done) {
                         auth.checkLogin(function() {
@@ -92,6 +96,19 @@ require([
                         var router = new Router();
                         var slider = new PageSlider($('body'));
 
+                        // Show a warning if not in production (avoid pushing a dev app in production)
+                        if (!globals.config.hideDistWarning && (window.environment !== 'dist' || !globals.config.isProductionConfig)) {
+                            var environment = window.environment + '/' + globals.config.environment;
+
+                            plugins.toast.show(
+                                __.t('Be careful, you are using a development version of the app (' + environment + ')'),
+                                'long',
+                                'bottom'
+                            );
+
+                            console.log('[' + environment + '] In production set the `environment` var to "dist" in `/index.html` and set `isProductionConfig` to true in your config file.');
+                        }
+
                         // On old Android devices, hardware acceleration causes
                         // fucked up behavior on scroll with fixed elements
                         // so we disable it.
@@ -104,7 +121,7 @@ require([
                         Backbone.history.start();
                     });
                 });
-            });
+            }, errorHook);
         };
     });
 });

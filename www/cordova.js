@@ -83,6 +83,13 @@ window.plugins = {
     }
 };
 
+// Toast
+window.plugins.toast = {
+    show: function (message, duration, position) {
+        console.log('[Toast ' + position + '/' + duration + ']', message);
+    },
+};
+
 // deviceready
 document.addEventListener('ready-to-shim', function() {
     var deviceReadyShimEvent = document.createEvent('Event');

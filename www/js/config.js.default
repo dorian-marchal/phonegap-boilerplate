@@ -11,6 +11,9 @@ define({
             // Remove this line to enable caching
             urlArgs: 'bust=' + (new Date()).getTime(),
 
+            // Must be true in production. If false, a warning is displayed at startup
+            isProductionConfig: false,
+
             // API server infos
             server: {
                 host: 'localhost',

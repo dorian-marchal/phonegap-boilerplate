@@ -1,8 +1,4 @@
-/**
- * Helps to add a marker that follow the user on a map.
- * This helper trigger an 'firstPositioning' event when the first location is found
- * after tracking start with two parameters : the map and the new position
- */
+
 define([
     'backbone',
     'underscore',
@@ -11,6 +7,12 @@ define([
 ], function (Backbone, _, GMaps, geolocation) {
     'use strict';
 
+    /**
+     * Helps to add a marker that follow the user on a map. Extends backbone.Event.
+     * This helper trigger an 'firstPositioning' event when the first location is found
+     * after tracking start with two parameters : the map and the new position
+     * @class UserLocationTracker
+     */
     var UserLocationTracker = function () {};
 
     _.extend(UserLocationTracker.prototype, Backbone.Events, {
@@ -22,6 +24,10 @@ define([
         // When true, the map is centered on the user on first positioning
         centerOnFirstPositioning: false,
 
+        /**
+         * Set the tracker map
+         * @param {Gmaps} map Gmaps instance
+         */
         setMap: function (map) {
 
             if (!map) {
@@ -33,12 +39,17 @@ define([
 
             if (this.marker) {
                 this.marker.setMap(map.map);
+                map.addMarker(this.marker);
             }
             else {
                 this._createMarker();
             }
         },
 
+        /**
+         * Update the marker icon options
+         * @param {Object} iconOptions google.maps.marker options
+         */
         setMarkerIconOptions: function (iconOptions) {
             _.extend(this.markerOptions, {
                 icon: iconOptions
@@ -47,6 +58,7 @@ define([
 
         /**
          * Start showing the user position on the map.
+         * @fires firstPositioning When the first position is found
          */
         start: function () {
 
@@ -101,6 +113,7 @@ define([
 
         /**
          * Create a hidden marker on the map
+         * @private
          */
         _createMarker: function () {
 
@@ -115,6 +128,7 @@ define([
 
         /**
          * Update the user position on the map
+         * @private
          */
         _updateMarkerPosition: function (latitude, longitude) {
             this.marker.setPosition({
