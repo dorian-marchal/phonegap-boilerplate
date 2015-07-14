@@ -51,6 +51,8 @@ IOS/www/
 
 # Boilerplate
 
+# Add !/pb-config.json to your project gitignore to share it
+/pb-config.json
 .sass-cache
 /.idea
 /node_modules
