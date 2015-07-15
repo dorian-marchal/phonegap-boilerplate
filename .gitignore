@@ -55,6 +55,7 @@ IOS/www/
 .sass-cache
 /.idea
 /node_modules
+/platforms/android/ant.properties
 /platforms/android/assets/*
 /platforms/android/ant-build/*
 /platforms/android/ant-gen/*
