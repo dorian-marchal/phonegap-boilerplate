@@ -83,8 +83,3 @@ install:
 	npm install
 	@echo "Don't forget to create the config file :"
 	@echo "- cp www/js/config.js.default www/js/config.js"
-
-# Prepare the repo to start developing
-.PHONY: install-dev
-install-dev: install
-	./dev-scripts/install-dev
