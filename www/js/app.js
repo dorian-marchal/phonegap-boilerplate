@@ -97,8 +97,8 @@ require([
                         var slider = new PageSlider($('body'));
 
                         // Show a warning if not in production (avoid pushing a dev app in production)
-                        if (!globals.config.hideDistWarning && (window.environment !== 'dist' || !globals.config.isProductionConfig)) {
-                            var environment = window.environment + '/' + globals.config.environment;
+                        if (!globals.config.hideDistWarning && (!window.useDistFile || !globals.config.isProductionConfig)) {
+                            var environment = (window.useDistFile ? 'compiled' : 'not compiled')  + '/' + globals.config.environment;
 
                             plugins.toast.show(
                                 __.t('Be careful, you are using a development version of the app (' + environment + ')'),
@@ -106,7 +106,7 @@ require([
                                 'bottom'
                             );
 
-                            console.log('[' + environment + '] In production set the `environment` var to "dist" in `/index.html` and set `isProductionConfig` to true in your config file.');
+                            console.log('[' + environment + '] In production set the `useDistFile` var to `true` in `/index.html` and set `isProductionConfig` to true in your config file.');
                         }
 
                         // On old Android devices, hardware acceleration causes
