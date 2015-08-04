@@ -93,6 +93,12 @@ require([
 
                     // Execute some code before starting the app (after the splashscreen)
                     initHook(function() {
+
+                        // Force the first loaded page
+                        if (config.firstLoadedRoute) {
+                            window.location.hash = config.firstLoadedRoute;
+                        }
+
                         var router = new Router();
                         var slider = new PageSlider($('body'));
 
